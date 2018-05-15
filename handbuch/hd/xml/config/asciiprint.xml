@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE custom_entities SYSTEM "s3-custom-entities-for-xtm.dtd">
+<!--
+**===== ABSCHNITT : Modul Identifikation ===============================**
+ Modul Name       : asciiprint.xml
+ Autor            : rasch
+**======================================================================**
+-->
+
+<CHAPTER>
+
+<H2 ID="X1B">Druckereinbindung</H2>
+
+<CONTENTS ID="X1B" MAXLEVEL="5"/>
+
+<H3 ID="X1B.2" SPLIT="0">Drucken mit print.sh</H3>
+
+<P><TT>print.sh</TT> wird beim <INDEX PRIO="P" NAME="Druckereinbindung">Drucken</INDEX>
+mit <REF ID="FO.AUSGABE">&foc.AUSGABE;</REF> 'Systemdrucker'
+auf der FO ausgeführt. Dabei wird jeweils eine
+Druckdatei erstellt, die dann mit <TT>print.sh</TT> auf einem Drucker
+ausgedruckt wird, der an den Server angeschlossen oder vom Server aus
+über das Netzwerk ansprechbar ist (<INDEX PRIO="P">Systemdrucker</INDEX>).
+Die Anzahl der Systemdrucker wird in
+<REF ID="X9.3.GR.MAND.INI">MAND.INI</REF> eingetragen. Bei
+diesem Druckverfahren können nur Texte gedruckt werden, keine Grafiken.</P>
+
+
+<H4 ID="X1B.2.1" SPLIT="1">Voraussetzungen für die Erstellung eines Druckauftrages</H4>
+
+<P>Für die Erstellung eines Druckauftrages sind folgende 3 Informationen nötig:</P>
+
+<H6>Ausgabegerät</H6>
+<MARK ID="X1B.2.1.GERAET"/>
+<P>Sie wählen das Ausgabegerät in der Druckerauswahl des FOPs
+&foc.EINGABE; <TT>DRUCKER</TT>.
+</P>
+
+<H6>Seitenlänge, linker und rechter Rand, vertikale Tabulatoren</H6>
+<MARK ID="X1B.2.1.MASSE"/>
+<P>Diese Daten stehen in der Formatdatei, die im FOP nach der Druckerauswahl aufgerufen wird
+(z.B. &foc.EINGABE; <TT>BLANKO.F</TT>).</P>
+
+<H6>Steuersequenzen für Druckoptionen</H6>
+<MARK ID="X1B.2.1.STEUERSEQUENZEN"/>
+<P>In einem FOP können Sie mit dem FO-Kommando &foc.DRUCKEN; <TT>'Druckoption'
+Druckoptionen</TT> z.B. die Schriftart oder -größe auswählen. Die Drucker
+erwarten zur Ansteuerung dieser Optionen besondere Zeichenfolgen mit
+nichtlesbaren Steuerzeichen, die vom Druckerhersteller und -modell abhängig
+sind. Es gibt daher eine Konfigurationsdatei, in der für jeden Druckertyp
+Steuerzeichen mit Bezeichnungen eingetragen sind. Der Zugriff auf diese
+Datei erfolgt dann mit Hilfe dieser Bezeichnungen, um eine geräteunabhängige
+und leicht verständliche Ansteuerung zu ermöglichen.</P>
+
+<P>In der Datei <TT>devices.txt</TT> sind die Namen der Drucker sowie
+die Druckertypen und der Name des abas-ERP-Druckertreibers aufgeführt.
+Für jeden Druckertyp befinden sich in der Datei <TT>termcap.txt</TT>
+die Bezeichnungen der Druckoptionen und die entsprechenden Steuersequenzen.</P>
+
+
+<H4 ID="X1B.2.2" SPLIT="1">Erstellung eines Druckauftrags</H4>
+<P>Im Mandantenverzeichnis wird ein Druckauftrag automatisch in Form einer Datei erstellt.
+Der Name der Datei genügt folgender Konvention:</P>
+
+<PRE>
+ Xdf  nnnn 123456789            .TMP
+ +-   +--- +--------            +---
+ |    |    |                    |
+ |    |    |                    +-- .TMP als Ende des Dateinamens
+ |    |    |
+ |    |    +------------ zufällige Zahl
+ |    +----------------- Herkunftsbezeichnung (z.B. Name des FOPs)
+ +---------------------- Xdf als Beginn des Namens
+ z.B. XdfPLAN02064106579121920649.TMP
+</PRE>
+
+<P>Bei der Erstellung der Datei wird eventuell der Zeichensatz des
+ausgegebenen Texts mit Hilfe von <REF ID="X1B.2.3.2">termcap.zs</REF>
+konvertiert. Danach wird
+das Programm <TT>print.sh</TT> aufgerufen, das seinerseits den zum Drucker
+gehörigen abas-ERP-Druckertreiber: <TT>$HOMEDIR/ow/bin/print&lt;name&gt;.sh</TT>
+aufruft.</P>
+
+<P>Im abas-ERP-Druckertreiber wird der logische Drucker (z.B. Systemdrucker
+S4) dem physikalischen Drucker (z.B. Drucker <TT>/dev/lp</TT>) zugeordnet.
+Anschließend wird der Drucker-Spooler des Betriebssystems bzw. einer
+Fremdsoftware (z.B. eines Faxprogramms) mit den entsprechenden Optionen
+aufgerufen (z.B.: <TT>lpr -Plp2 -#2 Xdfnnn123456789.TMP</TT>).</P>
+
+<P>Die Umgebung des <TT>print.sh</TT>-Aufrufs wird angereichert um den Inhalt der
+P-Puffervariablen <REF ID="X2.13.10.AKTENVIRON"><TT>aktenviron</TT></REF>,
+wenn sie eine Text der Form: <TT>VAR1=wert1 VAR2=wert2</TT> enthält.
+Auf diesem Wege können Sie weitere Parameter an die Skripte unterhalb von <TT>print.sh</TT>
+weitergeben.</P>
+
+<H4 ID="X1B.2.3" SPLIT="1">Neuen Drucker konfigurieren</H4>
+
+<P>Bei Inbetriebnahme eines neuen Druckers müssen folgende Arbeiten
+durchgeführt werden:</P>
+
+<CONTENTS ID="X1B.2.3" MAXLEVEL="5" FIRST="0" ORDERED="0"/>
+
+<H5 ID="X1B.2.3.1">Drucktreiber erstellen</H5>
+
+<P>Den Druck führt ein Shellskript im Verzeichnis
+<TT>$HOMEDIR/ow/bin</TT> durch. Jedes Shellskript implementiert
+ein bestimmtes Druckverfahren (z.B. <TT>printlpr.sh</TT>: Druck mit dem
+Unix-Kommando <TT>lpr</TT>). Falls die mit abas-ERP ausgelieferten Shellskripte
+nicht benutzt werden können, weil z.B. mit einer bisher nicht
+unterstützen Fax-Software gedruckt werden soll, muss ein neues
+<REF ID="X1B.2.4.3">Shellskript</REF> erstellt werden.</P>
+
+
+<H5 ID="X1B.2.3.2">Druckertreiber in <TT>termcap.zs</TT> eintragen</H5>
+
+<P>Falls eine neuer Druckertreiber erstellt wurde, kann dieser in die
+Datei <TT><INDEX PRIO="P">termcap.zs</INDEX></TT> eingetragen
+werden. Dann wird der Zeichensatz der Daten, die ausgedruckt werden sollen,
+entsprechend konvertiert. Die Konvertierung kann auch im Druckertreiber
+selbst durchgeführt werden. In diesem Fall verwenden Sie den Druckertreiber
+<TT>dumm</TT>, der selbst keine Konvertierung durchführt.
+</P>
+
+
+<H5 ID="X1B.2.3.3">Drucker in <TT>termcap.txt</TT> eintragen</H5>
+
+<P>In der Datei <TT>termcap.txt</TT>
+müssen Sie für den neuen Drucker festlegen, welche Steuersequenzen an
+den Drucker geschickt werden. Im Allgemeinen kann der neue Drucker bei
+bereits vorhandenen Druckerbeschreibungen eingetragen werden (für
+Laserdrucker ist meistens einer der Einträge geeignet, deren Name mit
+hpl2 oder hpl3 beginnt). Möglicherweise muss aber ein
+neuer Eintrag erstellt werden.</P>
+
+<H5 ID="X1B.2.3.4">Drucker in <TT>devices.txt</TT> eintragen</H5>
+
+<P>In der Datei <TT>devices.txt</TT> zur Gerätekonfiguration
+sind alle Geräte eingetragen, die von abas-ERP benutzt werden. Ein neuer
+Drucker muss dort aufgenommen werden.</P>
+
+<H5 ID="X1B.2.3.5">Druckauswahl erweitern</H5>
+<P>In die Dateien <TT>DRUCKER</TT> und
+<TT>DRUCKER1</TT> im Mandantenverzeichnis muss der neue
+Drucker eingetragen werden. Wenn die Browserausgabe in der FO verwendet
+wird, muss außerdem die Datei <TT>HTMLDRUCKER</TT>
+angepasst werden.</P>
+
+
+<H5 ID="X1B.2.3.6">Anzahl der Drucker erhöhen</H5>
+<P>In der Datei <TT>MAND.INI</TT> ist die Anzahl der konfigurierten Drucker
+eingetragen (Variable <TT>xs92dranz</TT>). Diese Anzahl muss eventuell erhöht werden.</P>
+
+
+<H5 ID="X1B.2.3.7">Formatbausteine anpassen</H5>
+<P>In FO-Programmen wird nach Auswahl des Druckers im Allgemeinen ein
+bestimmtes FO-Programm ausgeführt, der <REF ID="X9.3.GR">Formatbaustein</REF>
+(Formatierungstext). Dieser setzt in Abhängigkeit vom Drucker die
+Seitenränder und die Anzahl der Zeilen pro Seite. Hier müssen Sie für
+den neuen Drucker die passenden Werte eintragen.</P>
+
+
+<H5 ID="X1B.2.3.8">Neuen Drucker testen</H5>
+<P>Rufen Sie ein FO-Programm auf, das auf den Drucker ausgeben kann
+(z.B. <TT>FIND</TT>: Suche nach FO-Programmen mit einem bestimmten Namen).
+Wenn nichts ausgegeben wird, prüfen Sie die Datei
+<TT><INDEX PRIO="P">DRUCK.LOG</INDEX></TT> im Mandantenverzeichnis.
+Dort werden Fehlermeldungen der Druckprogramme gesammelt.</P>
+
+
+<H4 ID="X1B.2.4" SPLIT="1">Konfigurationsdateien und Druckskripte</H4>
+<P>Folgende Dateien sind beteiligt, wenn aus abas-ERP heraus mit
+<TT>print.sh</TT> gedruckt wird:</P>
+
+<CONTENTS ID="X1B.2.4" MAXLEVEL="5" FIRST="0" ORDERED="0"/>
+
+<P>Außerdem wird die Datei <REF ID="X47B"><TT>devices.txt</TT></REF>
+(Gerätekonfiguration) ausgewertet.</P>
+
+<H5 ID="X1B.2.4.1" SPLIT="1">Druckerbeschreibung: $HOMEDIR/termcap.txt</H5>
+
+<P>Sämtliche Drucker und Faxgeräte, die in abas-ERP eingebunden werden sollen,
+benötigen eine Gerätebeschreibung in der Datei <TT><INDEX PRIO="P">termcap.txt</INDEX></TT> im Verzeichnis $HOMEDIR.</P>
+
+<PP TYPE="ATTENTION">
+Änderungen an der Datei <TT>termcap.txt</TT> werden nur aktiv, wenn sie
+mit dem Kommando <TT>termmake</TT> übersetzt werden.<BR/><BR/></PP>
+
+<P>Der Eintrag für einen Drucker oder ein Faxgerät hat folgenden Aufbau:<BR/><BR/>
+# Kommentar<BR/>
+# Kommentar<BR/>
+# ...<BR/>
+Druckertyp:\<BR/>
+ :PR:is=&lt;Steuersequenz&gt;:es=&lt;Steuersequenz&gt;:pa=&lt;Steuersequenz&gt;:chset=&lt;Steuersequenz&gt;:\<BR/>
+ :$&lt;Eigenschaft&gt;=&lt;Steuersequenz&gt;:\<BR/>
+ :$&lt;Eigenschaft&gt;=&lt;Steuersequenz&gt;:\<BR/>
+</P>
+
+<PP TYPE="EXAMPLE">
+#<BR/>
+#<BR/>
+#<BR/>
+# HP Laserjet III/IV/V Laserjet mit 1 Schacht<BR/>
+#<BR/>
+hpl3:\<BR/>
+ :PR:is=\EE:es=\EE:\pa=\EE:\chset=\EE:\<BR/>
+ :$zs.norm=\E(12U:\<BR/>
+ :$norm100=\E(s10h0s0B\E)s10h0s0B:\<BR/>
+ :$sg.norm100=\E&amp;k0S:$sg.klein160=\E(s16H:\<BR/>
+ :$sg.eng120=\E&amp;k4S:$sg.gross60=\E(s6H:\<BR/>
+ :$in.norm=\E(s0B:$in.fett=\E(s3B:\<BR/>
+ :$za.norm=\E&amp;l6D:$za.eng=\E&amp;l8D:\<BR/>
+ :$sa.norm=\E(s0S\E)s0S:$sa.italic=\E(s1S\E)s1S:\<BR/>
+ :$str.an=\E&amp;d3D:$str.aus=\E&amp;d\100:\<BR/>
+ :$fo.quer=\E&amp;l1O:$fo.hoch=\E&amp;l00:<BR/>
+<BR/>
+Dieser Eintrag in der Datei <TT>termcap.txt</TT>, die zur Ausstattung
+von abas-ERP gehört, kann auch für viele andere Laserdrucker verwendet
+werden.<BR/><BR/></PP>
+
+
+<H6 ID="X1B.2.4.1.1" SPLIT="1">Regeln für das Erstellen eines Eintrages:</H6>
+
+<UL>
+<LI>Kommentarzeilen beginnen mit einem Doppelkreuz (#).</LI>
+<LI>Der Name des Eintrags beginnt in der ersten Spalte.</LI>
+<LI>Das Trennzeichen zwischen Eigenschaften und Steuersequenzen ist
+der Doppelpunkt.</LI>
+<LI>Das Dollarzeichen ($) leitet eine Eigenschaft ein.</LI>
+<LI>"PR" muss immer angegeben werden.</LI>
+<LI>"is" meint den Initialisierungsstring. Diese
+Sequenz wird vor jedem Druckauftrag gesendet.</LI>
+<LI>"es" meint die Steuersequenz, die nach jedem
+Druckauftrag gesendet wird.</LI>
+<LI>"pa" meint Page und wird bei jedem Seitenwechsel gesendet.</LI>
+<LI>"chset" meint Zeichensatz und kann mit dem Namen eines Zeichensatzes versehen werden,
+in den die Druckausgabe von abas-ERP konvertiert wird.<BR/>
+Ist ein solcher Eintrag vorhanden, ist die Zeichensatzumschaltung über die Einträge
+in <TT>termcap.zs</TT> unwirksam.<BR/><BR/>
+<TT>CHSET</TT> darf folgende Einträge annehmen:<BR/>
+
+<DL>
+<DT>UTF-8</DT><DD>Unicode, UTF-8</DD>
+<DT>UTF-16</DT><DD>Unicode, UTF-16</DD>
+<DT>UTF-16BE</DT><DD>Unicode, UTF-16BE</DD>
+<DT>UNI-ESC</DT><DD>Unicode, Escaped</DD>
+<DT>ISO-8859-1</DT><DD>ISO-8859-1, westlich</DD>
+<DT>ISO-8859-5</DT><DD>ISO-8859-5, kyrillisch</DD>
+<DT>CP1250</DT><DD>Windows Codepage 1250</DD>
+<DT>CP1251</DT><DD>Windows Codepage 1251</DD>
+<DT>CP1254</DT><DD>Windows Codepage 1254</DD>
+</DL>
+
+<PP TYPE="HINT">
+<P>Beachten Sie, dass nur die ersten vier Werte bedenkenlos einsetzbar sind,
+da die anderen nur 256 Zeichen enthalten und somit falsche Konvertierungen möglich sind.<BR/>
+Unterstützt ein Drucker z.B. den UTF-8-Zeichensatz, kann abas-ERP die Konvertierung
+in diesen Zeichensatz im Kern übernehmen. Eine nachträgliche Konvertierung mit z.B.
+<TT>s3_conv</TT> in <TT>print.sh</TT> ist somit nicht mehr möglich.</P>
+</PP></LI>
+<LI>Die letzte Zeile eines Eintrags endet mit einem Doppelpunkt (:).</LI>
+<LI>Alle anderen Zeilen enden mit Doppelpunkt und Schrägstrich (:\).</LI>
+<LI>Nach der Markierung eines Zeilenendes dürfen keine weiteren Zeichen stehen.</LI>
+<LI>In der ganzen Datei dürfen keine Leerzeilen enthalten sein.</LI>
+<LI>Bei Eigenschaften, die die Zeichendichte beschreiben, wird
+nach der Eigenschaft der CPI-Wert (Character Per Inch) angegeben.
+(z.B. für Engdruck [12 CPI] = ":$sg.eng120=\EM:"</LI>
+</UL>
+
+<P>Folgende Sonderzeichen können verwendet werden:</P>
+
+<DL>
+<DT>\E</DT><DD>Escape (hex 1B</DD>
+<DT>\n</DT><DD>New Line</DD>
+<DT>\r</DT><DD>Return</DD>
+<DT>\t</DT><DD>Tabulatorzeichen</DD>
+<DT>\b</DT><DD>Backspace</DD>
+<DT>\nnn</DT><DD>Oktalzahl (z.B. \017)</DD>
+</DL>
+
+
+<P>Die folgenden Funktionen werden in vielen von abas mitgelieferten
+FO-Programmen benutzt und sollten bei einem Druckereintrag vorhanden sein:</P>
+
+<DL>
+<DT>$norm</DT><DD>Zurücksetzen aller Eigenschaften</DD>
+<DT>$sg.norm</DT><DD>normale Schriftgröße (10 CPI)</DD>
+<DT>$sg.eng</DT><DD>Engschrift (12 CPI)</DD>
+<DT>$sg.klein</DT><DD>Kleinschrift (16.6 CPI oder mehr)</DD>
+<DT>$za.norm</DT><DD>normalen Zeilenvorschub (6 LPI)</DD>
+<DT>$za.eng</DT><DD>engen Zeilenvorschub (8 LPI)</DD>
+<DT>$in.norm</DT><DD>normale Druckintensität</DD>
+<DT>$in.fett</DT><DD>Fettdruck</DD>
+</DL>
+
+<P>Die folgenden Funktionen werden in manchen von abas mitgelieferten
+FO-Programmen benutzt und können zusätzlich aufgenommen werden (soweit
+diese vom Drucker her möglich sind):</P>
+
+<DL>
+<DT>$sa.norm</DT><DD>normale Schriftart</DD>
+<DT>$sa.nlq</DT><DD>Schönschrift</DD>
+<DT>$sg.gross</DT><DD>große Schriftart (50 CPI)</DD>
+<DT>$str.an</DT><DD>Unterstreichen anschalten</DD>
+<DT>$str.aus</DT><DD>Unterstreichen ausschalten</DD>
+<DT>$fo.hoch</DT><DD>Hochformat (nur Laserdrucker)</DD>
+<DT>$fo.quer</DT><DD>Querformat (nur Laserdrucker)</DD>
+</DL>
+
+<P>Außerdem können beliebige weitere Funktionen aufgenommen werden,
+um die Fähigkeiten des Druckers auszunutzen.</P>
+
+
+<H6 ID="X1B.2.4.1.2" SPLIT="1">Ausgabe nach Microsoft Word</H6>
+
+<P>Auch für Microsoft Word sind Einträge in <TT>termcap.txt</TT> enthalten.
+Die entsprechenden Einträge heißen "winword". "winword2", ... . Diese
+Einträge werden bei der Ausgabe mit &foc.AUSGABE; <TT>w</TT> verwendet. Die
+Konvertierung in den Windows-Zeichensatz wird automatisch vorgenommen
+(es ist kein Eintrag in <TT>termcap.zs</TT> notwendig). Beachten Sie,
+dass benutzerspezifische Einträge mit "\E" geklammert werden müssen!</P>
+
+<P>Folgende Zeichengrößen können mit folgenden Eigenschaften zur
+Verfügung gestellt werden:</P>
+
+<TABLE FORMAT="|l|l|l|-">
+<TR><TH>Eigenschaften</TH><TH>Anzahl Zeichen/Zeile</TH><TH>Schriftgröße</TH></TR>
+<TR><TD>$sg.gross65</TD><TD>54</TD><TD>18</TD></TR>
+<TR><TD>$sg.norm98</TD><TD>82</TD><TD>12</TD></TR>
+<TR><TD>$sg.eng118</TD><TD>98</TD><TD>10</TD></TR>
+<TR><TD>$sg.mittel137</TD><TD>114</TD><TD>8</TD></TR>
+<TR><TD>$sg.klein157</TD><TD>130</TD><TD>7</TD></TR>
+</TABLE>
+
+<P>Die Anzahl der Zeichen pro Zeile ist auf ein DIN-A4-Blatt, Hochformat,
+bezogen. Unter Reflection auf der ASCII-Oberfläche können nicht mehr als
+130 Zeichen pro Zeile eingegeben werden (vgl. unter DDE-EXECUTE im
+Handbuch für Reflection für Windows; ferner unter
+<REF ID="X9.1.10">DDE-Kommandos in FO</REF>).</P>
+
+
+<H5 ID="X1B.2.4.2" SPLIT="1">Zeichensatzkonvertierung beim Drucken:
+$HOMEDIR/termcap.zs</H5>
+
+<P>Mit <TT>print.sh</TT> werden nur Texte gedruckt. Dabei wird eine
+Textdatei zusammen mit Steuersequenzen an der Drucker gesendet. Der
+Drucker druckt jedes Zeichen in der Textdatei in einem bestimmten Zeichensatz
+aus; dieser Zeichensatz muss auf dem Drucker installiert sein.</P>
+
+<P>Tintenstrahl- und Laserdrucker können auch im Grafikmodus drucken.
+Dabei wird jedes Zeichen als Grafik übertragen, wodurch jeder Drucker
+beliebige Zeichen drucken kann. Dies ist mit <TT>print.sh</TT> nicht
+möglich.</P>
+
+<P>Da der <REF ID="X15B">abas-ERP-Zeichensatz</REF> von jenem (jenen)
+des Druckers abweicht (dieser hat z.B. ROMAN-8, PC-850, Liniengrafik),
+muss der abas-ERP-Zeichensatz vor dem Druck konvertiert werden. Dies
+können Sie mithilfe der Datei <TT><INDEX PRIO="P">termcap.zs</INDEX></TT>
+im Verzeichnis $HOMEDIR veranlassen. In dieser
+Datei ist für jeden Druckertyp festgelegt, wie jedes Zeichen des
+abas-ERP-Zeichensatzes in einen bestimmten Druckerzeichensatz übersetzt wird. Alle nicht
+aufgeführten Zeichen bleiben unverändert, ebenso wie alle Zeichen
+von nicht aufgeführten Druckertypen.</P>
+
+<P>Es kann nur jeweils ein Zeichen in ein anderes Zeichen konvertiert
+werden. Dies ist manchmal nicht ausreichend (z.B. wenn chinesische Zeichen
+gedruckt werden sollen). In diesem Fall kann im
+<REF ID="X1B.2.4.3">abas-ERP Druckertreiber</REF> der Zeichensatz
+konvertiert werden, z.B. mit den Programmen
+<REF ID="X15B"><TT>s3_conv</TT></REF> bzw. <REF ID="X15B"><TT>uconv</TT></REF>,
+die zusammen mit abas-ERP ausgeliefert werden.</P>
+
+
+<H5 ID="X1B.2.4.3" SPLIT="1">abas-ERP-Druckertreiber $HOMEDIR/ow/bin/print&lt;name&gt;.sh</H5>
+
+<P>Sobald der fertige Druckauftrag auf die Festplatte geschrieben ist,
+wird die Datei <TT>print&lt;name&gt;.sh</TT> aufgerufen. &lt;name&gt; ist der
+Namensbestandteil des Treibers, der in die Datei <TT><REF ID="X47B.1.2">devices.txt</REF></TT>
+als Bestandteil der Druckerdefinitionen eingetragen werden muss.<BR/>
+Die Parameter setzen sich wie folgt zusammen:</P>
+
+<DL>
+<DT>1. Parameter ($1)</DT>
+<DD>Kürzel oder logische Gerätenummer des Druckers<BR/>
+Spalte 5 = S1, S2, .. F1, F2, .. wenn nicht    leer<BR/>
+Spalte 1 = 1,2,3 ...,            wenn Spalte 5 leer<BR/>
+(siehe <TT>devices.txt</TT>).
+</DD>
+
+<DT>2. Parameter ($2)</DT>
+<DD>Name der Temporärdatei, die gedruckt werden soll</DD>
+
+<DT>3. Parameter ($3)</DT>
+<DD>gibt an, wie viele Kopien gedruckt werden sollen.
+(Standard: 1 Kopie)</DD>
+
+<DT>4. Parameter ($5)</DT>
+<DD>Faxnummer des Empfängers, ein Strich (-), wenn leer</DD>
+
+<DT>5. Parameter ($5)</DT>
+<DD>weitere Angaben, z.B. Faxparameter: Priorität, Sendezeit, Kommentar
+</DD>
+
+<DT>weitere Parameter ($6, ...)</DT>
+<DD>gesamte Zeile des Druckers aus <TT>devices.txt</TT>
+</DD>
+</DL>
+
+<PP TYPE="EXAMPLE">
+print.sh S1 Xdfnnn123456789.TMP 3 1 lp - hpl5 S1  lpr<BR/><BR/>
+
+Auf dem logischen Drucker S1 soll die Datei <TT>dfnnn123456789</TT>
+3-mal ausgedruckt werden.<BR/><BR/></PP>
+
+<P>
+Aufgabe von <TT>print.sh</TT> ist es, den Druckauftrag auf dem gewünschten
+Drucker auszudrucken. Dazu wird aus <TT>devices.txt</TT> der passende
+<INDEX PRIO="P">Druckertreiber</INDEX> bestimmt (z.B. <TT>lpr, langner,
+print</TT>). Vorbereitete Treiber liegen in <TT>$HOMEDIR/ow/bin</TT>.
+Sie haben den Namen print 'Treibername'.sh, z.B. <TT>printlpr.sh,
+printlangner.sh, printnetfax.sh.</TT>.</P>
+
+<P><TT>print.sh</TT> ruft den
+passenden Druckertreiber auf und protokolliert den Aufruf (eventuell
+mit Fehlermeldung) in der Datei <TT>DRUCK.LOG</TT> im Mandanten.
+Es sollte nicht geändert werden. Geändert werden können aber die
+Programme in <TT>$HOMEDIR/ow/bin</TT>. Auch dürfen neue Druckertreiber
+erstellt werden.</P>
+
+<PP TYPE="HINT">
+Bei einem Upgrade werden die Programme in <TT>$HOMEDIR/ow/bin</TT> nicht verändert.<BR/><BR/></PP>
+
+<P>Ein abas-ERP-Druckertreiber konvertiert z.B. den Zeichensatz und
+ruft dann das eigentliche Druckprogramm auf, das Teil des
+Betriebssystems oder der Faxsoftware ist (Spooler).</P>
+
+<PP TYPE="EXAMPLE">
+wie Sie auf UNIX (ohne Samba) über ein Netzwerk drucken können (auf
+dem Rechner <TT>drserv</TT>):<BR/><BR/>
+
+# Datei ow/bin/printlpr_drserv.sh<BR/># Beispiel für einen eigenen Druckertreiber
+lpr_drserv<BR/>umask 0<BR/>chmod a+w $2<BR/>cat $2 | /usr/ucb/rsh drserv -l s3 lpr -d1<BR/><BR/>
+
+Sie können auch einen <REF ID="X1B.2.6">Arbeitsplatzdrucker als
+Systemdrucker verfügbar machen</REF>.<BR/><BR/>
+</PP>
+
+
+<H4 ID="X1B.2.5" SPLIT="1">Drucker-Spooler</H4>
+
+<P>Als Spooling bezeichnet man die Verwaltung von Warteschlangen für
+Drucker und Fax. Das Programm <TT>lpr</TT> verwaltet z.B. Warteschlangen
+für mehrere Drucker oder andere Datenendgeräte, die an einem UNIX-Rechner
+angeschlossen sind. Ein <INDEX PRIO="P">Spooler</INDEX> kann</P>
+
+<UL>
+<LI>Druckaufträge für bestimmte Drucker entgegennehmen</LI>
+<LI>Druckaufträge stornieren</LI>
+<LI>einen bestimmten Drucker anhalten und wieder anlaufen lassen</LI>
+<LI>nach Gerätefehler unfertige Druckaufträge wiederholen</LI>
+<LI>mehrere Kopien einer Datei drucken</LI>
+<LI>Dateien nach dem Druck löschen</LI>
+<LI>Ausgabe mit oder ohne abschließendem Seitenvorschub durchführen</LI>
+<LI>den Zustand der Warteschlangen tabellarisch darstellen</LI>
+</UL>
+
+<P>Drucker unter UNIX/Linux werden mit dem Drucker-Spooler
+<REF ID="X1B.2.5.1"><TT>lpr/lpq</TT></REF> angesteuert. Auch unter
+Windows kann mit dem Spooler <TT>lpr</TT> gedruckt werden. Auch
+Faxprogramme besitzen einen Spooler.</P>
+
+
+<H5 ID="X1B.2.5.1">Drucker-Spooler lpr</H5>
+<P>Die genaue Beschreibung des Spoolers auf ihrem System entnehmen sie
+der Dokumentation Ihres Rechner z.B. mit <TT>info lpr</TT> oder <TT>man lpr</TT> </P>
+
+
+<H5 ID="X12.26">Spooler prüfen</H5>
+<P>Geben Sie ohne Benutzung der Anwendersoftware einen kleinen Druckauftrag
+an den <REF ID="X2.13.5">Spooler</REF> mit<BR/><BR/>
+<TT>Login: root &return; ls &gt; x</TT></P>
+
+<DL>
+<DT>Drucker S1</DT><DD>lpr x oder lpr -d1 x</DD>
+<DT>Drucker S2</DT><DD>lpr -d2 x</DD>
+<DT>Drucker S3</DT><DD>lpr -d3 x</DD>
+</DL>
+
+<P>Die Datei x wird über den gewählten
+Systemdrucker ausgegeben. Ist das nicht der Fall,
+obwohl der Drucker angeschaltet ist und auf Online steht, muss der
+Spooler in seinen Grundzustand zurückgesetzt
+werden. Dabei gehen die Daten in der Warteschlange der Drucker verloren.
+Das Kommando zum Zurücksetzen des Spoolers lautet <TT>lpr -s</TT>.
+Anschließend versuchen Sie wie oben erneut, den Drucker anzusprechen.</P>
+
+<H4 ID="X1B.2.6" SPLIT="1">Drucker als Systemdrucker</H4>
+
+<P>Das von Microsoft Windows verwendete Netzwerkprotokoll heißt SMB
+(auch bekannt als Windows-Netzwerk). Mit ihm werden die Dienste
+"Freigabe von lokalen Verzeichnissen im Netzwerk" und "Drucken auf
+einem an einem anderen Rechner angeschlossenen Drucker" realisiert.</P>
+
+<P>Für UNIX ist eine Implementierung dieses Protokolls unter dem Namen
+Samba kostenlos verfügbar. Damit können Windows-PCs auf Verzeichnisse
+auf einem UNIX-Server zugreifen und auf einem an einem UNIX-Rechner
+angeschlossenen Drucker drucken. Außerdem kann von einem UNIX-Rechner
+aus auf einen Drucker gedruckt werden, der an einem Windows-PC
+angeschlossen ist. Damit kann auch von abas-ERP aus auf diesem Drucker
+gedruckt werden. Voraussetzung dafür ist, dass auf dem Server Samba
+und am PC-Arbeitsplatz ein Drucker installiert ist. (Alle
+UNIX-Hersteller liefern Samba mit aus.)</P>
+
+<P>Die Einrichtung erfolgt in 3 Schritten:</P>
+<OL>
+<LI>Geben Sie den Drucker am Windows-PC ohne Kennwort frei.</LI>
+<LI>Erstellen Sie einen neuen Druckertreiber.
+<PP TYPE="EXAMPLE">
+# ow/bin/printsmb.sh<BR/>
+# Druck auf Drucker PC1_PRINTER1<BR/>
+shift 5               # $6 = Zeile aus devices.txt als ein Argument<BR/>
+ -n "$1" ] &amp;&amp; set $* # devices.txt-Zeile in spaltentreue Parameter umwandeln<BR/>
+EVNAME=$2            # Druckername<BR/>echo "print $2" | /usr/bin/smbclient $DEVNAME -N -P;<BR/>
+<BR/><BR/>
+Zur Erklärung der Parameter vgl. die Dokumentation zu Samba:
+</PP>
+</LI>
+<LI>Geben Sie in <TT>$HOMEDIR/devices.txt</TT> den Druckernamen an.
+<PP TYPE="EXAMPLE">
+Kanal tty                   Termtyp    Druckertyp        Druckertreiber<BR/>
+5 //pc1/printer1          -          hpl5       S5      smb<BR/><BR/>
+Auf diese Weise wird der Drucker am Arbeitsplatz-PC <B>PC1</B> unter dem Namen
+<B>printer1</B> freigegeben.
+</PP>
+</LI>
+</OL>
+
+<P>Vgl. außerdem das Kapitel <REF ID="X1B.2.3">Neuen Drucker konfigurieren</REF>.</P>
+
+<P>Falls das Drucken aus dem Mandanten heraus nicht funktioniert, kann
+der smbclient-Aufruf von der Shell aus vorgenommen werden (die Option
+<TT>-d 2</TT> erzeugt eine Debug-Ausgabe). Bei Problemen mit Umlauten
+müssen Sie noch einen geeigneten Filter (<TT>s3_conv</TT>)
+in die Pipe des Druckerkommandos einfügen.</P>
+
+<H4 ID="X1B.2.7" SPLIT="1">Drucken mit <TT>P|aktnachfop</TT></H4>
+<P>Ist im P-Puffer das Feld <REF ID="X2.13.10.AKTNACHFOP"><TT>P|aktnachfop</TT></REF>
+mit einem FO-Programmnamen gefüllt,
+dann unterbleibt der <TT>print.sh</TT> Aufruf. Stattdessen wird der Name der Datendatei
+im P-Puffer im Feld <TT>P|daten</TT> hinterlegt.
+An die Stelle des Aufrufes von <TT>print.sh</TT> tritt ein simuliertes &foc.EINGABE; <TT>'P|nachfop'</TT>.
+In diesem FO-Programm kann dann die eigentliche Druckaktion ausgelöst werden.
+</P>
+
+
+</CHAPTER>
+
+
+
+<!--
+ !!!!!!!!!!!!!!! DO NOT CHANGE THIS COMMENT UNMINDFULLY !!!!!!!!!!!!!!!!!!
+ Since we are in a partial document without defined DOCTYPE, the necessary
+ information is provided to the emacs here:
+ 1. mode: xml
+ 2. sgml-parent-document:
+ - What is the name of the file in which the DOCTYPE is defined? emacs_toplevel.xml
+ - Which elements are open?                                      ABAS and BODY
+ - Which one is the top element of this file?                    CHAPTER
+
+ Local Variables: ***
+ mode:xml ***
+ sgml-parent-document:("../../../defs/emacs_toplevel.xml" "ABAS" "BODY" "CHAPTER") ***
+ End: ***
+ -->

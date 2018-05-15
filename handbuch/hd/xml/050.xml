@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE custom_entities SYSTEM "s3-custom-entities-for-xtm.dtd">
+<!--
+**===== ABSCHNITT : Modul Identifikation ===============================**
+ Modul Name       : 050.xml
+ Autor            : rasch
+**======================================================================**
+-->
+
+<CHAPTER>
+
+
+<H1 ID="X5.14">Koppelproduktion</H1>
+<NOTRANS>
+<INDEX PRIO="P" NAME="Verbundproduktion" TITLE="Koppelproduktion"></INDEX>
+</NOTRANS>
+<P><INDEX PRIO="P">Koppelproduktion</INDEX>, auch Kuppelproduktion,
+Verbundproduktion oder verbundene Produktion genannt, bedeutet, dass in einem Prozess
+mehrere unterschiedliche Produkte entstehen.<BR/>
+Beispiele sind Plattenzuschnitte, bei denen in einem Prozess  mehrere unterschiedliche
+Formen herausgesägt werden oder das Bearbeiten von Baumstämmen,
+bei deren Zersägen neben den Brettern als Hauptprodukt auch Sägemehl und Restholzstücke
+als Nebenprodukte anfallen. Die  bei einer Koppelproduktion entstehenden Produkte
+können entweder im eigenen Betrieb weiterverwendet oder auch veräußert werden.</P>
+
+<CONTENTS ID="X5.14" MAXLEVEL="6"/>
+
+<H2 ID="X5.14.1" SPLIT="0">Abbildung der Koppelproduktion</H2>
+<P>Die in einem Koppelproduktionsprozess mit anfallenden Produkte werden mit <B>negativer Anzahl</B>
+in die Fertigungsliste eingetragen. Es gelten folgende Fallunterscheidungen:</P>
+
+<UL>
+<LI>Produktionsprozesse, in denen ein <B>Hauptprodukt</B> gefertigt wird. Dabei fallen
+Nebenprodukte an, für die
+<UL>
+<LI><P><B>kein eigener Bedarf</B> besteht, sondern die veräußert werden, z.B. Recycling von
+Schnittabfällen. Hier spielt der kalkulatorische Aspekt eine Rolle, weil durch die Veräußerung der
+Nebenprodukte die Kosten für das gefertigte Hauptprodukt sinken. Dispositiv hat der Ausstoß
+der Nebenprodukte dagegen keine Bedeutung.</P></LI>
+<LI><P><B>Eigener Bedarf</B> besteht. Neben dem kalkulatorischen Aspekt kommt hier
+der dispositive Aspekt hinzu: Bei Bedarf an Nebenprodukten müssen
+Fertigungsvorschläge für die entsprechenden Hauptprodukte so eingeplant werden, dass die
+benötigten Nebenprodukte in ausreichender Menge zum richtigen Zeitpunkt anfallen.</P></LI>
+</UL></LI>
+<LI>Produktionsprozesse, bei denen <B>kein Hauptprodukt</B> entsteht, sondern mehrere
+unterschiedliche aber gleichrangige Produkte gefertigt werden.</LI>
+</UL>
+
+
+
+<H2 ID="X5.14.2" SPLIT="0">Beispiel Kunststoffgehäuse: Produktionsprozess ohne Hauptprodukt</H2>
+<P>Als Beispiel für eine Koppelproduktion, bei der <B>kein Hauptprodukt</B> entsteht,
+wird in der Folge die Fertigung eines linken und rechten Seitenteils für ein
+Kunststoffgehäuse betrachtet. Die Seitenteile werden aus einer Kunststoffplatte gestanzt
+und deren Größe im Verhältnis zur Produktionsmenge lässt es zu, dass bei diesem Produktionsprozess,
+dem Stanzen der Kunststoffplatte, aus <B>einer</B> Kunststoffplatte <B>gleichzeitig</B> sowohl die
+linke als auch die rechte, also <B>beide</B> Seitenteile gestanzt werden können.
+Zur Umsetzung dieses Beispiels sind folgende Schritte notwendig:</P>
+
+
+
+<H3 ID="X5.14.2.1" SPLIT="0">Erfassung der Stammdaten im [Artikel]</H3>
+<P>Für dieses Beispiel müssen folgende Fertigungselemente angelegt werden:</P>
+
+<DL>
+<DT>Artikel <B>Kunststoffplatte</B></DT>
+<DD>Als Rohmaterial, aus dem die beiden Seitenteile gestanzt werden.
+Im Beispiel hat die Kunststoffplatte Abmessungen von 2 m x 3 m und einen Einkaufspreis
+von 12 Euro. Diese Kunststoffplatte verursacht über ihren Einstandspreis Materialkosten.</DD>
+<DT>Artikel <B>Seitenteil_rechts</B><BR/>Artikel <B>Seitenteil_links</B></DT>
+<DD><P>Diese beiden Koppelprodukte sind "normale" Artikel.
+Sie bekommen als <REF ID="X2.2.1.BSART">Beschaffungsart</REF> Eigenfertigung,
+wenn sie ausschließlich oder überwiegend durch Koppelproduktion im eigenen Betrieb gefertigt
+werden, oder sie bekommen als Beschaffungsart Fremdbeschaffung, wenn sie überwiegend
+fremdbeschafft und nur ausnahmsweise durch Koppelproduktion aus dem eigenen Betrieb
+beschafft werden.</P>
+<P>Diese beiden Artikel können mit beliebiger <REF ID="X2.2.1.DISPO">Dispositionsart</REF>
+versehen werden, allerdings mit der Ausnahme, dass für Koppelprodukte die Dispositionsart
+Variantenbezogen nicht sinnvoll ist und daher nicht verwendet werden sollte.</P></DD>
+<DT>Arbeitsgang <B>Stanzen</B></DT>
+<DD>Mit diesem Arbeitsgang wird die Kunststoffplatte so bearbeitet, dass linke und rechte Seitenteile aus
+ihr entstehen. Im Beispiel hat der Arbeitsgang 10 min Rüstzeit und 10 s Einzelzeit.
+Der Arbeitsgang verursacht Fertigungs- und eventuell Sonderkosten.</DD>
+</DL>
+
+<OL>
+<LI><P>Legen Sie nun den Artikel Seitenteile an. Er ist ein Scheinartikel, der nie selbst gefertigt
+wird, sondern lediglich als Träger der in Schritt 2 angelegten Fertigungsliste dient. Er bekommt
+die Beschaffungsart Eigenfertigung und die Dispositionsart Leer, weil nicht er
+selbst dispositionsrelevant ist, sondern lediglich seine Fertigungsliste.</P></LI>
+
+<LI><P>Tragen Sie nun im Register Fertigungsliste die im Beispiel genannten Daten ein.
+Die Koppelprodukte Seitenteil_rechts und Seitenteil_links fließen nicht in den Produktionsprozess ein,
+sondern entstehen an dieser Stelle des Produktionsprozesses. Aus diesem Grund ist hier die
+<B>Anzahl</B> mit negativem Vorzeichen anzugeben.</P>
+
+<TABLE FORMAT="|L|L|L|L|L|">
+<TR>
+<TH>Maske Artikel<BR/>
+Datensatz Seitenteile<BR/>
+Register Fertigungsliste<BR/>
+Tabelle:</TH><TH></TH><TH></TH><TH></TH><TH></TH>
+</TR>
+<TR>
+<TD><B>Pos</B></TD>
+<TD><B>Sachnummer</B></TD>
+<TD><B>Länge/tr Einheit</B></TD>
+<TD><B>Breite/te Einheit</B></TD>
+<TD><B>Menge/Anzahl Einheit</B></TD>
+</TR>
+<TR>
+<TD>1</TD>
+<TD>Kunststoffplatte</TD>
+<TD>300 mm</TD>
+<TD>200 mm</TD>
+<TD>1</TD>
+</TR>
+<TR>
+<TD>2</TD>
+<TD>Seitenteil_rechts</TD>
+<TD></TD>
+<TD></TD>
+<TD><B>-1</B> Stück</TD>
+</TR>
+<TR>
+<TD>3</TD>
+<TD>Seitenteil_links</TD>
+<TD></TD>
+<TD></TD>
+<TD><B>-1</B> Stück</TD>
+</TR>
+<TR>
+<TD>4</TD>
+<TD>A (Arbeitsgang) Stanzen</TD>
+<TD>10 min</TD>
+<TD>10 s</TD>
+<TD>1</TD>
+</TR>
+</TABLE>
+</LI>
+</OL>
+
+
+
+<H4 ID="X5.14.2.2" SPLIT="0">Vorkalkulation</H4>
+<P>Die Kalkulation des Scheinartikels basiert auf der sog. Restwertmethode. Dabei werden die Kosten des
+Inputs auf das Hauptprodukt umgelegt. Davon abgezogen wird der Wert der Nebenprodukte (Koppelprodukte).
+Der verbleibende Rest ist der Wert des Hauptprodukts. Die Koppelprodukte entlasten also kostenmäßig das
+Hauptprodukt, können aber nur Materialkosten entnehmen.</P>
+
+<P>Da der Wert der Koppelprodukte nicht bekannt ist, kann er nicht automatisch von der Kalkulation ermittelt
+werden, sondern muss vom Anwender als <REF ID="X2.2.1.EKPR">eigener Basispreis</REF> vorgegeben werden.
+Im Beispiel kann das so geschehen: Da das Hauptprodukt hier ein Scheinartikel ist, müssen die Preise der
+Koppelprodukte so verteilt werden, dass bei der Kalkulation des Scheinartikels keine Restkosten übrig bleiben.</P>
+
+<OL>
+<LI><P>Kalkulieren Sie den Artikel Seitenteile ohne Preise der Koppelprodukte.
+Im Beispiel werden Herstellkosten von 0.2972 Euro errechnet.</P></LI>
+<LI><P>Die kalkulierten Herstellkosten verteilen Sie nun auf die Koppelprodukte.
+Da im Beispiel beide Seitenteile flächengleich sind, halbieren Sie die Herstellkosten.</P>
+
+<P>Tragen Sie bei den Artikeln Seitenteil_rechts und Seitenteil_links im [Artikel] Register
+Kalkulation, Bewertung jeweils ein:</P>
+
+<UL>
+<LI><P><REF ID="X2.2.1.KBPR">Materialkostenbasis</REF>: Eigener Basispreis inkl. FL-Kosten</P></LI>
+<LI><P><REF ID="X2.2.1.EKPR">Eigener Basispreis</REF>: 0,1486 EUR</P></LI>
+<LI><P>für die Materialkostenverbuchung als <REF ID="X2.2.1.PLANPR">Planpreis 1</REF>: 0,1486 EUR.</P></LI>
+</UL>
+</LI>
+<LI><P>Nun kalkulieren Sie den Artikel Seitenteile nochmals. Dabei werden als
+Kalkulationsergebnisse folgende Gesamtkosten ausgegeben:</P>
+
+<TABLE FORMAT="|L|L|">
+<TR><TD>Materialkosten</TD><TD><B>-</B> 0,0972</TD></TR>
+<TR><TD>...</TD><TD>...</TD></TR>
+<TR><TD>...</TD><TD>...</TD></TR>
+<TR><TD>Fertigungskosten fix</TD><TD>0,0194</TD></TR>
+<TR><TD>Fertigungskosten variable</TD><TD>0,0778</TD></TR>
+<TR><TD><B>Herstellkosten</B></TD><TD><B>0,0000</B></TD></TR>
+</TABLE>
+
+<P>Die Herstellkosten des Scheinartikels sind jetzt 0,0000, es bleiben also keine Restkosten
+übrig.</P>
+</LI>
+</OL>
+
+<PP TYPE="HINT">
+<P>Im Beispiel haben die Artikel Seitenteil_rechts und Seitenteil_links keine eigenen Fertigungslisten.
+Sollten sie eine haben und ist als Beschaffungsart Eigenfertigung eingetragen, wird die
+Fertigungsliste von der Vorkalkulation ausgewertet. Die Resultate der einzelnen Kostenarten werden
+negativ in die höhere Ebene weitergereicht. Die <REF ID="X2.2.1.MANZ.MARK1">Durchlaufzeit</REF>
+wird nicht in die <REF ID="X2.8.3.6.WBZ">Wiederbeschaffungszeit</REF> eingerechnet.</P>
+</PP>
+
+
+
+<H3 ID="X5.14.2.3" SPLIT="0">Verhalten der Disposition</H3>
+<P>Hier im Beispiel entstehen Bedarfe an Koppelprodukten durch:</P>
+
+<MARK ID="X5.14.MARK1"/>
+<UL>
+<LI>1 Auftrag über 120 Stück Seitenteil_links</LI>
+<LI>1 Auftrag über 1 Stück Seitenteil_links.</LI>
+</UL>
+
+<P>Über die Disposition werden zunächst Beschaffungsvorschläge <B>für die Koppelprodukte
+selbst</B> mit den Angaben zur Beschaffungs- und zur Dispositionsart erstellt, die in den
+Koppelprodukten ausgewählt sind.</P>
+
+<P>Da es im Allgemeinen viele verschiedene Scheinartikel geben wird, in denen das gleiche
+Koppelprodukt anfällt, ermittelt die Disposition nicht, über welche dieser Scheinartikel die
+benötigten Koppelprodukte erzeugt werden.</P>
+
+<P>Als Extremfall sei die Zuschnittsoptimierung durch eine externe Software genannt, die
+die Kombination der Teile festlegt. Der Disponent muss also für den Bedarf an Koppelprodukten
+selbst Fertigungsvorschläge für die passenden übergeordneten Scheinartikel anlegen, aus
+denen in der richtigen Menge und zum richtigen Datum die benötigten Koppelprodukte
+erzeugt werden.</P>
+
+<P>Im Beispiel wird ein Fertigungsvorschlag für 130 Scheinartikel Seitenteile vom
+Disponenten angelegt, der mit dem <REF ID="X3.RTERM">Bedarfstermin</REF> 26.09.JJJJ einige Tage vor dem Endtermin der Koppelprodukte
+fertig wird. Damit werden über den Bedarf hinaus produziert:.</P>
+
+<UL>
+<LI>Seitenteil_links: 9 Stück (130 minus 120 minus 1 aus den beiden
+<REF ID="X5.14.MARK1">Aufträgen</REF>)</LI>
+<LI>Seitenteil_rechts: 130 Stück (bisher kein Auftrag).</LI>
+</UL>
+
+<P>Decken die vom Disponenten angelegten Fertigungsvorschläge die Bedarfe ab, entfallen im
+darauf folgenden Dispositionslauf die Beschaffungsvorschläge für die Koppelprodukte automatisch,
+die die Disposition zuvor angelegt hatte. Sie werden durch die Zugänge aus der Koppelproduktion
+ersetzt. In der Plankarte werden ausgegeben:</P>
+
+<UL>
+<LI>Zugang: 130 Seitenteile</LI>
+<LI>Abgang: 120 Seitenteil_links</LI>
+<LI>Abgang: 1 Seitenteil_links</LI>
+</UL>
+
+<P>Kommen die Koppelprodukte entweder nicht termingerecht oder in nicht ausreichender
+Menge, so verbleiben Beschaffungsvorschläge über die fehlenden Restmengen.</P>
+
+
+
+<H4 ID="X5.14.2.4" SPLIT="0">Fertigung</H4>
+<P>Der Fertigungsvorschlag über 130 Seitenteile, den der Disponent angelegt hat, sieht in seiner
+Auftragsfertigungsliste wie folgt aus:</P>
+
+<TABLE FORMAT="|L|L|L|L|L|">
+<TR>
+<TH>Maske <REF ID="X5.11.6.3">Auftragsfertigungsliste</REF><BR/>
+Artikel Seitenteile<BR/>
+Offene Menge: 130<BR/>
+Tabelle:</TH><TH></TH><TH></TH><TH></TH><TH></TH>
+</TR>
+<TR>
+<TD><B>Pos</B></TD>
+<TD><B>Sachnummer</B></TD>
+<TD><B>Länge/tr Einheit</B></TD>
+<TD><B>Breite/te Einheit</B></TD>
+<TD><B>Menge/Anzahl Einheit</B></TD>
+</TR>
+<TR>
+<TD>1</TD>
+<TD>Kunststoffplatte</TD>
+<TD>300 mm</TD>
+<TD>200 mm</TD>
+<TD>1</TD>
+</TR>
+<TR>
+<TD>2</TD>
+<TD>Seitenteil_rechts</TD>
+<TD></TD>
+<TD></TD>
+<TD><B>-1</B> Stück</TD>
+</TR>
+<TR>
+<TD>3</TD>
+<TD>Seitenteil_links</TD>
+<TD></TD>
+<TD></TD>
+<TD><B>-1</B> Stück</TD>
+</TR>
+<TR>
+<TD>4</TD>
+<TD>A (Arbeitsgang) Stanzen</TD>
+<TD>10 min</TD>
+<TD>10 s</TD>
+<TD>1</TD>
+</TR>
+</TABLE>
+
+<P>Nachdem der Fertigungsvorschlag zur Produktion freigegeben wurde,
+im Beispiel entsteht der Betriebsauftrag 1002, können entweder über Materialentnahmen
+oder über Arbeitsgangrückmeldung die Koppelprodukte gebucht werden:</P>
+
+<DL>
+<DT>Buchung über <REF ID="X5.5.7">Materialentnahmen</REF></DT>
+<DD>
+Mit dieser Funktion
+<UL>
+<LI>sowohl Rohteile abgebucht</LI>
+<LI>als auch Koppelprodukte zugebucht werden.</LI>
+</UL>
+
+<P>Es werden die real entnommenen Rohteile (im Beispiel 1.5 Kunststoffplatten) abgebucht und die
+real produzierten Koppelprodukte (im Beispiel 128 Stück Seitenteil_rechts und 127 Stück Seitenteil_links)
+zugebucht. Die Differenz zu den 130 jeweils disponierten Stück sind zum 20.09.JJJJ noch nicht produziert.</P>
+
+<TABLE FORMAT="|L|L|L|L|L|">
+<TR>
+<TH>Maske Materialentnahme<BR/>
+Betriebsauftrag/Arbeitsschein: 1002<BR/>
+Artikel Seitenteile<BR/>
+Offene Menge: 130<BR/>
+Verfügbare Menge: 130<BR/>
+Tabelle:</TH><TH></TH><TH></TH><TH></TH><TH></TH>
+</TR>
+<TR>
+<TD><B>Menge</B></TD>
+<TD><B>Einheit</B></TD>
+<TD><B>Artikel</B></TD>
+<TD><B>Lagerplatz</B></TD>
+<TD><B>Lagereinheit (LE)</B></TD>
+</TR>
+<TR>
+<TD>1,5</TD>
+<TD>Stück</TD>
+<TD>Kunststoffplatte</TD>
+<TD>F1</TD>
+<TD>Stück</TD>
+</TR>
+<TR>
+<TD><B>-</B> 128</TD>
+<TD>Stück</TD>
+<TD>Seitenteil_rechts</TD>
+<TD>F2</TD>
+<TD>Stück</TD>
+</TR>
+<TR>
+<TD><B>-</B> 127</TD>
+<TD>Stück</TD>
+<TD>Seitenteil_links</TD>
+<TD>F3</TD>
+<TD>Stück</TD>
+</TR>
+</TABLE>
+
+<P>Im Lagerbewegungsjournal wird dargestellt, dass das Rohmaterial Kunststoffplatte abgebucht
+und die Koppelprodukte Seitenteil_rechts und Seitenteil_links zugebucht wurden.</P>
+
+<TABLE FORMAT="|L|L|L|L|L|L|L|L|">
+<TR>
+<TH>Maske Lagerbewegungsjournal<BR/>
+Tabelle:</TH><TH></TH><TH></TH><TH></TH><TH></TH><TH></TH><TH></TH><TH></TH>
+</TR>
+<TR>
+<TD><B>Datum</B></TD>
+<TD><B>Artikel</B></TD>
+<TD><B>Beleg vom</B></TD>
+<TD><B>Buchungsart</B></TD>
+<TD><B>Von Lagerplatz</B></TD>
+<TD><B>Nach Lagerplatz</B></TD>
+<TD><B>Zugang</B></TD>
+<TD><B>Abgang</B></TD>
+</TR>
+<TR>
+<TD>20.09.JJJJ</TD>
+<TD>Kunststoffplatte</TD>
+<TD>1002 20.09.JJJJ</TD>
+<TD>Abgang</TD>
+<TD>F1</TD>
+<TD></TD>
+<TD>0</TD>
+<TD>1,5</TD>
+</TR>
+<TR>
+<TD>20.09.JJJJ</TD>
+<TD>Seitenteil_rechts</TD>
+<TD>1002 20.09.JJJJ</TD>
+<TD>Zugang</TD>
+<TD></TD>
+<TD>F2</TD>
+<TD>128</TD>
+<TD>0</TD>
+</TR>
+<TR>
+<TD>20.09.JJJJ</TD>
+<TD>Seitenteil_links</TD>
+<TD>1002 20.09.JJJJ</TD>
+<TD>Zugang</TD>
+<TD></TD>
+<TD>F2</TD>
+<TD>127</TD>
+<TD>0</TD>
+</TR>
+</TABLE>
+</DD>
+<DT>Buchung durch Arbeitsgangrückmeldung</DT>
+<DD>
+<P>Wenn keine <REF ID="default.F1.MANBU">manuelle Entnahme</REF>
+vorgesehen ist, wird das Material automatisch mit den Arbeitsscheinen gebucht, d.h. die Koppelprodukte
+werden automatisch zugebucht. Im Beispiel meldet die Person Nr. 7801 den Arbeitsgang Stanzen mit
+0.5 Std und komplett 130 Scheinartikeln zurück.</P>
+
+<P>Im Lagerbewegungsjournal ist nach dem Buchen dieses Rückmeldebelegs ein Abgang von 1.3 Stück Kunststoffplatten
+und je ein Zugang von 130 Stück Seitenteil_rechts und Seitenteil_links verzeichnet.</P>
+
+<PP TYPE="HINT">
+Sind die Koppelprodukte in der Fertigungsliste unter dem Arbeitsgang aufgeführt, liegen sie zeitlich hinter
+ihm und werden bei der Rückmeldung dieses Arbeitsgangs noch nicht gebucht. Melden Sie in dem
+Fall den Betriebsauftrag zurück, damit die Koppelprodukte gebucht werden.</PP>
+</DD>
+</DL>
+
+<PP TYPE="HINT">
+Auch der Scheinartikel Seitenteile wird in jedem Fall dem Lager zugebucht.</PP>
+
+
+
+<H3 ID="X5.14.2.5" SPLIT="0">Nachkalkulation</H3>
+<P>Die Nachkalkulation ermittelt die Kosten mit real gebuchten Materialmengen und
+Fertigungszeiten. Die Kosten für den Scheinartikel Seitenteile setzen sich aus den Materialkosten
+für die Kunststoffplatte und Lohn- und Fertigungskosten für den Arbeitsgang Stanzen zusammen und
+werden um die Planpreise aus den gefertigten Koppelprodukten Seitenteil_rechts und Seitenteil_links
+reduziert.</P>
+
+<P>Im Beispiel hat der Scheinartikel Seitenteile um 0,0547 Euro höhere Herstellkosten.
+D.h., die Koppelprodukte haben jedes einen Preis von 0,17595 Euro anstelle der 0,1486 Euro,
+die als eigener Basispreis eingetragen waren.</P>
+
+
+
+<H1 ID="X5.12">Betriebsdatenerfassung</H1>
+<P>Die <INDEX PRIO="P" NAME="Betriebsdatenerfassung (BDE)" TITLE="Betriebsdatenerfassung">Betriebsdatenerfassung, (BDE)</INDEX>
+dient der Aufnahme und Verwaltung von Zeit- und Produktionsdaten. Sie finden sie unter dem gleichnamigen
+Menüpunkt in der Kommandoübersicht.</P>
+
+<PP TYPE="HINT" TITLE="Übernahme individueller Felder">
+Individuelle Felder in den BDE-Objekten [<REF ID="X5.12.2.MASK.90">Auftragszeit</REF>] und
+[<REF ID="X5.12.3.MASK.91">Kurzläufer</REF>] können in die <REF ID="X5.6">Rückmeldung</REF>
+kopiert werden. Dafür stehen die Aufrufparameter 59400 (Auftragszeit) und 59401 (Kurzläufer) zur Verfügung.</PP>
+
+<CONTENTS ID="X5.12" MAXLEVEL="6"/>
+
+<H2 ID="X5.12.8">Erfassung von Zeitdaten und Zeitstempelungen</H2>
+<P>Zeit- und Produktionsdaten können sowohl am <REF ID="X5.12.6">BDE-Terminal</REF> als auch am Büroterminal
+erfasst werden. Die Zeit- und Produktionsdaten werden erfasst als <REF ID="X5.12.1.MASK.92">Personalzeit</REF>,
+die <REF ID="X5.12.2.MASK.90">Auftragszeit</REF> und <REF ID="X5.12.3.MASK.91">Kurzläufer</REF>.</P>
+
+<P><INDEX PRIO="P" NAME="Betriebsdatenerfassung (BDE)" TITLE="Zeitdaten">Zeitdaten</INDEX>
+sind Personalzeiten und Auftragszeiten
+der folgenden Zeitstempelarten:</P>
+
+<UL>
+<LI>Kommt</LI>
+<LI>Geht</LI>
+<LI>Dienstgang</LI>
+<LI>Beginn der Auftragsabwicklung</LI>
+<LI>Unterbrechung der Auftragsabwicklung</LI>
+<LI>Auftragskurzläufer.</LI>
+</UL>
+
+<P>Die <INDEX PRIO="P" NAME="Betriebsdatenerfassung (BDE)" TITLE="Zeitstempelungen">Zeitstempelungen</INDEX>
+können über die Kommandoübersicht [Erfassungsdialog Rückmeldung Arbeitsplatz] erfasst werden.
+Zeitstempelungen werden bei der <REF ID="X5.12.6">Übernahme</REF>
+soweit wie möglich zu Zeitpaaren zusammengefasst:</P>
+
+<UL>
+<LI>Kommt - Geht</LI>
+<LI>Kommt - Dienstgang</LI>
+<LI>Beginn - Unterbrechung</LI>
+<LI>Beginn - Ende</LI>
+<LI>Kurzläufer (kann nicht zusammengefasst werden).</LI>
+</UL>
+
+<P>Sofern <REF ID="X2.6.17.AUTOBD">Automatisches Auftragsende</REF> konfiguriert ist, werden bei einer
+Geht-Stempelung alle zu diesem Zeitpunkt offenen Auftragszeitpaare automatisch abgeschlossen.</P>
+
+<P>Für die Zeit- und Produktionsdaten werden aus dem Firmenstamm
+[<REF ID="X2.6.20">Tagespläne</REF>] und [Schichtpläne] als Verarbeitungsgrundlage
+benötigt. Für jeden Mitarbeiter sollte auch ein <REF ID="X2.5.SPLAN">Schichtplan</REF>
+eingetragen sein.</P>
+
+<P>Mit einem Kommando, z.B. Auftragszeit, wird jeweils ein neues Zeitpaar erzeugt.
+Bei der Buchung der Zeitpaare werden im Falle der Auftragszeit Rückmeldungen
+für die Fertigung erzeugt, z.B. durch Auftragszeit und Betriebsauftrag.
+Nach der Buchung der Personalzeit erfolgt die Weitergabe an die Lohnbuchhaltung.</P>
+
+
+
+<H2 ID="X5.12.1">Personalzeit</H2>
+<MARK ID="X5.12.1.MASK.92"/>
+<P>Über die <INDEX PRIO="P" NAME="Betriebsdatenerfassung (BDE)" TITLE="Personalzeit">Personalzeit</INDEX>
+erfassen Sie die Personalzeitstempel zur Feststellung der An- und Abwesenheit von Mitarbeitern.</P>
+
+<H ID="X5.12.1.ISTZEIT">Ist-Zeit</H>
+<P>Das Feld gibt die Anwesenheitszeit des Mitarbeiters unter Ausschluss der
+Pausen an. Bei der Errechnung der Pausenzeiten werden (in dieser Reihenfolge)
+Karenz, Vor- und Nachlaufzeiten und das Zeitgitter einbezogen. Eine
+<REF ID="X2.6.20.RANFZEIT">Karenzzeit</REF> führt im angegebenen Intervall
+weder bei Zu-spät-Kommen noch bei Zu-früh-Gehen zu Zeitabzug. Dies gilt auch für die
+<REF ID="X2.6.20.RANFZEIT">Pausen</REF>. Die Festlegung einer Vorlaufzeit vor Rahmenbeginn
+oder Pausenende führt im angegebenen Intervall zu <REF ID="X2.6.20.RANFZEIT">Zeitabzug</REF>.
+Die Festlegung einer Nachlaufzeit nach Rahmenende bzw. Pausenbeginn führt ebenfalls zu Zeitabzug.
+Alle Zeitpunkte werden auf das angegebene Zeitgitter gerundet. Bei Kommt-Buchungen wird auf den
+nächsthöheren, bei Geht-Buchungen auf den nächst niederen Zeitgitterwert gerundet.</P>
+
+<PP TYPE="EXAMPLE">
+
+Zeitpaar:<BR/>
+Anfang: 6:00 Uhr<BR/>
+Ende: 12:45 Uhr<BR/>
+Pause 1: 5:30 bis 5:45 Uhr<BR/>
+Pause 2: 9:00 9:30 Uhr<BR/>
+Pause 3: 12:30 13:30 Uhr <BR/>
+<BR/><BR/>
+Brutto-Ist-Zeit =  6.75 Std. (12.75 - 6.00)<BR/>
+- Pausenzeit 1  =  0.00 Std. (außerhalb der Anwesenheit)<BR/>
+- Pausenzeit 2  =  0.50 Std. <BR/>
+- Pausenzeit 3  =  0.25 Std. (teilweise außerhalb Anwesenheit)<BR/><BR/>
+Anwesenheitszeit =  6.00 Std.
+</PP>
+
+<P>Die Ist-Zeit kann nur dann berechnet werden, wenn das Zeitpaar einen Anfang und
+ein Ende hat. Mit einem Eintrag ins Feld <REF ID="X5.12.KORR">Korrektur</REF> kann die errechnete
+Ist-Zeit korrigiert werden.</P>
+
+<MARK ID="X5.12.1.SCHICHT"/>
+<H ID="X5.12.1.TPLAN">Schicht, Tagesplan</H>
+<P>Tragen Sie hier eine Schicht bzw. einen <REF ID="X2.6.20">Tagesplan</REF> ein,
+falls sie der Personalzeitstempelung zugeordnet werden sollen. Wurde die Buchung Kommt
+an einem BDE-Terminal erfasst oder ist das Feld Tagesplan leer, erfolgt eine automatische
+Schichtzuordnung:</P>
+
+<P>Bei der Stempelung "Kommt" wird geprüft, ob für den betreffenden Mitarbeiter
+ein Personalzeitdatensatz vorhanden ist, der innerhalb der letzten 10 Stunden vor der
+eingetragenen Anfangszeit beginnt. Ist dies der Fall, wird davon ausgegangen, dass
+die neue Stempelung zur selben Schicht gehört. Tagesplan und Schichtkennzeichen der
+Personalzeit werden in die neue Stempelung übernommen. Andernfalls werden die Schicht
+und der Tagesplan anhand des <REF ID="X2.6.21">Schichtplan</REF> ermittelt, auf den im
+Stammdatensatz des Mitarbeiters verwiesen wird. Dabei wird der Tagesplan genommen, dessen
+Anfangszeit der Anfangszeit des BDE-Datensatzes am nächsten liegt. Wenn die Differenz der
+Anfangszeiten jedoch mehr als 10 Stunden beträgt, wird der Fehler "Tagesplan fehlt"
+ausgegeben und kein Tagesplan bestimmt. Dazu wird die Kommt-Zeit mit dem Rahmenbeginn
+der in Frage kommenden Tagespläne verglichen. Wenn keine Schicht
+ermittelt werden kann, wird als Schichtnummer 0 eingegeben.</P>
+
+<PP TYPE="HINT">
+Wird das Feld "Tagesplan" geleert, werden Schicht und Tagesplan automatisch
+neu berechnet. Dies kann bei Korrekturen der Anfangszeit sinnvoll sein.</PP>
+
+<MARK ID="X5.12.1.SCHICHTEND"/>
+<H ID="X5.12.1.SCHICHTANF">Schichtanfang, Schichtende</H>
+<P>Das Feld <B>Schichtanfang</B> enthält den Verweis auf die erste
+Stempelung der Schicht des Mitarbeiters. In der ersten Stempelung
+bleibt das Feld zunächst leer.</P>
+
+<P>Das Feld <B>Schichtende</B> enthält den Verweis auf die letzte Stempelung der
+Schicht des Mitarbeiters. In der letzten Stempelung bleibt das Feld zunächst leer.</P>
+
+<P>Die Bestimmung der ersten und letzten Stempelung erfolgt dynamisch. Dabei wird
+ausgehend von Anfangsdatum und -zeit jeweils 10 Stunden zurück (Schichtanfang)
+bzw. vorwärts (Schichtende) gesucht. Die erste bzw. letzte gefunden Stempelung, die
+mit Mitarbeiter und Schicht übereinstimmt, bestimmt dann Schichtanfang und
+Schichtende. Diese Werte werden in diese Felder ausgegeben.</P>
+
+
+
+<H2 ID="X5.12.2">Auftragszeit</H2>
+<MARK ID="X5.12.2.MASK.90"/>
+<P>Über die <INDEX PRIO="P" NAME="Betriebsdatenerfassung (BDE)" TITLE="Auftragszeit">Auftragszeit</INDEX>
+erfassen Sie Zeitstempelungen zum Anfang und Ende von Aufträgen.
+Auftragszeitstempel dienen der Erfassung von Produktivzeiten.
+Diese Maske wird angesteuert vom Infosystem <REF ID="X5.13.13">10521 WORKLIST</REF>.</P>
+
+<MARK ID="X5.12.2.ASNR"/>
+<H ID="X5.12.2.ASMA">Arbeitsschein</H>
+<P>In dieses Feld wird die Betriebsauftragsnummer oder die Arbeitsscheinnummer
+eingetragen. Werden Auftragszeitstempel am BDE-Terminal erfasst, werden
+u.U. inexistente Betriebsaufträge oder Arbeitsscheine gebucht.
+Diese Nummern müssen manuell korrigiert werden.</P>
+
+<H ID="X5.12.2.ISTZEIT">Ist-Zeit</H>
+<P>In diesem Feld wird unter Ausschluss der Pausen gemäß Tagesplan
+die Bearbeitungsdauer eines Auftrags ausgegeben.</P>
+
+<PP TYPE="EXAMPLE">
+Zeitpaar: 22:00 bis 4:15 Uhr<BR/>
+Pause 1: 0:30 bis 1:00 Uhr<BR/>
+Pause 2: 4:00 bis 4:30 Uhr<BR/><BR/>
+Brutto-Ist-Zeit = 6.25 Std. (22:00 - 4:15)<BR/>
+- Pausenzeit 1  = 0.50 Std.<BR/>
+- Pausenzeit 2  = 0.25 Std (teilweise außerhalb Bearbeitungszeit)<BR/><BR/>
+= Bearbeitungszeit = 5.50  Std.
+</PP>
+
+<P>Die Ist-Zeit kann nur dann berechnet werden, wenn es ein durch Anfang und Ende
+definiertes Zeitpaar gibt. Über das Feld <REF ID="X5.12.KORR">Korrektur</REF> kann die
+errechnete Ist-Zeit korrigiert werden.</P>
+
+<MARK ID="X5.12.2.SCHICHT"/>
+<H ID="X5.12.2.TPLAN">Schicht, Tagesplan</H>
+<P>Tragen Sie hier einen Verweis auf eine Schicht- und eine
+<REF ID="X2.6.20">Tagesplannummer</REF> ein. Damit können Sie einer Auftragszeitstempelung eine Schicht bzw. ein
+Tagesplan zuordnen. Wurde der Auftragsbeginn an einem BDE-Terminal erfasst oder ist das Feld
+Tagesplan leer, wird die Schichtzuordnung automatisch vorgenommen.</P>
+
+<P>Wenn Sie auch mit Personalzeiten arbeiten, werden Schicht und Tagesplan
+aus dem zugehörigen Personalzeitdatensatz übernommen. Ansonsten wird bei
+Auftragsbeginn geprüft, ob für den betreffenden Mitarbeiter innerhalb
+der letzten 10 Stunden vor dem gestempelten Zeitpunkt ein gültiges
+Zeitpaar abgelegt ist. Ist dies der Fall, werden aus diesem Zeitpaar der
+Tagesplan und das Schichtkennzeichen in die neue Stempelung übernommen.</P>
+
+<P>Andernfalls werden die Schicht und der Tagesplan aus dem Schichtplan
+ermittelt, auf den im Stammdatensatz des Mitarbeiters verwiesen wird. Dazu wird
+die Anfangszeit mit dem Rahmenbeginn der in Frage kommenden Tagespläne
+verglichen. Dabei kommt der Tagesplan zum Zug, dessen Anfangszeit der Anfangszeit des BDE-Datensatzes
+am nächsten liegt. Als Schichtnummer wird 0 eingegeben, wenn keine Schicht ermittelt werden kann.</P>
+
+<PP TYPE="HINT">
+Wenn Sie das Feld Tagesplan leeren, werden Schicht und Tagesplan automatisch
+neu berechnet. Dies kann bei Korrekturen der Anfangszeit sinnvoll sein.</PP>
+
+<MARK ID="X5.12.3.STATUS"/>
+<H ID="X5.12.2.STATUS">Status</H>
+<P>In dieses Feld wird der <REF ID="X5.6.5.STATUS">Status</REF> der Rückmeldung des
+Betriebsauftrages übernommen. Ist das Feld leer, wird der Status anhand von offener
+Menge und zurückgemeldeter Gutmenge ermittelt. Die Statuskennzeichen Stern (*) und Minuszeichen
+(-) sind geschützt und für den Kern reserviert.</P>
+
+
+
+<H2 ID="X5.12.3">Kurzläufer</H2>
+<MARK ID="X5.12.3.MASK.91"/>
+<P>Für den <INDEX PRIO="P" NAME="Betriebsdatenerfassung (BDE)" TITLE="Kurzläufer">Kurzläufer</INDEX>
+ist eine besondere Variante der
+Auftragszeiterfassung vorgesehen. Beim Kurzläufer wird die Ist-Zeit nicht anhand der
+Auftragszeitstempel berechnet, sondern manuell erfasst; in der Maske oder am BDE-Terminal. Diese
+Form der Erfassung eignet sich besonders gut für Fertigungsabläufe, die nur von kurzer Dauer sind,
+weil die angefallenen Ist-Zeiten zu einem späteren Zeitpunkt, z.B. nach Beendigung der
+Fertigungsabläufe, aufgenommen werden können.</P>
+
+<MARK ID="X5.12.3.ASNR"/>
+<H ID="X5.12.3.ASMA">Arbeitsschein</H>
+<P>Das Feld erfasst die Betriebsauftrags- oder die Arbeitsscheinnummer. Werden
+Kurzläufer am BDE-Terminal erfasst, werden u.U. inexistente Betriebsaufträge
+oder Arbeitsscheine in das Feld übernommen. Diese Nummern müssen manuell korrigiert werden.</P>
+
+<H ID="X5.12.3.ISTZEIT">Ist-Zeit</H>
+<P>Die Ist-Zeit ist die Bearbeitungsdauer eines Kurzläufers. Im Gegensatz zur
+Auftragszeit und Personalzeit wird sie nicht errechnet, sondern erfasst.</P>
+
+<H ID="X5.12.3.SCHICHT">Schicht</H>
+<P>In diesem Feld kann einer Auftragszeitstempelung durch Eingabe der
+Schichtnummer eine Schicht zugeordnet werden. Kann keine Schicht zugeordnet
+werden, hat das Feld den Eintrag 0.</P>
+
+
+
+<H2 ID="X5.12.5">Maskenübergreifende Feldhilfen</H2>
+<H ID="X5.12.NUM">Identnummer</H>
+<P>Jedes Zeitpaar wird über eine laufende Nummer identifiziert, deren <REF ID="X2.6.8">Nummernkreis</REF> im
+Firmenstamm festgelegt wird. Danach wird sie vom System vergeben.</P>
+
+<H ID="X5.12.SUCH">Suchwort</H>
+<P>Jedes Zeitpaar erhält ein vorgegebenes
+<INDEX PRIO="P" NAME="Betriebsdatenerfassung (BDE)" TITLE="Suchwort">Suchwort</INDEX>. Es setzt sich aus der
+Kennung, dem Anfangsdatum und der Anfangsuhrzeit des Zeitpaares zusammen. Kennungen sind P für
+Personalzeit und A für Auftragszeit/Kurzläufer. Das Datum hat die Form JJJJMMTT,
+d.h. es sind vier Stellen für die Jahreszahl und jeweils zwei für die Monats- und
+Tagesangabe vorgesehen. Zwischen Datum und Uhrzeit wird der Bindestrich als
+Trennzeichen verwendet. Die Uhrzeit hat schließlich die Form HHMM, d.h. es sind
+jeweils 2 Stellen für Stunden und Minuten reserviert. Als Suchwörter werden empfohlen:</P>
+
+<DL>
+<DT>Personalzeit</DT><DD>P + Datum + Uhrzeit</DD>
+<DT>Auftragszeit</DT><DD>A + Datum + Uhrzeit</DD>
+<DT>Kurzläufer</DT><DD>A + Datum + Uhrzeit.</DD>
+</DL>
+
+<PP TYPE="EXAMPLE">
+Sie wollen zu dem Auftrag mit der Nummer 1234 ein Auftragszeitpaar erfassen. Dazu öffnen
+Sie zunächst die Maske "Auftragszeit" über das gleichnamige Kommando der Kommandoübersicht.
+Geben Sie nun ins Feld "A-Datum" 12.03.04 und ins Feld "A-Zeit" 7.30 ein. Im Feld "Suchwort"
+wird automatisch A20040312-0730 (= A + Datum + Uhrzeit) ausgegeben. Analog wird das Suchwort für
+Personalzeitpaare und Kurzläufer vorgeschlagen. Mit dem Suchwort können Zeitpaare, die innerhalb
+eines Zeitraums liegen, aufgefunden werden.</PP>
+
+<P>Über das Suchwort können Zeitstempel innerhalb eines bestimmten Zeitraums
+oder von einem bestimmten Zeitpunkt an gesucht werden:</P>
+
+<PP TYPE="EXAMPLE">
+<DL>
+<DT>A200401!A</DT><DD>alle Auftragszeitstempel und Kurzläufer ab Jan. 04</DD>
+<DT>P200311!P0311</DT><DD>alle Personalzeitstempel im November 03</DD>
+<DT>P20040125-07!P</DT><DD>alle Personalzeitstempel ab 25.01.04 07:00</DD>
+</DL>
+</PP>
+
+<H ID="X5.12.MA">Mitarbeiter</H>
+<P>Tragen Sie hier einen Mitarbeiter ein, dessen Zeiten erfasst werden sollen. Voraussetzung
+für die Buchung der Auftragszeit oder des Kurzläufers ist der Eintrag einer
+<REF ID="X2.5.LOHN">Lohngruppe</REF> im [Mitarbeiter]. Fehlt dieser Eintrag, scheitert
+die Buchung.</P>
+
+<H ID="X5.12.KORR">Korrektur</H>
+<P>An dieser Stelle kann die Ist-Zeit verändert werden. Eine positive
+Zeitangabe erhöht die Ist-Zeit, eine negative verringert sie.</P>
+
+<PP TYPE="HINT">
+Die korrigierte Ist-Zeit darf nicht negativ werden. Grundsätzlich ist in BDE-Datensätzen
+keine Angabe von negativen Zeiten möglich. In Auftragszeiten können Sie nur Rückmeldungen
+anlegen und dort negative Zeiten erfassen.</PP>
+
+<PP TYPE="EXAMPLE">
+<TABLE FORMAT="|c|c|c|">
+<TR>
+<TH>Ist-Zeit</TH>
+<TH>Korrektur</TH>
+<TH>korrigierte Ist-Zeit</TH>
+</TR>
+<TR><TD>8.5</TD>
+<TD>+2.4</TD>
+<TD>10.9</TD>
+</TR>
+<TR><TD>8.6</TD>
+<TD>-0.25</TD>
+<TD>8.35</TD>
+</TR>
+</TABLE>
+</PP>
+
+<H ID="X5.12.FK">Fehler</H>
+<P>Ist die Zeitstempelung fehlerhaft oder konnte sie nicht richtig verarbeitet werden,
+wird hier ein erläuternder Fehlertext ausgegeben. Nach der Korrektur der Zeitstempelung
+verschwindet der Fehlertext.</P>
+
+<PP TYPE="HINT">
+Werden Stempeldaten <REF ID="X5.12.6">übernommen</REF>, wird in den Datensätzen
+eine fehlende Lohngruppe im erfassten Mitarbeiter mit <TT>Falsche Lohngruppe</TT> ausgegeben.
+Solche Datensätze können nicht gebucht werden.</PP>
+
+<H ID="X5.12.ISTMGE">Gutmenge</H>
+<P>Hier wird die zurückgemeldete Gutmenge ausgegeben, die innerhalb der Ist-Zeit
+gefertigt worden ist.</P>
+
+<H ID="X5.12.AUSMGE">Ausschussmenge</H>
+<P>Das Feld zeigt den zurückgemeldeten Ausschuss an, der innerhalb der Ist-Zeit
+angefallen ist.</P>
+
+<H ID="X5.12.NAMGE">Nacharbeitsmenge</H>
+<P>Das Feld zeigt die zurückgemeldete Menge an, die innerhalb der Ist-Zeit
+nachgearbeitet worden ist.</P>
+
+<H ID="X5.12.ZEICH">Bearbeiter</H>
+<P>In diesem Feld wird bei der Erstellung oder Änderung des Datensatzes das
+Bearbeiterzeichen aus dem Feld "Zeichen" der
+<REF ID="X2.6.10">Passwortdefinitionen</REF> eingetragen. Zeitpaarsätze, die
+per BDE-Terminal automatisch angelegt werden, erhalten keinen Eintrag.</P>
+
+<H ID="X5.12.AUSSCH">Ausschussgrund</H>
+<P>Tragen Sie in dieses Feld den Grund für die Entstehung von Ausschuss an.
+Die Angabe wird in den <REF ID="X5.6.5.AUSSCH">Rückmeldungen</REF>
+ausgegeben. Kürzel und ihre Bedeutung legen Sie selbst fest, z.B. 5 für
+Werkzeugschaden oder MB für Materialbruch.</P>
+
+<H ID="X5.12.UEBERTR">BDE-Datensatz ist zu buchen</H>
+<P>Vollständig erfasste, fehlerfreie BDE-Datensätze, werden als zu buchen
+gekennzeichnet. Sie werden beim Ausführen der Funktion
+<REF ID="X5.12.4">Betriebsdaten buchen</REF> behandelt. Wenn sie
+dabei gebucht werden, wird die Kennzeichnung wieder entfernt.</P>
+
+<H ID="X5.12.TNR">Terminalnummer</H>
+<P>In diesem Feld wird die Nummer des BDE-Terminals ausgegeben, an
+dem die Zeitstempelung erfasst wurde. Handelt es sich um eine Stempelung "Geht", wird
+die Terminalkennung der Stempelung "Kommt" ersetzt, sofern die Stempelung "Geht" mit der
+Stempelung "Kommt" zu einem Zeitpaar zusammengefügt werden kann.</P>
+
+<P>Handelt es sich um eine Stempelung, die die Unterbrechung einer Auftragsabwicklung markiert, wird die
+Terminalnummer der Stempelung, die den Beginn der Auftragsabwicklung markiert, ersetzt, sofern die
+Stempelung für die Unterbrechung mit der Stempelung für den Beginn zu einem Zeitpaar zusammengefügt
+werden kann.</P>
+
+<H ID="X5.12.SPERRE">Gesperrt</H>
+<P>Ist dieses Feld markiert, wird der BDE-Datensatz nicht gebucht. Es wird automatisch markiert,
+wenn ein Fertigungsvorschlag abgeschlossen und Betriebsauftrag und Arbeitsscheine gelöscht
+werden. Das Feld ist erst wieder änderbar, wenn eine gültige Arbeitsscheinnummer eingetragen
+wird.</P>
+
+<PP TYPE="HINT">
+Ist die Sperre gesetzt, wird ein BDE-Datensatz zwar nicht gebucht, er
+steht aber dennoch in der Schlange der zu buchenden BDE-Datensätze.
+Überprüfen Sie daher die gesperrten Sätze in regelmäßigen Abständen
+und stornieren Sie sie, wenn sie nicht gebucht werden sollen, oder
+geben Sie sie für die Übertragung frei, indem Sie die Markierung in diesem
+Feld löschen und damit die Sperre entfernen.</PP>
+
+<MARK ID="X5.12.DOSTORNO"/>
+<H ID="X5.12.STORNO">Löschen, Storno</H>
+<P>Sie haben 2 Möglichkeiten, BDE-Datensätze, die noch nicht gebucht sind, zu löschen:</P>
+<DL>
+<DT>Maskenfeld <B>Löschen</B></DT>
+<DD>Ist dieses Feld markiert, wird der geladene BDE-Datensatz beim Speichern der
+Dialogmaske gelöscht.</DD>
+<DT>Button <B>Storno</B></DT>
+<DD>Mit diesem Button wird der zum Ändern geladene BDE-Datensatz gelöscht.
+</DD>
+</DL>
+
+<PP TYPE="HINT" TITLE="Löschen von BDE-Datensätzen mit EDP">
+Der Button <B>Storno</B> ist nicht per EDP auslösbar. Um BDE-Datensätze per EDP
+zu löschen, benutzen Sie das Feld <B>Löschen</B>.
+</PP>
+
+<H ID="X5.12.OFFEN">BDE-Datensatz ist offen</H>
+<P>Personalzeit- oder Auftragszeitdatensätze, bei denen erst die Anfangszeit
+eingetragen ist und die Endezeit noch fehlt, werden als offen gekennzeichnet.
+</P>
+
+<H ID="X5.12.IZEITERF">Erfasste Ist-Zeit</H>
+<P>Werden Daten von einem BDE-Terminal übernommen, das die Ist-Zeit selbst
+errechnet, dann wird diese Ist-Zeit in dieses Feld des BDE-Datensatzes übernommen.</P>
+
+<MARK ID="X5.12.ANFZBER"/>
+<MARK ID="X5.12.ENDZBER"/>
+<MARK ID="X5.12.ANFDBER"/>
+<H ID="X5.12.ENDDBER">Berechnetes Anfangsdatum, Berechnete Anfangszeit, Berechnete Endezeit, Berechnetes Enddatum</H>
+<P>In diesen Feldern werden die aus den erfassten Anfangs- und Endezeiten
+berechneten Daten ausgegeben. Bei der Berechnung werden das Zeitgitter sowie
+Karenz-, Vorlauf- und Nachlaufzeiten aus dem <REF ID="X2.6.20">Tagesplan</REF> berücksichtigt. Aus den berechneten Anfangs- und Endezeiten wird die <REF ID="X5.12.1.ISTZEIT">Ist-Zeit</REF> berechnet.</P>
+
+<MARK ID="X5.12.ANFDAT"/>
+<H ID="X5.12.ANFZEIT">Anfangsdatum, Anfangszeit</H>
+<P>Den Beginn eines Zeitpaares bestimmen Sie durch Anfangsdatum und Anfangszeit.
+Werden Anfangsdatum und Anfangszeit eingetragen, wird die Schichtzuordnung vorgenommen,
+falls das Feld <REF ID="X5.12.2.TPLAN">Tagesplan</REF> leer ist.</P>
+
+<MARK ID="X5.12.ENDZEIT"/>
+<H ID="X5.12.ENDDAT">Endezeit, Enddatum</H>
+<P>Das Ende eines Zeitpaares bestimmen Sie durch Enddatum und Endezeit.
+Die Spanne zu Anfangsdatum und Anfangszeit darf maximal 24 Stunden betragen. Wenn
+Anfangsdatum und Anfangszeit eingetragen sind, wird bei Eingabe der Endezeit das Enddatum
+ergänzt. Liegt die Endezeit nach der Anfangszeit, wird das Anfangsdatum übernommen.
+Liegt die Endezeit vor der Anfangszeit, wird das Datum des folgenden Tages übernommen.</P>
+
+<PP TYPE="EXAMPLE">
+<H6>Endezeit nach Anfangszeit:</H6>
+
+<TABLE FORMAT="|l|l|l|l|"><TR><TD>Beginn</TD>
+<TD>Ende</TD>
+<TD>Anfangsdatum</TD>
+<TD>Vorschlag für das Enddatum</TD>
+</TR>
+<TR><TD>18:00</TD>
+<TD>23:59</TD>
+<TD>10.03.14</TD>
+<TD>10.03.14</TD>
+</TR>
+</TABLE>
+
+
+<H6>Endezeit vor Anfangszeit:</H6>
+
+<TABLE FORMAT="|l|l|l|l|"><TR><TD>Beginn</TD>
+<TD>Ende</TD>
+<TD>Anfangsdatum</TD>
+<TD>Vorschlag für das Enddatum</TD>
+</TR>
+<TR><TD>18:00</TD>
+<TD>2:00</TD>
+<TD>10.03.14</TD>
+<TD>11.03.14</TD>
+</TR>
+</TABLE>
+</PP>
+
+<H ID="X5.12.CHARGE">Charge</H>
+<P>Tragen Sie hier die Charge des Fertigteils ein. Sie wird in die erzeugte Rückmeldung
+übernommen. Eine Chargenprüfung wird erst bei der Buchung des BDE-Satzes
+durchgeführt. Im Fehlerfall wird der Satz <B>nicht</B> gebucht. Der
+Fehlertext verweist dann auf eine unzulässige Chargennummer.</P>
+
+<H ID="X5.12.MGR">Maschinengruppe</H>
+<P>Tragen Sie in dieses Feld eine <REF ID="X2.4">Maschinengruppe</REF> ein, die in den
+Stammdaten definiert ist und auf der die Kurzläufer oder der Auftrag gefertigt werden.</P>
+
+<H ID="X5.12.UGR">Unterbrechungsgrund</H>
+<P>In dieses Feld tragen Sie den Grund ein, der einen Dienstgang
+notwendig macht. Sie haben die Möglichkeit, eigene Kürzel dafür zu definieren,
+z.B. DIEN als Kürzel für Allgemeiner Dienstgang.</P>
+
+<H ID="X5.12.RM">Rückmeldung</H>
+<P>Bei der Buchung des BDE-Datensatzes wird eine Betriebsauftragsrückmeldung
+erzeugt. Dabei wird der Verweis auf die erzeugte Rückmeldung hier eingetragen.</P>
+
+<H ID="X5.12.MZEIT">Maschinenzeit</H>
+<P>In [Auftragszeit] und [Kurzläufer] können Sie mit diesem Feld
+die Maschinenzeit getrennt von der Arbeitszeit eines Mitarbeiters erfassen.
+Sie benutzen das Feld wie folgt:</P>
+<UL>
+<LI>Wenn der Mitarbeiter ohne Maschine gearbeitet hat: in diesem Fall
+steht im Feld Maschinenzeit eine 0. Dies ist das Standardverhalten.</LI>
+<LI>Wenn die Maschine losgelöst vom Mitarbeiter gearbeitet hat: hier
+ist die Ist-Zeit 0 und Sie tragen die Maschinenzeit ein. Sie können die
+Ist-Zeit auf 0 setzen, indem Sie sie ins Feld Korrektur eintragen.</LI>
+<LI>Wenn Mitarbeiter und Maschine synchron zusammengearbeitet haben: in
+diesem Fall übernehmen Sie die Ist-Zeit in die Maschinenzeit.</LI>
+</UL>
+
+<P>Der Inhalt der Maschinenzeit wird beim Übertragen der
+Auftragszeiten und Kurzläufer in die erzeugte Rückmeldung in das
+gleichnamige <REF ID="X5.6.5.MZEIT">Feld</REF> übernommen.</P>
+
+<MARK ID="X5.12.STORNOREST"/>
+<H ID="X5.12.MANREST">Restmenge mitbuchen, Restmenge stornieren</H>
+<P>Wenn Sie diese Felder in [Auftragszeit] und [Kurzläufer] markieren, werden diese
+Informationen beim Buchen in die Felder <REF ID="X5.6.5.MANREST">Restmenge mitbuchen</REF>
+und <REF ID="X5.6.5.STORNOREST">Restmenge stornieren</REF> der entstehenden [Rückmeldung]
+übernommen. Dadurch steuern Sie das entsprechende Verhalten der Rückmeldung.</P>
+
+<H ID="X5.12.SOFORT">Beleg buchen</H>
+<P>Wenn Sie den Beleg beim Speichern buchen wollen, markieren Sie dieses Feld.
+Gleichzeitig wird eine <REF ID="X5.12.RM">Rückmeldung</REF> gebucht. Voraussetzung für eine erfolgreiche
+Buchung der Rückmeldung, die auch zu einer Lagerbuchung führt, sind vollständige Zeitpaare aus
+<REF ID="X5.12.ANFZEIT">Anfangszeiten</REF> und <REF ID="X5.12.ENDZEIT">Endezeiten</REF>.</P>
+
+<H2 ID="X5.12.4">Betriebsdaten buchen</H2>
+<P>Wählen Sie über die Kommandoübersicht mit [Betriebsdatenerfassung]
+[Buchung] die Zeitpaare aus, die Sie
+<INDEX PRIO="P" NAME="Betriebsdatenerfassung (BDE)" TITLE="Betriebsdaten buchen">buchen</INDEX>
+möchten. Nach der Buchung können die BDE-Datensätze nicht mehr geändert werden.
+Sie können aber weiterhin eingesehen werden.</P>
+
+<P>Aus Auftragszeiten und Kurzläufern werden Rückmeldungen der Fertigung erzeugt. Personalzeiten
+können an ein externes Personalzeitauswertungs- oder Lohnbuchhaltungssystem weitergegeben werden.
+Die BDE-Datensätze werden entweder einzeln nach direkter Auswahl oder pauschal unter Vorgabe eines
+Stichtags übernommen.</P>
+
+<P>Die Buchung der Auftragszeitpaare in die Fertigung läuft in 2 Schritten ab.</P>
+
+<OL>
+<LI>Zunächst wird für jedes Zeitpaar mit [Betriebsdatenerfassung] [Buchung]
+eine Rückmeldung erzeugt.</LI>
+<LI>Rückmeldungen, die aus BDE-Datensätzen erzeugt wurden, müssen wie manuell erfasste
+Rückmeldungen gebucht werden. Dies geschieht über die Kommandoübersicht mit [Rückmeldebelege buchen].</LI>
+</OL>
+
+<PP TYPE="HINT">
+Rückmeldungen können bis zur Buchung bearbeitet werden.</PP>
+
+<P>Bei der Buchung von Personalzeiten werden die Identnummern der noch nicht gebuchten
+Personalzeitsätze an die Datei <TT>BDE_PERS</TT> angefügt. Ein Programm zur Übernahme in Fremdsysteme
+kann die BDE-Datensätze dann anhand dieser Identnummernliste auswerten. Nach der Übertragung ist
+sichergestellt, dass die BDE-Datensätze nicht mehr verändert werden können.</P>
+
+<P>Mit [Auftragszeit und Betriebsauftrag] werden aus Auftragszeiten Betriebsauftragsrückmeldungen
+erzeugt, die sofort gebucht werden. Damit können Sie mehrere Auftragszeiten
+für denselben Arbeitsschein in einem Schritt buchen.</P>
+
+<PP TYPE="HINT" TITLE="Buchung BDE-Datensatz trotz Scheitern der Buchung der Rückmeldung">
+Wenn die Buchung einer Rückmeldung fehlschlägt, weil z.B. der
+Benutzer beim Buchen der Rückmeldung wegen einer Sperre abbricht,
+wird der BDE-Datensatz trotzdem gebucht. Die Rückmeldung muss dann getrennt
+<REF ID="X5.6.7">gebucht</REF> werden.</PP>
+
+<PP TYPE="HINT" TITLE="Buchung BDE-Datensatz mit EDP">
+Das Buchungsprogramm <TT>Auftragszeit und Betriebsauftrag</TT> muss im Batchmodus
+mit <TT>Einzeln auf Anfrage übernehmen</TT> oder <TT>Zum Stichtag</TT> laufen.
+Wenn nur eine Auftragszeit per ID gebucht wird, z.B.
+<![CDATA[*<(PDC)> 'ID' <(Transfer)>, (OrderTimeAndWorkOrder) )]]>,
+wird die Auftragszeit gebucht, aber nicht die Rückmeldung.</PP>
+
+
+
+<H2 ID="X5.12.6">Übernahme von Stempeldaten</H2>
+<P>Zur Übernahme von Daten und Weitergabe an die Auftragszeiten steht das Infosystem
+10521 <REF ID="X5.13.13">Arbeitsvorratsliste</REF> oder die App abas Mobile Shopfloor
+zur Verfügung.</P>
+
+
+<H2 ID="X5.12.7.1">Infosystem BDE-Auswertungen</H2>
+<MARK ID="X5.12.7.1.FARBE"/>
+<MARK ID="X5.12.7.1.MASK"/>
+<P>Das Infosystem 10211 LAZEIT hat folgende Funktionen:</P>
+
+<UL>
+<LI>Ausgabe von Auftragszeiten nach Betriebsaufträgen, Maschinengruppen, Mitarbeitern
+oder Nummern der Betriebsdatenerfassung (BDE)</LI>
+<LI>Zeitvergleich von Personal- und Auftragszeitstempelungen eines Mitarbeiters</LI>
+<LI>Druckausgabe über JasperReports, Layout LAZEIT.</LI>
+</UL>
+
+<MARK ID="X5.12.7.1.BDE"/>
+<MARK ID="X5.12.7.1.ZEITNACHWEIS"/>
+<MARK ID="X5.12.7.1.LISTEM"/>
+<MARK ID="X5.12.7.1.KAPAZ"/>
+<MARK ID="X5.12.7.1.STATUS"/>
+<MARK ID="X5.12.7.1.BETR"/>
+<MARK ID="X5.12.7.1.FEHLER"/>
+<MARK ID="X5.12.7.1.BZEITVERGL"/>
+<MARK ID="X5.12.7.1.ABWESEND"/>
+<MARK ID="X5.12.7.1.ANWOFFAS"/>
+<H ID="X5.12.7.1.ANWESEND">Auswertungsart</H>
+<P>In diesem Abschnitt können Sie Kriterien für Berichte, Listen und Zeiten
+bestimmen, zu denen Sie die Daten selektieren wollen.
+Beim Füllen der Tabelle werden nicht immer alle Felder berechnet und angezeigt.
+Je nach Selektion gibt es auch Tabellenfelder, die leer bleiben.<BR/>
+Sie können gleichzeitig nur eines dieser Kriterien auswählen. Im Einzelnen bedeuten:</P>
+
+<DL>
+<DT>Offene Personalzeiten</DT><DD><P>Hierfür muss ein Mitarbeiter oder ein
+Mitarbeiterbereich eingegeben werden. Danach werden für Mitarbeiter oder Mitarbeiterbereiche alle offenen
+Personalzeiten ausgegeben. Eine offene Personalzeit hat eine <REF ID="X5.12.ANFZEIT">
+Anfangszeit</REF>, aber KEINE <REF ID="X5.12.ENDZEIT">Endezeit</REF>. Über diese Auswahl können die
+anwesenden Mitarbeiter ausgewählt werden.</P>
+
+<P>Zur Auswahl dafür steht Ihnen auch der Button
+<REF ID="default.F1.BSELECT">Selektionsleiste Mitarbeiter</REF> zur Verfügung. Wenn
+alle Mitarbeiter auswählt werden sollen, können Sie nach dem Buttonklick die Selektion mit
+OK bestätigen. Durch die Markierung neben diesem Button ist ersichtlich, dass ein
+Mitarbeiterbereich ausgewählt wurde.</P>
+</DD>
+<DT>Offene Personal- und Auftragszeiten</DT><DD>Damit werden alle offenen
+Personalzeiten und die offenen Auftragszeiten für einen Mitarbeiter oder Mitarbeiterbereich
+ausgegeben. Dies sind alle Personalzeiten und Auftragszeiten, bei denen die Endezeit fehlt.</DD>
+<DT>Weitergabe Personalzeitstempelung</DT><DD>
+<P>Gebuchte Auftragszeiten fließen in Rückmeldungen ein. Personalzeiten fließen in
+Rückmeldungen NICHT ein.</P>
+<P>Über Weitergabe Personalzeitstempelungen können gebuchte Personalzeiten an eine externe
+Lohnsoftware übergeben werden. Gebuchte Personalzeiten werden im ersten Schritt an eine
+Textdatei <TT>BDE_PERS</TT> übergeben. Diese Datei liegt im Mandantenverzeichnis und enthält die
+Identnummern der gebuchten Personalzeiten.</P>
+
+<P>Nach dieser Auswahl werden beim Start des Infosystems alle gebuchten Personalzeiten aus der
+Datei <TT>BDE_PERS</TT> im Infosystem angezeigt und in die Datei <TT>bd/PERS.WEITER</TT> übergeben.
+Danach ist die Datei <TT>BDE_PERS</TT> leer. Die Datei <TT>bd/PERS.WEITER</TT> kann nun als
+Schnittstellendatei für die externe Software dienen.</P>
+</DD>
+<DT>Vollständige Personalzeiten Mitarbeiter </DT><DD>
+Über diese Auswahl können für einen Mitarbeiter oder Mitarbeiterstamm die vollständigen
+Personalzeiten selektiert werden. Vollständige Personalzeiten besitzen eine Anfangs- und
+eine Endezeit. Durch diese Auswahl erhalten Sie im Vergleich zu Offene Personalzeiten
+die umgekehrte Sicht auf die Daten. Sie können alle Mitarbeiter ausgeben lassen, die keine
+offene Personalzeit besitzen und somit momentan nicht anwesend sind.</DD>
+<DT>Zuordnung Personal-/Auftragszeit</DT><DD>
+Über diese Auswahl werden die Personalzeiten und Auftragszeiten für einen Mitarbeiter
+oder Mitarbeiterstamm verglichen. Die Auftragszeiten werden in dieser Ansicht den
+Personalzeiten zugeordnet. Damit ist es ersichtlich, welche Auftragszeiten ein Mitarbeiter
+in einer Personalzeit gestempelt hat.</DD>
+<DT>Zeitstempel-Fehlerliste</DT><DD>derzeit nicht in Funktion</DD>
+<DT><MARK ID="X5.12.7.1.MARK1"/>
+Auftragszeiten Betriebsauftrag/Arbeitsschein</DT><DD>
+Für diese Auswahl wird als Grundlage ein Betriebsauftrag oder Arbeitsschein eingegeben.
+Die Auftragszeiten werden auf Arbeitsscheine gestempelt. Über diese Auswahl können
+alle Auftragszeiten für einen Betriebsauftrag selektiert werden. Dabei werden sowohl offene
+als auch vollständige Auftragszeiten ausgegeben.</DD>
+<DT>Status Betriebsauftrag</DT><DD>Für diese Auswahl wird ein Betriebsauftrag
+eingegeben. Nun werden die Auftragszeiten pro Arbeitsschein summiert und in der
+Tabelle ausgegeben. Dabei werden die <REF ID="X5.11.6.1.BWTTERM">Vorgabezeiten</REF>
+(Sollzeit) aus der Auftragsfertigungsliste mit den gestempelten
+<REF ID="X5.12.ANFZEIT">Auftragszeiten</REF> (Ist-Zeiten) gegenübergestellt. Darüber
+kann ermittelt werden, wie plausibel die vorgegebene Sollzeit ist.</DD>
+<DT>Auftragszeiten Kapazität</DT><DD>Als Grundlage wird eine Kapazität eingegeben.
+Dann werden alle offenen und vollständigen Auftragszeiten für diese Kapazität
+ausgegeben.</DD>
+<DT>Auftragszeiten Mitarbeiter</DT><DD>Als Grundlage wird ein Mitarbeiter oder ein
+Mitarbeiterbereich eingegeben. Dann werden alle offenen und vollständigen Auftragszeiten
+für diesen Mitarbeiter oder Mitarbeiterbereich ausgegeben.</DD>
+<DT>Personalzeiten Mitarbeiter</DT><DD>Als Grundlage wird ein Mitarbeiter oder ein
+Mitarbeiterbereich eingegeben. Dann werden alle offenen und vollständigen Personalzeiten
+für diesen Mitarbeiter oder Mitarbeiterbereich ausgegeben.</DD>
+<DT>BDE-Nummer</DT><DD>Nach dieser Auswahl können Sie in den Feldern
+<REF ID="X5.12.7.1.BDEBIS">BDE-Nr von – bis</REF> die Identnummern
+der Datenbank Betriebsdatenerfassung (BDE) eingeben, z.B. 1-999. Dann werden alle
+Auftrags- und Personalzeiten ausgegeben, die eine entsprechende Identnummer haben.</DD>
+</DL>
+
+<MARK ID="X5.12.7.1.ARTIKEL"/>
+<MARK ID="X5.12.7.1.BAMGE"/>
+<MARK ID="X5.12.7.1.FREIGABE"/>
+<MARK ID="X5.12.7.1.BANUM"/>
+<MARK ID="X5.12.7.1.ABSCHLUSS"/>
+<MARK ID="X5.12.7.1.BABLAGEF"/>
+<H ID="X5.12.7.1.NUMBA">Betriebsauftrag, Abgelegt, Abgeschlossen</H>
+<P>Nach der Einstellung von <REF ID="X5.12.7.1.MARK1">Auftragszeiten Betriebsauftrag/Arbeitsschein</REF>
+können Sie hier einen Betriebsauftrag, einen Arbeitsschein oder einen Rückmeldebeleg eintragen,
+dessen Zeiterfassungsdaten Sie ausgeben wollen.</P>
+
+<PP TYPE="HINT">
+Sobald der Betriebsauftrag nicht mehr vorhanden ist, kann sich diese Selektion nur auf
+die Rückmeldungen beziehen. Daher öffnet sich keine Selektion auf den Betriebsauftrag,
+sondern die zugehörigen Rückmeldedaten werden ausgegeben.</PP>
+
+<P>Für <B>abgelegte</B> Betriebsaufträge, Arbeitsscheine und Rückmeldebelege wird die Identnummer
+des zugehörigen Betriebsauftrags ausgegeben. Durch Markierung von <B>Abgelegt</B>,
+<B>Abgeschlossen</B> wird der Status des eingetragenen Betriebsauftrags ausgegeben.
+Zusätzlich werden für den Betriebsauftrag der gefertigte <B>Artikel</B>,
+dessen<B>Menge</B>, sowie das Datum der Freigabe des Betriebsauftrags ausgegeben.</P>
+
+<MARK ID="X5.12.7.1.KNAME"/>
+<H ID="X5.12.7.1.NUMKAPAZ">Maschinengruppe/Abteilung</H>
+<P>Setzen Sie hier einen Verweis auf die Abteilung oder Maschinengruppe, deren
+Zeiterfassungsdaten Sie ausgeben wollen. In das Feld daneben wird ihre Bezeichnung ausgegeben.</P>
+
+<MARK ID="X5.12.7.1.MITARBEITER"/>
+<MARK ID="X5.12.7.1.KSPLAN"/>
+<MARK ID="X5.12.7.1.MNAME"/>
+<H ID="X5.12.7.1.NUMMITARB">Mitarbeiter, Schichtplan</H>
+<P>Tragen Sie hier einen <B>Mitarbeiter</B> ein, dessen Zeiterfassungsdaten Sie ausgeben wollen.
+Nach dem Eintrag wird auch der Schichtplan des Mitarbeiters ausgegeben. Haben Sie
+den Mitarbeiter über eine Selektionsleiste ausgewählt, wird das Feld neben dem Button
+<B>Selektionsleiste Mitarbeiter</B> markiert.</P>
+
+<MARK ID="X5.12.7.1.EDATUM"/>
+<H ID="X5.12.7.1.ADATUM">Zeitraum von - bis</H>
+<P>Tragen Sie in diese beiden Felder das Anfangs- und das Enddatum des Zeitraums ein,
+für den Sie die Daten ausgeben lassen wollen. Wenn Sie keine Einträge in diese Felder vornehmen,
+werden diese bei der Auswahl eines Mitarbeiters und einer Kapazität mit dem
+1. des aktuellen Monats als Beginn und dem aktuellen Tagesdatum vorbelegt.</P>
+
+<MARK ID="X5.12.7.1.BDEVON"/>
+<H ID="X5.12.7.1.BDEBIS">BDE-Nr von - bis</H>
+<P>Tragen Sie in diese beiden Felder jeweils die Identnummer eines Zeiterfassungsdatensatzes ein,
+um den Bereich festzulegen, innerhalb dessen Sie die Daten ausgeben lassen wollen.
+Wenn Sie keine Einträge in diese Felder machen, werden alle im System vorhandenen
+BDE-Datensätze in die Tabelle ausgegeben.</P>
+
+<MARK ID="X5.12.7.1.RUEST"/>
+<MARK ID="X5.12.7.1.INARBEIT"/>
+<MARK ID="X5.12.7.1.MOFF"/>
+<MARK ID="X5.12.7.1.MSUM"/>
+<MARK ID="X5.12.7.1.OFF"/>
+<MARK ID="X5.12.7.1.ASUM"/>
+<MARK ID="X5.12.7.1.GVOR"/>
+<MARK ID="X5.12.7.1.IANZ"/>
+<MARK ID="X5.12.7.1.VOR"/>
+<MARK ID="X5.12.7.1.DIFF"/>
+<MARK ID="X5.12.7.1.SOLL"/>
+<MARK ID="X5.12.7.1.AGNUM"/>
+<MARK ID="X5.12.7.1.AGNUMBEZ"/>
+<MARK ID="X5.12.7.1.ABEZ"/>
+<MARK ID="X5.12.7.1.SPLAN"/>
+<MARK ID="X5.12.7.1.AUSSCH"/>
+<MARK ID="X5.12.7.1.NAMGE"/>
+<MARK ID="X5.12.7.1.UGR"/>
+<MARK ID="X5.12.7.1.SCHICHT"/>
+<MARK ID="X5.12.7.1.FKNUM"/>
+<MARK ID="X5.12.7.1.AUSMGE"/>
+<MARK ID="X5.12.7.1.ISTMGE"/>
+<MARK ID="X5.12.7.1.AISTZEIT"/>
+<MARK ID="X5.12.7.1.ISTZEIT"/>
+<MARK ID="X5.12.7.1.ENDZEIT"/>
+<MARK ID="X5.12.7.1.ANFZEIT"/>
+<MARK ID="X5.12.7.1.ANFDAT"/>
+<MARK ID="X5.12.7.1.ENDDAT"/>
+<MARK ID="X5.12.7.1.BEZ"/>
+<MARK ID="X5.12.7.1.MGR"/>
+<MARK ID="X5.12.7.1.MITARB"/>
+<MARK ID="X5.12.7.1.MABEZ"/>
+<MARK ID="X5.12.7.1.ASNR"/>
+<MARK ID="X5.12.7.1.BDEBEZ"/>
+<H ID="X5.12.7.1.BDENUM">Felder in der Tabelle und der Zeilenlupe</H>
+<P>Die Zeiterfassungsdaten werden nach der im Maskenkopf angelegten Selektion in die
+Tabelle ausgegeben. Sie sind nicht änderbar. Zusätzlich zu den Zeilen mit den
+Datensatzangaben werden Zeilen mit Summen als Zwischensummen und Auftragssummen
+als Gesamtsummen in die Tabelle eingezogen. Die Daten der Tabelle werden aus
+der <REF ID="X5.12.2">Auftragszeit</REF> übernommen.</P>
+
+
+</CHAPTER>
+
+
+<!--
+ !!!!!!!!!!!!!!! DO NOT CHANGE THIS COMMENT UNMINDFULLY !!!!!!!!!!!!!!!!!!
+ Since we are in a partial document without defined DOCTYPE, the necessary
+ information is provided to the emacs here:
+ 1. mode: xml
+ 2. sgml-parent-document:
+ - What is the name of the file in which the DOCTYPE is defined? emacs_toplevel.xml
+ - Which elements are open?                                      ABAS and BODY
+ - Which one is the top element of this file?                    CHAPTER
+
+ Local Variables: ***
+ mode:xml ***
+ sgml-parent-document:("../../defs/emacs_toplevel.xml" "ABAS" "BODY" "CHAPTER") ***
+ End: ***
+ -->

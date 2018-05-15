@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE custom_entities SYSTEM "s3-custom-entities-for-xtm.dtd">
+<!--
+**===== ABSCHNITT : Modul Identifikation ===============================**
+ Modul Name       : B.xml
+ Autor            : rasch
+**======================================================================**
+-->
+
+<CHAPTER>
+
+<H1 ID="X49B">Administration und Konfiguration</H1>
+
+<CONTENTS ID="X49B" MAXLEVEL="6" FIRST="0" ORDERED="0"/>
+
+
+<H2 ID="X49B.1">Rund um abas ERP</H2>
+
+<CONTENTS ID="X49B.1" MAXLEVEL="6"/>
+
+<H3 ID="X49B.1.3">Konfiguration des Betriebssystems</H3>
+<TABLE FORMAT="|L|L|L|L|">
+<TR>
+<TH>Systemdatei</TH>
+<TH>Eintrag</TH>
+<TH>OS</TH>
+<TH>Grund</TH>
+</TR>
+<TR>
+<TD><TT>/etc/profile</TT></TD>
+<TD><TT>ulimit -c 0 ändern in<BR/>ulimit -c unlimited</TT></TD>
+<TD>Red Hat,<BR/>CentOS</TD>
+<TD>Damit Core-Files erzeugt werden können</TD>
+</TR>
+<TR>
+<TD><TT></TT></TD>
+<TD><TT></TT></TD>
+<TD></TD>
+<TD>Max. Allokierung von RAM für einen Prozess</TD>
+</TR>
+<TR>
+<TD><TT></TT></TD>
+<TD><TT></TT></TD>
+<TD></TD>
+<TD>Max. Anzahl offener Dateien pro User</TD>
+</TR>
+<TR>
+<TD><TT>/etc/sysctl.conf</TT></TD>
+<TD><TT>fs.protected_hardlinks=0</TT></TD>
+<TD>Debian 7</TD>
+<TD>Verhalten von Hardlinks (sonst Probleme bei Mandanten init oder kopieren oder:
+<NOTRANS><PROGRAM>echo "0" > /proc/sys/fs/protected_hardlinks</PROGRAM></NOTRANS></TD>
+</TR>
+<TR>
+<TD><TT>/etc/sysctl.conf</TT></TD>
+<TD><TT>kernel.core_pattern =./core.%p</TT></TD>
+<TD></TD>
+<TD>Bestimmung des Dateinamens für core-Files</TD>
+</TR>
+<TR>
+<TD><TT>/etc/sysctl.conf</TT></TD>
+<TD><TT>fs.suid_dumpable=1</TT></TD>
+<TD>Red Hat,<BR/>CentOS<BR/>Debian</TD>
+<TD>Erstellung Core-File oder:
+<NOTRANS><PROGRAM>echo 1 > /proc/sys/fs/suid_dumpable</PROGRAM></NOTRANS></TD>
+</TR>
+<TR>
+<TD><TT>/etc/security/limits.conf</TT></TD>
+<TD><TT>
+* hard    memlock         unlimited<BR/>
+* soft    memlock         unlimited</TT></TD>
+<TD>Red Hat</TD>
+<TD>Für das Tool <TT>iocachelockd</TT>, damit ein Prozess den ganzen RAM nutzen darf (Größe der Datenbank)</TD>
+</TR>
+<TR>
+<TD><TT>/etc/security/limits.conf</TT></TD>
+<TD><TT>
+*   soft    nproc          2047<BR/>
+*   hard    nproc          16384</TT></TD>
+<TD>Red Hat,<BR/>CentOS</TD>
+<TD>Max Anzahl offener Dateien pro User</TD>
+</TR>
+<TR>
+<TD><TT>/etc/security/limits.conf</TT></TD>
+<TD><TT>
+*               hard    core            unlimited<BR/>
+*               soft    core            unlimited</TT></TD>
+<TD>Red Hat,<BR/>CentOS</TD>
+<TD>Core-Files erzeugen</TD>
+</TR>
+<TR>
+<TD><TT>echo "never" > /sys/kernel/mm/redhat_transparent_hugepage/enabled</TT></TD>
+<TD><TT>/sys/kernel/mm/redhat_transparent_hugepage/enabled</TT></TD>
+<TD>Red Hat,<BR/>CentOS</TD>
+<TD>transparent hugetables bug vermeiden, transient</TD>
+</TR>
+<TR>
+<TD><TT>grub.conf</TT></TD>
+<TD><TT>transparent_hugepage=never</TT></TD>
+<TD>Red Hat,<BR/>CentOS</TD>
+<TD>transparent hugetables bug vermeiden, persistent</TD>
+</TR>
+</TABLE>
+
+<P>Siehe auch: <REF ID="X24B.2">Prüfung der Umgebung von abas ERP</REF></P>
+
+
+<H3 ID="X49B.1.2" SPLIT="1">Versionierung</H3>
+<P>Die Versionierung folgt Prinzipien, die Sie der Information der
+abas Homepage entnehmen können. Jede Version von abas ERP ist mit einer Nummer
+versehen, die nach dem Schema 2012r1n01p01 aufgebaut ist. Dabei bedeuten:</P>
+
+<UL>
+<LI>2012 = (Haupt-)Version</LI>
+<LI>r = Release</LI>
+<LI>n = Nachtrag</LI>
+<LI>p = Patchlevel; p und anschließende Ziffern werden nur dann aufgenommen,
+wenn es sich um eine Patchversion handelt.</LI>
+</UL>
+
+<PP TYPE="ATTENTION">
+<P>Ein Systemaufruf der folgenden Art kann integriert werden, falls
+Sie die komplette Versionsnummer benötigen, z.B. 2012r1n01p01:</P>
+<TT>eksversion $HOMEDIR/$ARCHNAME/menu | sed 's/^.*Version //'</TT>
+
+<P>Mit dem Aufruf <TT>eksversion -k $HOMEDIR/$ARCHNAME/menu</TT>
+wird die komplette Versionsnummer geliefert, z.B. 2012r4n03p04 (Variante 1).
+Alternativ (Variante 2) können Sie auch die einzelnen Versionsnummernanteile abfragen,
+etwa um festzustellen, ob eine Versionsnummer größer oder kleiner als eine vorhandene ist.</P>
+
+<DL>
+<DT>Aufruf</DT><DD>führt zur Anzeige</DD>
+<DT>eksversion -v $HOMEDIR/$ARCHNAME/menu</DT><DD># Hauptversionsnummer</DD>
+<DT>eksversion -r $HOMEDIR/$ARCHNAME/menu</DT><DD># Release</DD>
+<DT>eksversion -n $HOMEDIR/$ARCHNAME/menu</DT><DD># Nachtrag</DD>
+<DT>eksversion -p $HOMEDIR/$ARCHNAME/menu</DT><DD># Patchlevel</DD>
+</DL>
+
+<P>Variante 1 führt zur Ausgabe einer kompletten Versionsnummer, Variante 2 zur Ausgabe der
+einzelnen Anteile der Versionsnummer. Als Beispiel kann das Standard-FOP <TT>sy/ANF.HOTL</TT>
+dienen. Versionsvergleiche sind aufgrund der Nomenklatur nur durch einen Vergleich der einzelnen
+Anteile möglich.</P>
+</PP>
+
+
+
+<H3 ID="X49B.1.4">Maxima von abas ERP</H3>
+<P><INDEX PRIO="P" NAME="MAXIMA" TITLE="Maximale signifikante Größen in abas ERP"></INDEX>
+abas ERP meldet die Überschreitung von signifikanten Größen. Es
+ist also nicht notwendig, Programme vorab auf Überschreitungen von
+Grenzen von abas ERP zu überprüfen. Einige dieser Grenzen sind:</P>
+
+<MARK ID="X49B.DATENBANK"/>
+<B>Datenbank</B>
+
+<DL>
+<DT>Anzahl der Zeilen</DT>
+<!-- CONST MAXPUZEILEN=65535 -->
+<DD>in Zusatztabellen beträgt die maximale Anzahl der Zeilen in einem Datensatz 65535.
+Sie gilt nicht für Infosysteme.</DD>
+<!-- CONST MAXTEXT=3000 -->
+<DT>Selektionsstrings</DT><DD>Die maximale Länge eines Selektionsstrings bzw. einer Sucherweiterung
+beträgt 3000 Zeichen.</DD>
+<!-- CONST GUI_OBJW_MAX_SPALTEN=3000 -->
+<DT>Spalten in der GUI-Objektauswahlmaske</DT><DD>Die maximale Anzahl der Spalten,
+die in eine GUI-Objektauswahlmaske aufgenommen werden kann, ist 500.</DD>
+<!-- CONST MAXRESDESCR=1000 -->
+<DT>Anzahl der individuellen Felder in einer Variablentabelle</DT><DD>Sie können maximal 999
+individuelle Variablen im Kopfteil und maximal 999 individuelle Variablen in die Tabelle einfügen.</DD>
+<!-- CONST MAXBILD=1500 -->
+<DT>Anzahl der eigenen Felder in einem Infosystem</DT><DD>Sie können maximal 999 eigene Variablen
+im Kopfteil und maximal 999 eigene Variablen in der Tabelle einfügen.</DD>
+<DT>Anzahl der individuellen Schlüssel</DT><DD><P>Pro Datenbank können Sie maximal 128
+individuelle Schlüssel definieren.</P>
+
+<P>Falls Sie an diese Grenze stoßen, stehen Ihnen zur Prüfung, ob es doppelte oder ähnliche
+Schlüssel gibt, die Sie ggf. nicht benötigen, unter [Diverse Kommandos] [Servicearbeiten]
+[Schlüsseltabelle] die Menüpunkte <REF ID="X10.13.12.MARK2">Test auf doppelte Schlüssel</REF>
+bzw. <REF ID="X10.13.12.MARK3">Strenger Test auf doppelte Schlüssel</REF> zur Verfügung.</P></DD>
+
+<DT><MARK ID="X49B.MARK1"/>Anzahl geschriebener Datensätze in einer Transaktion</DT><DD>
+<P>Die Anzahl der Datensätze,
+die in einer <REF ID="FO.AKTION">Transaktion</REF>, über EDP <REF ID="X300.17.2.3.3.7">TA</REF>,
+neu erfasst, geändert oder gelöscht werden, darf 2 Millionen nicht überschreiten.
+Diese Grenze kann über die Umgebungsvariable <REF ID="X9B.2.15">MAX_WRITES_PER_TRANSACTION</REF>
+geändert werden und gilt <B>NICHT</B> für Programme, die im <REF ID="X12.36.18.MARKEB">Einbenutzer-Modus</REF>
+gestartet werden.</P>
+
+<P>Sollte eine entsprechend große Transaktion benötigt werden, empfehlen wir <B>nicht</B>,
+die Umgebungsvariable MAX_WRITES_PER_TRANSACTION hochzusetzen, sondern wir empfehlen,
+<B>NACH</B> vorheriger Sicherung die Durchführung der Transaktion im Einbenutzer-Modus.
+Denn kommt es in einer so langen Transaktion zu einem Fehler, führt die Datenbank ein Rollback durch,
+währenddessen die Datenbank gesperrt ist. Wenn die Transaktion z.B. 20GB Daten geschrieben hat,
+dauert das Rollback auch auf schnellen Rechnern 10 - 15 Minuten.</P></DD>
+</DL>
+
+<B>Masken</B>
+
+<DL>
+<!-- CONST MAX_FOR_TEILMA=10 -->
+<DT>Teilmasken</DT><DD>Es können 10 Teilmasken pro Maske definiert werden,
+außerdem eine Zeilenlupe.</DD>
+</DL>
+
+<B>ASCII-Menüs</B>
+<P>Ein ASCII-Menü darf nicht mehr als 22 Zeilen zuzüglich zweier Zeilen
+für den Rahmen umfassen. Längere Menüs müssen aufgesplittet werden.
+Ein Text in einem Menü, gleichgültig ob Menütitel oder Menüzeile, darf
+maximal 60 Zeichen lang sein. <TT>menuemake</TT> prüft die Längen und
+gibt eventuell eine Fehlermeldung aus.</P>
+
+<B>FO</B>
+
+<P>Dateinamen dürfen 199 Zeichen lang sein.<BR/>
+Variablennamen dürfen maximal 2999 Zeichen enthalten.</P>
+
+<!-- CONST MAXTIEFE=20 -->
+<P>Die erlaubte Schachtelungstiefe von FOPs mit &foc.EINGABE; ist 20. Die
+<!-- CONST MAXMARKEN=2000 -->
+maximale Anzahl der Marken pro Programmdatei ist 2000.</P>
+
+<!-- CONST MAXMEHRZEIL=32 -->
+<P>Mehrzeilige Textvariable: Es werden bis zu 32 Zeilen ausgegeben.
+Dementsprechend können auch in Masken mehrzeilige Texte mit bis zu 32
+Zeilen (höchstens aber 300 Zeichen) dargestellt werden.</P>
+
+<B>Anzahl der Mandanten</B>
+<P>Die maximale Anzahl der Mandanten pro HOMEDIR beträgt 1024.</P>
+
+
+
+<H3 ID="X49B.1.1">Verzeichnisstruktur $HOMEDIR</H3>
+<P>In <INDEX PRIO="P" NAME="Verzeichnisstruktur">$HOMEDIR</INDEX> liegen
+ausschließlich Programme, die Sie selbst anpassen müssen, wie
+<TT>devices.txt</TT> und <TT>print.sh</TT>:</P>
+
+<P><TT>PATH=$HOMEDIR/$SPR:$HOMEDIR:$HOMEDIR/$ARCHNAME:$HOMEDIR/bin/$SPR:$HOMEDIR/bin</TT></P>
+
+<DL>
+<DT>.</DT><DD>Alle i-Dateien (= Individualdateien) einschließlich sämtlicher Unterverzeichnisse</DD>
+<DT>pc, txt, hd</DT><DD> ... Beispiele für Unterverzeichnisse</DD>
+<DT>$SPR</DT><DD>Sprachverzeichnis (z.B. <TT>devices.txt</TT> in Englisch)</DD>
+<DT>bin</DT><DD>Shellprogramme</DD>
+<DT>bin/$SPR</DT><DD>Sprachabhängige Programme</DD>
+<DT>$ARCHNAME</DT><DD>Programme und rechnerabhängige Shellprogramme,
+z.B. <TT>terminfo</TT>, Rechnerarchitektur (z.B. <TT>HP-UX</TT>)</DD>
+<DT>eks</DT><DD>Beispiele für Mandanten</DD>
+<DT>ind</DT><DD>Kopien der in "." liegenden Dateien und Programme
+als Referenz für individuelle Anpassungen (--&gt;   h i e r   n i c h t   ändern!)</DD>
+</DL>
+
+
+
+<H2 ID="X49B.2">Analyse und Verbesserung der Rechnerleistung</H2>
+<P>Zur Analyse und Verbesserung der <INDEX PRIO="P">Performance</INDEX> sind
+verschiedene Arbeitsschritte und Werkzeuge empfehlenswert.</P>
+
+<CONTENTS ID="X49B.2" MAXLEVEL="6"/>
+
+<H3 ID="X49B.2.7">Empfehlungen für gute Performance</H3>
+<P>Der RAM auf dem Echtserver sollte optimal eingestellt sein. Gegebenenfalls sollte die Datenbank
+aktiv im <REF ID="X46B.5.1.5">Speicher</REF> gehalten werden. Der <TT>datmod</TT>-Prozess
+des Echtmandanten muss <REF ID="X9B.2.13">priorisiert</REF> werden. Es gelten folgende
+Mindestvoraussetzungen der Server für abas ERP, Business Apps und Volltextsuche:</P>
+
+<TABLE FORMAT="L|C|C|C">
+<TR>
+<TH>Lizenzanzahl</TH>
+<TH>1 - 10</TH>
+<TH>10 - 20</TH>
+<TH>20 - 40</TH>
+</TR>
+<TR>
+<TH>CPU</TH>
+<TD>1<BR/>
+Xeon/17<BR/>
+Neue Generation</TD>
+<TD>1 - 2<BR/>
+Xeon/17<BR/>
+Neue Generation</TD>
+<TD>2<BR/>
+Xeon/17<BR/>
+Neue Generation</TD>
+</TR>
+<TR>
+<TH>Gesamtanzahl<BR/>
+Kerne</TH>
+<TD>ab 4</TD>
+<TD>ab 6</TD>
+<TD>ab 8</TD>
+</TR>
+<TR>
+<TH>CPU GHz</TH>
+<TD>2,4</TD>
+<TD>2,4</TD>
+<TD>ab 2,6 / optimal &gt; 3</TD>
+</TR>
+<TR>
+<TH>RAM</TH>
+<TD>ab 16 GB /<BR/>
+optimal 32 GB</TD>
+<TD>ab 32 GB /<BR/>
+optimal 48 oder 64 GB</TD>
+<TD>ab 64 GB</TD>
+</TR>
+<TR>
+<TH>HDD Linux</TH>
+<TD>2 x 300 GB<BR/>
+SAS 10K RPM</TD>
+<TD>2 x 300 GB<BR/>
+SAS 10K RPM</TD>
+<TD>2 x 300 GB<BR/>
+SAS 10K RPM</TD>
+</TR>
+<TR>
+<TH>HDD Daten</TH>
+<TD>2 x 300 GB<BR/>
+SAS 10K RPM</TD>
+<TD>2 x 450 GB<BR/>
+SAS 10K RPM</TD>
+<TD>4 x 300 GB<BR/>
+SAS 15K RPM</TD>
+</TR>
+<TR>
+<TH>RAID Linux</TH>
+<TD>RAID 1</TD>
+<TD>RAID 1 / optimal RAID 5</TD>
+<TD>RAID 1 / optimal RAID 5</TD>
+</TR>
+<TR>
+<TH>RAID Daten</TH>
+<TD>RAID 1</TD>
+<TD>RAID 1 / optimal RAID 5</TD>
+<TD>RAID 5 / optimal RAID 10</TD>
+</TR>
+<TR>
+<TH>Hotspare</TH>
+<TD>1 x global</TD>
+<TD>1 x global</TD>
+<TD>1 x global,<BR/>
+alternativ 1 x je RAID-Verbund</TD>
+</TR>
+<TR>
+<TH>Kapazität Daten</TH>
+<TD>300 GB</TD>
+<TD>450 GB</TD>
+<TD>900 GB</TD>
+</TR>
+<TR>
+<TH>Netzteile</TH>
+<TD>Optinal 2</TD>
+<TD>2</TD>
+<TD>2</TD>
+</TR>
+<TR>
+<TH>Netzwerkkarte<BR/>
+Gigabit / Glasfaser</TH>
+<TD>1 x Dualport</TD>
+<TD>2</TD>
+<TD>2</TD>
+</TR>
+<TR>
+<TH>Datensicherung</TH>
+<TD>LTO / NAS<BR/>
+vorhandene Inhouse-Sicherung</TD>
+<TD>LTO / NAS<BR/>
+vorhandene Inhouse-Sicherung</TD>
+<TD>LTO / NAS<BR/>
+vorhandene Inhouse-Sicherung</TD>
+</TR>
+<TR>
+<TH>Remotemanagement</TH>
+<TD>Ja</TD>
+<TD>Ja</TD>
+<TD>Ja</TD>
+</TR>
+</TABLE>
+
+
+
+<H3 ID="X49B.2.8" SPLIT="0">Voraussetzungen für eine Performanceanalyse</H3>
+<P>Damit eine Performanceanalyse durchgeführt werden kann, müssen folgende Voraussetzungen erfüllt sein:</P>
+
+<UL>
+<LI>Das Werkzeug <REF ID="X49B.2.2">system_watch.sh</REF> läuft dauerhaft</LI>
+<LI>Das Tool <REF ID="X49B.2.3.6">sar</REF> ist auf dem Server eingerichtet</LI>
+<LI>optimalerweise ist auf dem Server ein Messprogramm vorhanden, z.B. ein FOP mit einer Referenzselektion,
+das im unbelasteten Zustand z.B. 10 Sekunden benötigt. Beim Verdacht eines Performanceproblems kann dieses
+Programm gestartet werden, um die Performance mit Zahlen zu untermauern. Bei schlechter Performance notieren
+Sie die genauen Startzeiten des Programms inklusive Laufzeiten.</LI>
+<LI>Möglichst genaue Aussagen zu folgenden Fragen:
+<UL>
+<LI>Wann war es langsam? (Zeitpunkte so genau wie möglich!)</LI>
+<LI>Was genau war langsam: abas ERP, bestimmte Aktionen in abas ERP, andere Programme auf dem Server,
+alles auf dem Server, ...?</LI>
+<LI>Wo (Rechner/Mandant) war es langsam?</LI>
+</UL>
+</LI>
+</UL>
+
+
+
+<H3 ID="X49B.2.1" SPLIT="0">Werkzeuge zur Systembeobachtung</H3>
+<P>Zur allgemeinen Systembeobachtung gibt es die Werkzeuge <TT>dattop.sh</TT> und
+<TT>syslog.sh</TT>, sowie auf Linux-Systemen zusätzlich <TT>top</TT>, <TT>vmstat</TT>, <TT>sar</TT>, und <TT>iotop</TT>.<BR/>
+Auf Linux-Systemen gibt es außerdem das Werkzeug <TT>system_watch.sh</TT>, das die
+Protokolle von <TT>dattop.sh</TT>, <TT>syslog.sh</TT>, <TT>top</TT> und <TT>vmstat</TT> automatisch erzeugt.</P>
+
+<MARK ID="X49B.2.MARK1"/>
+<PP TYPE="HINT">
+<P>Falls Sie Anfragen, die Performanceprobleme betreffen, an die abas Hotline richten,
+werden stets folgende Protokolle benötigt:</P>
+
+<P>Die von <TT>system_watch.sh</TT> erzeugten tar-Archive für die Zeiträume, in denen die Probleme auftraten.
+Am besten wählen Sie Aufzeichnungen von der Hauptarbeitszeit, also z.B. von den 5
+Werktagen einer Woche, jeweils von 8:00 - 17:00 Uhr.</P>
+</PP>
+
+
+
+<H4 ID="X49B.2.2">system_watch.sh</H4>
+<P>Mit diesem Werkzeug werden für einen gegebenen Zeitraum Protokolle der Werkzeuge
+<TT>dattop.sh</TT>, <TT>syslog.sh</TT>, <TT>vmstat</TT> und <TT>top</TT> erstellt.
+Die Protokolle <TT>dattop.sh</TT> und <TT>syslog.sh</TT> sind mandantenspezifisch,
+d.h. auf der Kommandozeile können ein oder mehrere Mandantenverzeichnisse angegeben werden.
+Die Protokolle werden in das Verzeichnis <TT>$HOMEDIR/log/system_watch.YYYYMMDDhhmm</TT> geschrieben,
+wobei <TT>YYYYMMDDhhmm</TT> der Startzeitpunkt von <TT>system_watch.sh</TT> ist. Außerdem wird
+in diesem Verzeichnis ein tar-Archiv <TT>tar.YYYYMMDDhhmm.tgz</TT> erzeugt, das die Protokolle enthält.
+Dieses tar-Archiv senden Sie gemäß <REF ID="X49B.2.MARK1">Hinweis</REF> bei
+Anfragen zu Performanceanalysen an die abas Hotline</P>
+
+<P>Zum Beenden des Skripts kann entweder eine Endezeit als Argument mitgegeben werden,
+oder eins der Signale 1 (=SIGHUP) oder 2 (=SIGINT (meist die Tastenkombination &lt;Ctrl&gt;C)) an den Prozess gesendet werden.<BR/>
+Nach Erreichen der eventuell mitgegebenen Endezeit oder bei Erhalt eines der
+oben angeführten Signale beendet sich das Skript nicht sofort, sondern erzeugt noch
+mit dem Werkzeug <TT>syslog.sh</TT> die Zugriffsprotokolle auf die Datenbanken
+für die angegebenen Mandantenverzeichnisse. Es werden dabei die Zugriffszahlen für die
+gesamte Laufzeit des Skripts protokolliert.</P>
+
+<PP TYPE="EXAMPLE">
+<OL>
+<LI><B>system_watch.sh &lt;mandantenverzeichnis&gt;</B><BR/>
+Das Skript erstellt die mandantenspezifischen Protokolle für den Mandanten im &lt;mandantenverzeichnis&gt;
+und läuft so lange, bis es durch das Signal 1 SIGHUP oder 2 SIGINT (meist die Tastenkombination &lt;Ctrl&gt;C) abgebrochen wird.</LI>
+<LI><B>system_watch.sh -e 201012011800 &lt;mandantenverzeichnis 1&gt; &lt;mandantenverzeichnis 2&gt;</B><BR/>
+Das Skript erstellt die mandantenspezifischen Protokolle für die Mandanten &lt;mandantenverzeichnis 1&gt;
+und &lt;mandantenverzeichnis 2&gt; und läuft bis zum 1.12.2010 18:00 Uhr.</LI>
+<LI><B>system_watch.sh -w 7200 &lt;mandantenverzeichnis&gt;</B><BR/>
+Das Skript erstellt die mandantenspezifischen Protokolle für den Mandanten im &lt;mandantenverzeichnis&gt;
+und läuft 7200 Sekunden lang.</LI>
+</OL>
+</PP>
+
+<P>Sie können <TT>system_watch.sh</TT> als Cronjob des s3-Benutzers einrichten. Die Logs werden für jeden
+Durchlauf des Cronjobs in einem eigenen Verzeichnis unterhalb von $HOMEDIR/log geschrieben.</P>
+
+<PP TYPE="EXAMPLE">
+<PRE>
+<![CDATA[
+00 07 * * * export HOMEDIR=/users/s3 && /users/s3/bin/system_watch.sh -w 36000 <mandantenverzeichnis>
+ 1>>/users/system_watch.log 2>&1
+]]>
+</PRE>
+
+<P><TT>system_watch.sh</TT> startet jeweils um 07:00 Uhr und endet automatisch nach 10 Stunden
+(36.000 Sekunden). Es werden die Logdateien für den Mandant &lt;mandantenverzeichnis&gt; geschrieben.</P>
+</PP>
+
+
+
+<H4 ID="X49B.2.3">Unterwerkzeuge von <TT>system_watch.sh</TT></H4>
+<P>Im Folgenden werden die von <TT>system_watch.sh</TT> verwendeten
+Werkzeuge im Einzelnen beschrieben.</P>
+
+
+
+<H5 ID="X49B.2.3.1"><TT>dattop.sh</TT></H5>
+<P>Dieses Skript wird als s3-User im Mandantenverzeichnis aufgerufen. Es kann aber
+auch über die Option -m ein Mandantenverzeichnis explizit angegeben werden. Das Skript
+darf pro Mandant nur einmal aufgerufen werden, ansonsten erscheint eine entsprechende Fehlermeldung.<BR/>
+dattop.sh misst die Datenbankzugriffe pro Zeiteinheit.</P>
+
+<PP TYPE="EXAMPLE">
+<OL>
+<LI><P><B>dattop.sh 5</B><BR/>
+Erzeugt im aktuellen Verzeichnis, das ein Mandantenverzeichnis sein muss, alle 5 Sekunden einen
+Output der Form:</P>
+
+<NOTRANS>
+<TT>Thu Mar 20 14:51:57 CET 2014</TT><BR/>
+<TT>       1         2         3         4         5         6         7         8         9        10        11        12</TT><BR/>
+<TT>               COM      WCOM     TRANS    OTRANS     XCPOS      XCOM     XWCOM    XTRANS       MIN       MAX         X</TT><BR/>
+<TT>       #    242818     80348     11508        10    475413     28528       954        84         1        40       120</TT><BR/>
+<TT>CALLERNO       COM      WCOM     TRANS    OTRANS      CPOS      #COM     #WCOM    #TRANS     #CPOS      APOS   COMMAND</TT><BR/>
+<TT>      41      5768      2168       309         0     61077      5768      2168       309     61077     10.59  20140320 14:51#41#W*#0 ##33#33##16#1#1</TT><BR/>
+<TT>      43      5767      2165       308         0     54013      5767      2165       308     54013      9.37  20140320 14:51#43#W*#0 ##49#33##16#1#1</TT><BR/>
+<TT>      47      5747      2161       307         0     66939      5747      2161       307     66939     11.65  20140320 14:51#47#W*#0 ##35#33##16#1#1</TT><BR/>
+<TT>      53      5730      2154       306         0     75893      5730      2154       306     75893     13.24  20140320 14:51#53#W*#0 ##75#33##16#1#1</TT><BR/>
+<TT>      60      5714      2144       305         0     30375      5714      2144       305     30375      5.32  20140320 14:51#60#W*#0 ##37#33##16#1#1</TT><BR/>
+<TT>      63      5702      2144       305         1     47769      5702      2144       305     47769      8.38  20140320 14:51#63#W*#0 ##72#33##16#1#1</TT><BR/>
+<TT>      64      5696      2137       304         0     41818      5696      2137       304     41818      7.34  20140320 14:51#64#W*#0 ##76#33##16#1#1</TT><BR/></NOTRANS>
+
+<P>Die Bedeutung der einzelnen Spalten sind in der Usage von <TT>dattop.sh</TT> erklärt.
+Die Usage erhalten Sie z.B. mit <TT>dattop.sh -?</TT></P></LI>
+<LI><P><B>dattop.sh -m &lt;mandantenverzeichnis&gt; 5</B><BR/>
+Erzeugt den gleichen Output wie im ersten Beispiel aber für das angegebene &lt;mandantenverzeichnis&gt;</P></LI>
+<LI><P><B>dattop.sh -t &lt;mandantenverzeichnis&gt;</B><BR/>
+Prüft, ob im gegebenen &lt;mandantenverzeichnis&gt; schon ein <TT>dattop.sh</TT> läuft.
+In diesem Fall ist der Returncode 1, andernfalls 0.</P></LI>
+</OL>
+</PP>
+
+
+
+<H5 ID="X49B.2.3.2"><TT>syslog.sh</TT></H5>
+<P>Dieses Werkzeug gibt es auch in grafischer Form als Infosystem <REF ID="X11B.2">Systemnutzungslogbuch (SYSLOG)</REF>.
+Das Skript wird als s3-User aufgerufen.</P>
+
+<P>Das Skript <TT>syslog.sh</TT>, das die Programme mit den meisten Datenbankzugriffen auflistet,
+ermittelt anhand des auf der Kommandozeile angegebenen Zeitraums die auszuwertenden log/SYS*-Dateien selbstständig.<BR/>
+Die Option <TT>-f</TT> muss nur dann verwendet werden, wenn Sie eine bestimmte Kommandologbuch Datei log/SYS* auswerten wollen.
+</P>
+
+<PP TYPE="EXAMPLE">
+<P><TT>syslog.sh 200710111200</TT> wertet die Kommando-Logbuchdateien <TT>log/SYS</TT>, <TT>log/SYS.YYYYMMDDhhmmss</TT>
+für den Zeitraum vom 11.10.2007, 12:00 Uhr, bis zum aktuellen Zeitpunkt aus. Der Output ist selbsterklärend.</P>
+
+<PP TYPE="HINT">Die Kommandologbücher <TT>log/SYS*</TT> können maximal 128 MB groß werden
+und werden dann von <TT>log/SYS</TT> in <TT>log/SYS.YYYYMMDDhhmmssnnnnn</TT> umbenannt,
+wobei <TT>YYYYMMDDhhmmss</TT> für den Zeitpunkt der letzten in die Datei geschriebenen Zeile steht.
+</PP>
+</PP>
+
+
+<H5 ID="X49B.2.3.3"><TT>iotop.sh</TT></H5>
+<P>Mit diesem Werkzeug wird periodisch eine Tabelle ausgegeben, die für alle oder einen
+Teil der auf dem System laufenden Prozesse Kennzahlen enthält, die den I/O (in/out) - Verkehr
+betreffen. Die Erklärung der Ausgabe sowie die Optionen des Skripts erhalten Sie mit dem
+Aufruf <TT>iotop.sh -?</TT>.</P>
+
+
+
+<H5 ID="X49B.2.3.4"><TT>top</TT></H5>
+<P>Genaueres finden Sie auf der manual page, dem Handbuch des Betriebssystems,
+Kommando: <TT>man top</TT>. Wichtig ist vor allem der Batchmodus:</P>
+
+<P><TT>top d 5 b n 600</TT> liefert 600-mal in Abständen von jeweils 5 Sekunden die
+Liste der laufenden Prozesse nach CPU-Anteil geordnet.</P>
+
+
+
+<H5 ID="X49B.2.3.5"><TT>vmstat</TT></H5>
+<P>Genaueres finden Sie auf der manual page des Betriebssystems. Hier interessiert vor allem der I/O-Verkehr.</P>
+
+
+<H5 ID="X49B.2.3.6"><TT>sar</TT></H5>
+<P><TT>sar</TT> ist das wichtigste Werkzeug für Recherchen zur Belastung der Systemressourcen.
+Genaueres finden Sie auf der manual page des Betriebssystems.</P>
+
+
+<H5 ID="X49B.2.3.7"><TT>iotop</TT></H5>
+<P><TT>iotop</TT> ist ein Werkzeug ähnlich <TT>top</TT>. Es dient zum Erkennen der Prozesse
+mit der höchsten I/O - Last. Genaueres finden Sie auf der manual page des Betriebssystems.</P>
+
+
+
+<H3 ID="X49B.2.4">Fragen an die Anwender</H3>
+<P>Zur Beurteilung des vorliegenden Problems ist es wichtig zu wissen,
+zu welchen Tageszeiten das System sehr langsam ist und welche Aktionen
+mit Verzögerung ausgeführt werden.</P>
+
+
+
+<H3 ID="X49B.2.5" SPLIT="0">Verbesserung der Performance von FOPs und EFOPs</H3>
+<P>Folgende Maßnahmen tragen zur Performanceverbesserung von FOPs und EFOPs bei:</P>
+
+<UL>
+<LI>Innerhalb von EFOPs mit dem Ereignis &evt_maskaus; keine Dialoge mit Anwendern einbinden.</LI>
+<LI>Vor dem Aufruf von <TT>batchlg.sh</TT> alle Hole- und Lade-Puffer leeren, da z.B. Ein- oder Verkaufsobjekte per
+DB-Lader nicht geändert werden können, solange das entsprechende Objekt noch in einem
+Puffer geladen ist.</LI>
+<LI>Nennen Sie so viele Selektionskriterien als möglich, auch wenn Ihnen einige der Selektionskriterien überflüssig erscheinen.
+Dadurch erhält der <REF ID="X1.8.1.8.SCHLUESSEL">Schlüsselschätzer</REF> die Möglichkeit zur Optimierung.
+<PP TYPE="HINT">Wenn Sie die Option <TT><REF ID="X2.6.18.3.MARK3">@sort</REF></TT>
+ entfernen, geben Sie <TT>@sort-Ersatzoptionen</TT> an.</PP></LI>
+</UL>
+
+
+
+<H3 ID="X49B.2.6">Behandlung von vollen Festplatten</H3>
+<P>Läuft während des Datenbankbetriebs die Festplatte voll, beenden sich der
+Datenbankprozess und in der Folge alle bei der Datenbank angemeldeten
+Anwendungsprozesse beim nächsten Schreibversuch. Das kann z.B. auch bei kurzzeitiger
+Auslastung des Speichers oder beim Lauf einer Garbage Collection passieren.</P>
+
+<P>Dabei entstehen in der Logdatenbank keine Datenschäden, jedoch kann
+nicht weitergearbeitet werden, denn jeder Versuch, die Datenbank bei überlasteter Festplatte
+wieder hochzufahren, führt zu erneutem Beenden der Prozesse.</P>
+
+<P>Ist die Festplatte überlastet, werden leere <REF ID="X12.35">Diagnosemeldungen</REF>
+erzeugt.</P>
+
+<P>Mit dem <REF ID="X10.13.6">Datenbestandsinfo</REF> aus [Servicearbeiten] oder
+mit dem Shellskript <TT>dataset_info.sh</TT> stehen Ihnen Werkzeuge zur Ermittlung
+des belegten Plattenplatzes zur Verfügung. Die Angaben im Datenbestandsinfo für die Größe des
+freien Platzes sind nur Schätzwerte und können erheblich von den exakten Werten abweichen.</P>
+
+<P>Die Belegung der Festplatten lässt sich mit dem UNIX-Kommando
+<TT>df</TT> bestimmen. Mit dem Kommando <TT>du</TT> wird der von allen
+Dateien eines Verzeichnisses belegte Platz festgelegt.</P>
+
+<MARK ID="X49B.2.6.MARK1"/>
+<P>Grundsätzlich können Sie auf der Festplatte Platz schaffen, indem
+Sie Dateien löschen oder verlagern, wobei die Datenbankdateien mithilfe
+geeigneter symbolischer Links auch in Verzeichnisse verschoben werden können.</P>
+
+<PP TYPE="EXAMPLE">
+<TT>/u/eks  #</TT> sei das Mandantenverzeichnis<BR/>
+<TT>/u/eks/abasbase/db.dat/ekslogdb_1_00123.dat</TT> # eine große Datenbank<BR/>
+<TT>/u1     #</TT> eine Festplatte mit freiem Platz
+</PP>
+
+<P>Legen Sie ein Verzeichnis auf <TT>/u1</TT> an, und verschieben Sie
+<TT>ekslogdb_1_00123.dat</TT> dorthin. Vor dem Verschieben von Datenbanken im laufenden
+Betrieb müssen Sie eine <REF ID="X11B.7">Unterbrechungssperre</REF> setzen. Wenn eine Anwendung
+dann mit der Datenbank kommunizieren will, lautet die Meldung:
+<TT>Datenbankmodul ist zur Zeit exklusiv belegt</TT>.<BR/>
+Legen Sie, eventuell als privilegierter Benutzer (root), das
+Verzeichnis <TT>/u1/abas_ausgelagert</TT> an. Legen Sie Eigentümer und
+Zugriffsrechte fest (hier mit Benutzer eks, Gruppe s3):<BR/><BR/>
+<TT>chown eks /u1/eks.dat</TT><BR/>
+<TT>chown eks /u1/abas_ausgelagert</TT><BR/>
+<TT>chgrp s3 /u1/abas_ausgelagert</TT>.
+<TT>chmod ug+wr /u1/abas_ausgelagert</TT>.</P>
+
+<P>Ab jetzt können und sollten Sie nicht mehr privilegierter Benutzer sein.
+Verschieben Sie die Datei mit dem Befehl:</P>
+
+<TT>
+mv /u/eks/abasbase/db.dat/ekslogdb_1_00123.dat /u1/abas_ausgelagert
+</TT>
+
+<P>Das kann länger dauern, wenn es sich um einige 100 MByte handelt. Legen Sie einen
+symbolischen Link an:</P>
+
+<TT>
+ln -s /u1/abas_ausgelagert/ekslogdb_1_00123.dat /u/eks/abasbase/db.dat/ekslogdb_1_00123.dat
+</TT>
+
+<P>Heben Sie die Unterbrechung wieder auf. Danach sollte wieder normal
+weitergearbeitet werden können, falls genügend Platz geschaffen wurde.</P>
+
+<PP TYPE="HINT" TITLE="Auslagerung nur kurzfristige Lösung">
+Das beschriebene Auslagern von Datenbankdateien ist nur eine kurzfristige Abhilfe, denn in der
+Logdatenbank werden ständig neue Dateien im Originalverzeichnis angelegt, so dass auf der Festplatte
+des Mandantenverzeichnisses langfristig Platz geschaffen werden muss.
+Speziell durch die Garbage Collection werden große Datenbestände aus alten Dateien in neue Dateien
+kopiert, so dass der in den ausgelagerten Dateien vorhandene Datenbestand relativ früh wieder an
+den Originalplatz gebracht wird. Wenn es nicht möglich ist, dadurch Platz zu schaffen, ist die Beschaffung
+einer größeren Festplatte erforderlich.</PP>
+
+
+
+<H2 ID="X49B.3">Kommandologbuch</H2>
+
+<CONTENTS ID="X49B.3" MAXLEVEL="6" FIRST="0" ORDERED="0"/>
+
+<H3 ID="X49B.3.1" SPLIT="0">Funktion</H3>
+<P>Für die Untersuchung spezifischer Aktionen steht das
+<INDEX PRIO="P">Kommandologbuch</INDEX> zur Verfügung, das mit den Infosystemen
+<REF ID="X11B.2">Systemnutzungslogbuch</REF> und <REF ID="X11B.3">Systemnutzungslogbuchanalyse</REF>
+ausgewertet werden kann. Diese Funktion kann in Ihrer <REF ID="X2.6.17.KOMLOG">Konfiguration</REF>
+eingeschaltet werden.</P>
+
+<P>Das Kommandologbuch liefert Auskunft über alle im Mandanten ausgeführten Kommandos,
+also über die Anzahl der Vorgänge, mit denen jedes Kommando mit der Datenbank kommuniziert.
+Sie können so z.B. Abfragen finden, die extrem viele Datensätze lesen, weil keine oder falsche
+<REF ID="X2.6.18.2">Schlüssel verwendet</REF> werden.</P>
+
+<P>Die Protokollierung erfolgt in der Datei log/SYS. Um die Betriebssicherheit
+zu gewährleisten, wird diese Datei automatisch zerlegt, wenn sie größer
+als 128 MB wird. Dabei wird log/SYS umbenannt in log/SYS.YYYYMMDDhhmmssnnnnnnnn und
+die Protokollierung in einer leeren log/SYS fortgesetzt (YYYY=Jahr, MM=Monat, DD=Tag, hh=Stunde,
+mm=Minute, ss=Sekunde, nnnnnnnn=Nummer).</P>
+
+<PP TYPE="HINT">
+<UL>
+<LI><B>Leeren des Kommandologbuchs</B><BR/>
+<P>Um das Kommandologbuch zu leeren, verwenden Sie das Kommando
+<TT>* &text; log/SYS &loeschen;</TT>; danach sind alle Einträge im Logbuch verloren.</P></LI>
+
+<LI><B>Zerlegen des Kommandologbuchs</B><BR/>
+Wenn das Kommandologbuch zu groß geworden ist, und Sie wollen es zerlegen, erzeugen Sie an der
+Shell einen harten Link und leeren anschließend das Logbuch:<BR/>
+<TT>* ! ln log/SYS log/SYS.aktuellesDatum</TT><BR/>
+<TT>* &text; log/SYS &loeschen;</TT><BR/>
+Auf diese Weise geht auch im laufenden Betrieb kein Eintrag verloren.</LI>
+</UL></PP>
+
+
+
+<H3 ID="X49B.4">Infosysteme</H3>
+
+<CONTENTS ID="X49B.4" MAXLEVEL="6"/>
+
+<H4 ID="X11B.2">Infosystem Systemnutzungslogbuch</H4>
+<MARK ID="X11B.2.MASK"/>
+<P>Das Infosystem 10067 SYSLOG, Arbeitsbereich log, hat folgende Funktionen:</P>
+
+<UL>
+<LI>Auswertung der Nutzungshistorie des Systems</LI>
+<LI>Anzeige von Logbucheinträgen in der Maskentabelle</LI>
+<LI>Zugriff auf das <REF ID="X49B.3">Kommandologbuch</REF></LI>
+<LI>Erforderliche Gesamtpriorität ist D.</LI>
+</UL>
+
+<P>Die Suchkriterien legen Sie im Kopfteil der Maske fest: das Datum bzw. den Zeitraum, die
+Aufrufernummer und/oder das Bearbeiterzeichen sowie die Datenbank mit dem zugehörigen
+Kommando und Zugriffszahlen. Bei einem Neustart des Infosystems werden bestimmte Voreinstellungen
+vorgenommen, so dass Sie über den Button Start jeweils eine aktuelle Auflistung der Tätigkeiten
+erhalten.</P>
+
+<PP TYPE="HINT">Beim letzten Logbucheintrag eines Aufrufers sind die
+Daten für <REF ID="X11B.2.SUMACCESS">DB-Kommunikation</REF>,
+<REF ID="X11B.2.SUMWRITE">Schreibzugriffe</REF> und
+<REF ID="X11B.2.SUMTRANSACT">Transaktionen</REF> noch nicht bekannt.</PP>
+
+<MARK ID="X11B.2.COLHIST"/>
+<H ID="X11B.2.BUCOLHIST">Button Spaltenhistogramm</H>
+<P>Dieser Button erzeugt ein Spaltenhistogramm auf der zweiten Seite des Infosystems.
+Dessen Aufbau und Inhalt basiert auf den Daten in der Tabelle des Infosystem und kann
+über Parameter auf der zweiten Seite beeinflusst werden.</P>
+
+<MARK ID="X11B.2.LOGLEVEL29"/>
+<H ID="X11B.2.BULOGLEVEL29">Button Letzten Zyklus zeigen</H>
+<P>Dieser Button startet einen neuen Dialog. Das Systemnutzungslogbuch ruft
+sich selbst noch einmal auf. Sichtbar wird dadurch der letzte sich selbst
+aufrufende Datenbankprozess.</P>
+
+<H ID="X11B.2.SYSLOGFILE">Kommandologbuch</H>
+<P>In diesem Feld kann der Name der Datei angegeben werden, die ausgewertet wird.
+Voreinstellung ist das reguläre Kommandologbuch <TT>log/SYS</TT>.</P>
+
+<MARK ID="X11B.2.TODATE"/>
+<H ID="X11B.2.FROMDATE">Zeitraum von - bis</H>
+<P>In diesen Feldern können Sie zur Selektion von Einträgen im
+Systemnutzungslogbuch den Anfangstermin und den Endtermin eines Zeitraums eintragen.
+Mindestens eines der beiden Felder muss gefüllt sein.</P>
+
+<H ID="X11B.2.CALLERNO">Aufrufer</H>
+<P>In diesem Textfeld können Sie eine Aufrufernummer angeben, nach der
+selektiert werden soll. Zulässig sind nur positive natürliche Zahlen.</P>
+
+<H ID="X11B.2.PROCSYM">Bearbeiter</H>
+<P>Das Textfeld dient der Angabe eines Zeichens für einen Bearbeiter
+wie z.B. sa, über das Logbucheinträge selektiert werden sollen.</P>
+
+<H ID="X11B.2.FILENAME">Datenbank</H>
+<P>In diesem Textfeld steht die Datenbank, in der selektiert wird.
+Es ist stets schreibgeschützt.</P>
+
+<H ID="X11B.2.CMD">Kommando</H>
+<P>In diesem Textfeld steht das zur Datei gehörende Kommando,
+über das selektiert wird. Es ist stets schreibgeschützt.</P>
+
+<H ID="X11B.2.ACCESS">Zugriffe</H>
+<P>In diesem Feld kann eine Anzahl von Zugriffen angegeben werden, ab
+der der Logbucheintrag in der Auswertung berücksichtigt werden soll.</P>
+
+<MARK ID="X11B.2.DBACTION"/>
+<MARK ID="X11B.2.DBCOMMD"/>
+<MARK ID="X11B.2.TIPPEDCOMMD"/>
+<MARK ID="X11B.3.DBACTION"/>
+<MARK ID="X11B.3.DBCOMMD"/>
+<H ID="X11B.3.TIPPEDCOMMD">Auswahlen Datenbank, Datenbankkommandos, Tippkommandos</H>
+<P>Über diese Auswahlen können Sie die Kombinationen festlegen, nach denen die Ausgabe erfolgen
+soll.</P>
+
+<PP TYPE="HINT">
+Nicht jede Kombination führt zu Treffern. Theoretisch sind z.B. immer alle
+Datenbankkommandos für eine bestimmte Datenbank vorhanden, praktisch sind
+einige Kombinationen aber noch nicht definiert. Sie können bisher nicht
+verwendet werden und sind deswegen nicht protokolliert. Ihre Selektion
+liefert keine Treffer.</PP>
+
+<PP TYPE="ATTENTION">
+Manche Datenbankkommandos werden anders protokolliert als ihre
+Verwendung vermuten lässt, z.B. das Datenbankkommando <TT>&kopieren;</TT>.
+Sie können es zwar verwenden, aber es wird im Kommandologbuch als Neuanlage
+nach Vorlage protokolliert. Wenn Sie Kopiereinträge suchen, selektieren
+Sie nach dem Kommando <TT>&neu;</TT>.</PP>
+
+<H ID="X11B.2.IGNOREEND">Tippkommando Ende ignorieren</H>
+<P>Ist das Feld markiert, werden Logbucheinträge der
+Datei Tippkommando sowie des Kommandos Ende nicht angezeigt.</P>
+
+<H ID="X11B.2.SUMACCESS">DB-Kommunikation</H>
+<P>In diesem Feld wird die Anzahl der Zugriffe aus der gesamten Tabelle ausgegeben.</P>
+
+<H ID="X11B.2.SUMWRITE">Schreibzugriffe</H>
+<P>In diesem Feld wird die Anzahl der Schreiboperationen aus der gesamten Tabelle ausgegeben.</P>
+
+<H ID="X11B.2.SUMTRANSACT">Transaktionen</H>
+<P>In diesem Feld wird die Anzahl der Transaktionen aus der gesamten Tabelle ausgegeben.</P>
+
+<H ID="X11B.2.SUMWHICH">Summe für</H>
+<P>In diesem Feld legen Sie fest, über welche Spalte bzw.
+Spaltenkombination summiert wird.</P>
+
+<H ID="X11B.2.SUMWHAT">Summe über</H>
+<P>In diesem Feld legen Sie fest, was summiert wird.</P>
+
+<H ID="X11B.2.SUMTYPES">Vorkommen absolut</H>
+<P>In diesem Feld wird die Anzahl der gebildeten Summen ausgegeben.</P>
+
+<H ID="X11B.2.NUMBER">Top</H>
+<P>Über diesen Parameter lässt sich einstellen, wie viele
+der Summen der Größe nach sortiert angezeigt werden.</P>
+
+<H ID="X11B.2.TCALLERNO">Aufrufer</H>
+<P>In diesem Feld wird die dem Logbucheintrag zugehörige Aufrufernummer ausgegeben.</P>
+
+<H ID="X11B.2.TPROCSYM">Bearbeiter</H>
+<P>In diesem Feld wird das Bearbeiterzeichen jenes Logins ausgegeben,
+das den Logbucheintrag auslöste.</P>
+
+<H ID="X11B.2.TDATE">Datum</H>
+<P>In diesem Feld wird Datum ausgegeben, an dem der Logbucheintrag vorgenommen wurde.</P>
+
+<H ID="X11B.2.TTIME">Zeit</H>
+<P>In diesem Feld wird der Zeitstempel des Logbucheintrags ausgegeben.</P>
+
+<H ID="X11B.2.TFILENAME">Datenbank</H>
+<P>In diesem Feld wird die Datenbank des Logbucheintrags ausgegeben.
+Sie kann eine Datenbank wie z.B. Kunde oder das Wort Tippkommando für Tippkommandos sein.</P>
+
+<H ID="X11B.2.TCMD">Kommando</H>
+<P>In diesem Feld wird das zur Datenbank gehörende Kommando ausgegeben, z.B. Neu,
+falls ein Datensatz einer Datenbank neu angelegt wurde.</P>
+
+<MARK ID="X11B.2.TREFERENCE"/>
+<MARK ID="X11B.2.TREFERENCETEXT"/>
+<H ID="X11B.2.TCOMMENT">Bemerkung, Datenobjekt, ID des Datenobjekts</H>
+<P>In <B>Bemerkung</B> findet sich ergänzender Text, der mitprotokolliert wurde.
+Oftmals sind es Kommandoparameter wie Identnummer oder Suchwort. Bei manchen
+Kommandos kann das bearbeitete Datenobjekt identifiziert werden. In <B>ID des
+Datenobjekts</B> wird diese Datensatzreferenz ausgegeben. Repräsentiert diese ID
+ein gespeichertes Datenobjekt, verweist <B>Datenobjekt</B> darauf.</P>
+
+<H ID="X11B.2.TACCESS">DB-Kommunikation</H>
+<P>In diesem Feld wird die Anzahl der Zugriffe auf die Datenbank ausgegeben, die das
+in dieser Tabellenzeile genannte Kommando verursacht hat.</P>
+
+<H ID="X11B.2.TWRITE">Schreibzugriffe</H>
+<P>Das Feld wird die Anzahl der mit dem Kommando in Zusammenhang stehenden
+Schreiboperationen ausgegeben.</P>
+
+<H ID="X11B.2.TTRANSACT">Transaktionen</H>
+<P>In diesem Feld wird die Anzahl der Transaktionen ausgegeben, innerhalb derer
+die Zugriffe des Kommandos ausgeführt wurden.</P>
+
+
+
+<H4 ID="X11B.3" SPLIT="1">Infosystem Systemnutzungslogbuchanalyse</H4>
+<MARK ID="X11B.3.MASK"/>
+<P>Das Infosystem 10099 SYSLOGANA, Arbeitsbereich log, hat folgende Funktionen:</P>
+
+<UL>
+<LI>Auswertung des Systemnutzungslogbuchs</LI>
+<LI>Umsetzung des Shellskripts <TT>syslog.sh</TT> in eine GUI-Anwendung</LI>
+<LI>Abfrage von Parametern in der Maske, mit deren Hilfe das Shellskript ausgeführt wird</LI>
+<LI>Ausgabe des Skripts in eine temporäre Datei, die interpretiert und dargestellt wird</LI>
+<LI>Darstellung in der Tabelle über Leerzeilen oder Farben</LI>
+<LI>Erforderliche Gesamtpriorität ist D.</LI>
+</UL>
+
+<P>Im Maskenkopf befinden sich mehrere Register. Im Register <B>Auswahl</B>
+können Sie den Zeitabschnitt, die Datenbank sowie das Kommando einstellen.
+Unter <B>Gesamtangaben</B> befinden sich Felder, die Bestandteil der Auswertung sind.
+Diese Felder informieren über die Zahl der Anmeldungen, Datum und Zeit der Anfrage
+sowie über die Datenbankkommunikation mit und ohne Anmeldungen.</P>
+
+<P>Im Register <B>Auswertungsart</B> können Sie die Darstellung der Auswertung
+im Tabellenteil festlegen. Die Auswertungsarten sind zum einen die Kommandos mit den
+meisten Zugriffen, die Datenbanken mit den meisten Zugriffen bezogen auf alle Kommandos,
+oder die Einzelkommandos mit den meisten Zugriffen überhaupt. Bei jeder dieser Auswertungen
+ist die Wahl der Zugriffsarten Datenbankkommunikation, Schreibzugriffe und
+Transaktionen möglich. Zum anderen können Sie die häufigsten Kommandos
+unabhängig von der Zugriffsart darstellen lassen.</P>
+
+<H ID="X11B.3.FILENAME">Datenbank</H>
+<P>Über diesen Button können Sie eine Datenbank auswählen, deren Bezeichnung
+ins gleichnamige Feld ausgegeben wird.</P>
+
+<H ID="X11B.3.CMD">Kommando</H>
+<P>Über diesen Button können Sie ein Tasten- oder Tippkommando auswählen.
+Tippkommandos können eingestellt werden, wenn zuvor die Datei Tippkommando gewählt
+wurde, sonst Tastenkommandos. Die Bezeichnung des gewählten Kommandos wird
+in das gleichnamige Feld ausgegeben.</P>
+
+<H ID="X11B.3.SYSLOGFILE">Kommandologbuch</H>
+<P>In diesem Feld kann der Name der Datei angegeben werden, die ausgewertet wird.
+Voreinstellung ist das Kommandologbuch <TT>log/SYS</TT>.</P>
+
+<MARK ID="X11B.3.TODATE"/>
+<H ID="X11B.3.FROMDATE">Zeitraum von - bis </H>
+<P>Geben Sie in diesen Feldern Anfangs- und Enddatum des zu betrachtenden
+Zeitabschnitts im Logbuch ein.</P>
+
+<H ID="X11B.3.LOGIN">Anmeldungen</H>
+<P>In dieses Feld wird die Anzahl der Anmeldungen im gewählten
+Zeitabschnitt des Logbuchs ausgegeben.</P>
+
+<H ID="X11B.3.QUERYDATE">Anfragedatum</H>
+<P>In dieses Feld wird das Datum ausgegeben, zu dem die letzte Anfrage gestartet wurde.
+Beim Öffnen der Maske zeigt es das aktuelle Datum und die Uhrzeit an.</P>
+
+<H ID="X11B.3.QUERYTIME">Anfragezeit</H>
+<P>In dieses Feld wird Uhrzeit ausgegeben, zu dem die letzte Anfrage
+gestartet wurde. Bei Maskeneintritt steht dort die Zeit, zu dem das Infosystem gestartet wurde.</P>
+
+<H ID="X11B.3.DBCOM">DB-Kommunikation</H>
+<P>In dieses Feld wird die Anzahl der Datenbankkommunikationsvorgänge
+im gewählten Zeitabschnitt des Logbuchs ohne Berücksichtigung der
+Anmeldungen ausgegeben.</P>
+
+<H ID="X11B.3.WRITE">Schreibzugriffe</H>
+<P>In dieses Feld wird die Anzahl der Schreibzugriffe im gewählten
+Zeitabschnitt des Logbuchs ohne Berücksichtigung der Anmeldungen ausgegeben.</P>
+
+<H ID="X11B.3.TRANSACT">Transaktionen</H>
+<P>In dieses Feld wird die Anzahl der Transaktionen im gewählten Zeitabschnitt
+des Logbuchs ohne Berücksichtigung der Anmeldungen ausgegeben.</P>
+
+<H ID="X11B.3.LDBCOM">DB-Kommunikation</H>
+<P>In dieses Feld wird die Anzahl der Datenbankkommunikationen im gewählten
+Zeitabschnitt des Logbuchs unter Berücksichtigung der Anmeldungen ausgegeben.</P>
+
+<H ID="X11B.3.LWRITE">Schreibzugriffe</H>
+<P>In dieses Feld wird die Anzahl der Schreibzugriffe im gewählten
+Zeitabschnitt des Logbuchs unter Berücksichtigung der Anmeldungen ausgegeben.</P>
+
+<H ID="X11B.3.LTRANSACT">Transaktionen</H>
+<P>In dieses Feld wird die Anzahl der Transaktionen im gewählten
+Zeitabschnitt des Logbuchs unter Berücksichtigung der Anmeldungen ausgegeben.</P>
+
+<H ID="X11B.3.TOPCMMD">Kommandos mit den meisten Zugriffen</H>
+<P>Wenn Sie dieses Feld markieren, wird die Auswertung der Kommandos
+mit den meisten Zugriffen aktiviert. Unter einem Kommando wird die
+Kombination aus den Tabellenspalten Datenbank, Kommando und Bemerkung verstanden.</P>
+
+<H ID="X11B.3.TOPEXEC">Häufigste Kommandos über alle Zugriffsarten</H>
+<P>Wenn Sie dieses Feld markieren, wird die Auswertung über die häufigsten Kommandos
+vorgenommen. Damit werden Kommandovorkommen nach ihrer Häufigkeit summiert und
+dargestellt. Ein Kommandovorkommen umfasst die Kombination aus den Tabellenfeldern
+<REF ID="X11B.3.TFILENAME">Datenbank</REF>, <REF ID="X11B.3.TCMD">Kommando</REF>
+und <REF ID="X11B.3.TCOMMENT">Bemerkung</REF>. Die Wahl einer Zugriffsart ist nicht
+möglich. Sie steht mit der Häufigkeit fest.</P>
+
+<H ID="X11B.3.TOPFILE">Datenbanken mit den meisten Zugriffen</H>
+<P>Wenn Sie dieses Feld markieren, wird die Auswertung über die
+Datenbanken vorgenommen. Damit werden die Datenbanken nach der Häufigkeit der
+Zugriffe über alle Kommandos summiert und dargestellt. Die Wahl eines
+bestimmten Kommandos ist nicht möglich.</P>
+
+<H ID="X11B.3.TOPENTRY">Einzelkommandos mit den meisten Zugriffen</H>
+<P>Wenn Sie dieses Feld markieren, werden die Einzelkommandos untersucht.
+Damit werden die Logbucheinträge nach ihren Maxima sortiert und ausgegeben.
+Die Wahl einer Datenbank oder eines Kommandos ist nicht möglich, da die
+Einzeleinträge isoliert betrachtet werden.</P>
+
+<H ID="X11B.3.DBCOMM">DB-Kommunikation</H>
+<P>Wenn Sie dieses Feld markieren, wird die Zugriffsart Datenbankkommunikation
+in der Tabelle angezeigt.</P>
+
+<H ID="X11B.3.DBWRITE">Schreibzugriffe</H>
+<P>Wenn Sie dieses Feld markieren, wird die Zugriffsart Schreibzugriffe in der Tabelle angezeigt.</P>
+
+<H ID="X11B.3.DBTRANSACT">Transaktionen</H>
+<P>Wenn Sie dieses Feld markieren, wird die Zugriffsart Transaktionen in der Tabelle angezeigt.</P>
+
+<H ID="X11B.3.NUMBER">Maximal angezeigte Zeilen je Zugriffsart</H>
+<P>In diesem Feld legen Sie fest, wie viele Ergebniszeilen je Zugriffsart maximal angezeigt werden.</P>
+
+<H ID="X11B.3.BLANKLINE">Leerzeile statt farblicher Trennung verwenden</H>
+<P>Wenn Sie dieses Feld markieren, werden die Zugriffsarten in der Tabelle durch eine
+Leerzeile getrennt dargestellt. Andernfalls erfolgt die Unterscheidung durch
+Hintergrundfarben.</P>
+
+<H ID="X11B.3.TDATE">Datum</H>
+<P>Bei der Auswertungsart Einzelkommandos wird hier das Datum
+des Logbucheintrags ausgegeben, bei allen anderen das Anfragedatum.</P>
+
+<H ID="X11B.3.TTIME">Zeit</H>
+<P>Bei der Auswertungsart Einzelkommando wird hier die Uhrzeit
+des Logbucheintrags ausgegeben, bei allen anderen die Anfragezeit.</P>
+
+<H ID="X11B.3.TYPE">(Ohne Anforderungstext)</H>
+<P>In dieses Feld wird die einer Auswertungsart zugewiesene laufende
+Nummer ausgegeben. Es gibt folgende Werte:</P>
+
+<DL>
+<DT>1</DT><DD>Anmeldungen und Gesamtangaben</DD>
+<DT>2</DT><DD>Gesamtangaben ohne Anmeldungen</DD>
+<DT>3</DT><DD>Kommandos</DD>
+<DT>4</DT><DD>Kommandovorkommen</DD>
+<DT>5</DT><DD>Datenbanken</DD>
+<DT>6</DT><DD>Einzelkommandos</DD>
+</DL>
+
+<PP TYPE="HINT">
+Die beiden ersten Nummern der Auswertungsarten werden nur
+interpretiert. Sie sind nicht einstellbar.</PP>
+
+<H ID="X11B.3.TYPETEXT">Eintrag für</H>
+<P>In dieses Feld wird die Bezeichnung der Auswertungsart für eine Zeile ausgegeben.
+Es gibt folgende Werte:</P>
+
+<UL>
+<LI>Kommando</LI>
+<LI>Kommandovorkommen</LI>
+<LI>Datenbanken</LI>
+<LI>Einzelkommando</LI>
+</UL>
+
+<H ID="X11B.3.TFILENAME">Datenbank</H>
+<P>In dieses Feld wird je nach der eingestellter Auswertungsart die
+Bezeichnung der Datenbank zu einer Summe bzw. zu einem Logbucheintrag ausgegeben.</P>
+
+<H ID="X11B.3.TCMD">Kommando</H>
+<P>In dieses Feld wird je nach der eingestellter Auswertungsart die Bezeichnung des
+Tasten- bzw. Tippkommandos zu einer Summe bzw. zu einem Logbucheintrag ausgegeben.</P>
+
+<MARK ID="X11B.3.TREFERENCE"/>
+<MARK ID="X11B.3.TREFERENCETEXT"/>
+<H ID="X11B.3.TCOMMENT">Bemerkung, Datenobjekt, ID des Datenobjekts</H>
+<P>Hier werden die Art des Kommandos ausgegeben, indem die <B>Bemerkung</B>
+ausgegeben wird. Es handelt sich oftmals um die Kommandoparameter. Sobald die
+Bemerkung die entsprechende Form zeigt, wird sie als <B>ID des Datenobjekts</B>
+ausgewertet. Gibt es das durch sie repräsentierte Datenobjekt noch, verweist <B>Datenobjekt</B>
+auf dieses Objekt.</P>
+
+<MARK ID="X11B.3.TSUBTYPE"/>
+<H ID="X11B.3.TSUBTYPETEXT">Zugriffsart</H>
+<P>In diesen Feldern werden die Bezeichnung der Zugriffsart sowie deren laufende Nummer
+ausgegeben. Die Zugriffsart hat folgende Werte:</P>
+
+<UL>
+<LI>Häufigkeit</LI>
+<LI>Datenbankkommunikation</LI>
+<LI>Schreibzugriffe</LI>
+<LI>Transaktionen</LI>
+</UL>
+
+<P>Ihre laufende Nummer kann sein:</P>
+
+<DL>
+<DT>1</DT><DD>Häufigkeit</DD>
+<DT>2</DT><DD>Datenbankkommunikation</DD>
+<DT>3</DT><DD>Schreibzugriffe</DD>
+<DT>4</DT><DD>Transaktionen</DD>
+</DL>
+
+<PP TYPE="HINT">
+Die erste Nummer der Zugriffsart wird nur interpretiert. Sie ist nicht einstellbar.</PP>
+
+<H ID="X11B.3.TNUMBER">Anzahl</H>
+<P>In dieses Feld wird die Anzahl der Datenbankkommunikationen
+bzw. der Häufigkeiten in Bezug zur gewählten Auswertungs- und Zugriffsart ausgegeben.</P>
+
+
+
+<H4 ID="X45B.2"  SPLIT="1">Infosystem Bildschirmauskunft</H4>
+<MARK ID="X45B.2.MASK"/>
+<P>Zur Auswertung der Bildschirmsituation steht das Infosystem Bildschirmauskunft
+zur Verfügung. Das Infosystem hat die Identnummer 10117, das Suchwort DISPLAYS
+und ist dem Arbeitsbereich System (sy) zugeordnet. Es ist die Umsetzung des
+Programms <TT>lizinfo.sh</TT> als GUI-Anwendung. Um mit dem Infosystem arbeiten
+zu können, benötigt man die Gesamtpriorität D.</P>
+
+<P>Die Maske des Infosystems ist eine Baumansicht. Ihre Elemente sind Bildschirme, Benutzer und Anmeldungen. Sie
+sind hierarchisch aufgebaut. So hat ein Bildschirm Benutzer und diese Anmeldungen bzw.
+ein Benutzer hat Bildschirme und diese Anmeldungen. Innerhalb der Baumansicht wird
+diese Hierarchie durch 3 Stufen dargestellt. Man kann durch diese Struktur navigieren,
+indem man Elemente durch Klick auf einen Button auf- oder zuklappt. Markiert man durch
+Klick ein Element in der Baumansicht, werden im übrigen Teil der Maske Daten dazu ausgegeben.
+Zur besseren Orientierung sind diese ebenfalls in Bildschirm, Benutzer oder Anmeldung gegliedert.</P>
+
+<H ID="X45B.2.ANZSTUFEN">Anzeigetiefe der Baumansicht</H>
+<P>Der Wertebereich dieses Felds reicht von 1 bis 3. Standard ist
+der Wert 3. Die eingetragene Zahl steht für die Anzahl der Stufen, die
+sofort geöffnet werden.</P>
+
+<H ID="X45B.2.USERVIEW">Bildschirme je Benutzer anzeigen</H>
+<P>Wenn Sie dieses Feld markieren, wird die Bildschirmauskunft aus Sicht von Benutzern
+gegeben. An oberster Stufe stehen die Benutzer, gefolgt von ihren Bildschirmen und
+Anmeldungen. Bleibt das Feld leer, werden zuoberst Bildschirme ausgegeben, gefolgt von
+deren Benutzern und Anmeldungen.</P>
+
+<MARK ID="X45B.2.CLIENTNAME"/>
+<H ID="X45B.2.BUSELCLIENTNAME">Mandant wählen</H>
+<P>Mit Klick auf diesen Button lässt sich über eine Auswahl ein Mandant festlegen.
+Dieser wird im nebenstehenden Feld ausgegeben. Voreingestellt ist leer, was alle
+Mandanten bedeutet. Ist ein bestimmter Mandant ausgewählt, werden in der Baumansicht
+nur solche Anmeldungen ausgegeben, die sich diesem Mandanten zuordnen lassen.</P>
+
+<PP TYPE="ATTENTION">
+<P>Bei Auswahl und Ausgabe erscheinen die Mandantennamen beschnitten. Dies hat
+technische Gründe, die die Vergleichsmöglichkeit sicherstellen. Die Repräsentation
+des Mandanten entspricht damit jener in der vordefinierten FO-Variablen
+<REF ID="X9.1.4.4.MANDANT">G|mandant.</REF></P></PP>
+
+<H ID="X45B.2.BUEMAIL">E-Mail</H>
+<P>Durch Klick auf diesen Button können Sie einem Mitarbeiter per E-Mail eine Nachricht
+zukommen lassen. Voraussetzung dafür ist, dass ein Mitarbeiter im Feld <REF ID="X45B.2.USERREF">Mitarbeiter</REF>
+vorhanden und dessen E-Mailadresse eingetragen ist.</P>
+
+<H ID="X45B.2.INSTNO">Installationsnummer</H>
+<P>In dieses Feld wird die Installationsnummer ausgegeben, die in der
+<REF ID="X2.6.17.MASK.58">Konfiguration</REF> hinterlegt ist.</P>
+
+<H ID="X45B.2.EXPIRY">Verfallsdatum der Lizenz</H>
+<P>In dieses Feld wird das Datum ausgegeben, zu dem laut
+<REF ID="X2.6.17.MASK.58">Konfiguration</REF> die Lizenz verfällt.</P>
+
+<H ID="X45B.2.ALLSCREENS">Belegte Bildschirme</H>
+<P>In dieses Feld wird die Summe aller aktiven Bildschirme in der Installation ausgegeben.</P>
+
+<H ID="X45B.2.ALLUSERS">Angemeldete Benutzer</H>
+<P>In dieses Feld wird ausgegeben, wie viele aktive Benutzer die Installation an
+aktiven Bildschirmen hat.</P>
+
+<H ID="X45B.2.ALLPIDS">Anmeldungen der Benutzer</H>
+<P>In dieses Feld wird die Summe aller DB-Anmeldungen aller
+Benutzer an allen aktiven Bildschirmen der Installation ausgegeben.</P>
+
+<H ID="X45B.2.SCREEN">Belegter Bildschirm</H>
+<P>In dieses Feld wird die Bezeichnung des belegten Bildschirms ausgegeben.</P>
+
+<H ID="X45B.2.PIDSOFSCR">Anmeldungen</H>
+<P>In dieses Feld wird die Anzahl der DB-Anmeldungen über den aktuellen Bildschirm ausgegeben.
+Bezug ist der aktuelle Ast im Baum. Anmeldungen an anderer Stelle des Baumes
+bleiben unberücksichtigt.</P>
+
+<H ID="X45B.2.PIDEXPIRY">Nur Anmeldungen älter als ... Tag/e</H>
+<P>Mit der Angabe einer Anzahl von Tagen in diesem Feld lässt sich die Ausgabe in der
+Baumansicht auf ältere Anmeldungen einschränken. Voreingestellt ist 0, was keiner
+Beschränkung entspricht. Trägt man stattdessen den Wert 10 Tage ein, werden nur
+solche Anmeldungen berücksichtigt, deren Startdatum kleiner oder gleich einem
+errechneten Datum ist. Das errechnete Datum ergibt sich aus dem Tagesdatum minus
+den 10 Tagen.</P>
+
+<H ID="X45B.2.USERSOFSCR">Benutzerzahl</H>
+<P>In dieses Feld wird die Benutzerzahl am aktuellen Bildschirm
+dieses Astes im Baum ausgegeben. Benutzervorkommen an anderer Stelle des Baumes
+werden nicht gezählt.</P>
+
+<H ID="X45B.2.USERSYMBOL">Benutzerkennung</H>
+<P>In dieses Feld wird das Kennzeichen des Benutzers ausgegeben.
+Das Benutzerzeichen ist eindeutig und in den
+<REF ID="X2.6.10">Passwortdefinitionen</REF> der einzelnen Benutzer hinterlegt.</P>
+
+<H ID="X45B.2.USERREF">Mitarbeiter</H>
+<P>In dieses Feld wird ein Verweis auf den Mitarbeiter des Benutzers mit dem
+im Feld <REF ID="X45B.2.USERSYMBOL">Benutzerkennung</REF>
+eingetragenen Benutzerzeichen ausgegeben.</P>
+
+<H ID="X45B.2.SCROFUSER">Bildschirmzahl</H>
+<P>In dieses Feld wird die Summe aller Bildschirme des
+Benutzers im aktuellen Ast des Baumes ausgegeben. Vorkommen in anderen
+Ästen werden nicht gezählt.</P>
+
+<H ID="X45B.2.PIDSOFUSER">Anmeldungen</H>
+<P>In dieses Feld wird die Anzahl der Datenbankprozesse des aktuellen
+Benutzers am aktuellen Bildschirm ausgegeben. Die Zahl bezieht sich auf
+den aktuellen Ast des Baumes. Vorkommen in anderen Ästen werden nicht
+berücksichtigt.</P>
+
+<H ID="X45B.2.INTERFACE">Schnittstelle</H>
+<P>In dieses Feld wird die Schnittstelle des Prozesses als normiertes
+Kürzel ausgegeben. In der Regel ASC für ein ASCII-Terminal oder GUI für die
+grafische Oberfläche.</P>
+
+<H ID="X45B.2.PID">Prozesskennung</H>
+<P>In dieses Feld wird die Kennung der aktuellen Anmeldung ausgegeben.</P>
+
+<H ID="X45B.2.HOST">Rechner</H>
+<P>In dieses Feld wird der Name des Rechners ausgegeben, auf dem die aktuelle
+Anmeldung gerade arbeitet.</P>
+
+<H ID="X45B.2.CALLERNO">Aufrufer</H>
+<P>Jede Anmeldung in abas ERP hat eine eindeutige Nummer. In dieses
+Feld wird diese sogenannte <REF ID="X9.1.4.4.AUFRUFERNR">Aufrufernummer</REF>
+ausgegeben.</P>
+
+<H ID="X45B.2.CLIENT">Mandant</H>
+<P>In dieses Feld wird der Name des Mandanten ausgegeben, in dem
+der Prozess arbeitet.</P>
+
+<H ID="X45B.2.LOCATION">Rechnerstandort</H>
+<P>Im dieses Feld wird der Standort des Rechners ausgegeben, auf dem Anmeldung
+arbeitet. Die Standortbezeichnung wird aus der Datei <REF ID="X47B">devices.txt</REF>
+übernommen.</P>
+
+<MARK ID="X45B.2.TIMESTAMPOFPID"/>
+<MARK ID="X45B.2.TIMEOFPID"/>
+<H ID="X45B.2.DATEOFPID">Datum/Uhrzeit</H>
+<P>Diese Felder geben den Startzeitpunkt der Anmeldung an.</P>
+
+<H ID="X45B.2.SCREENICON">Icon des Bildschirm</H>
+<P>Dieses Symbol dient zur Darstellung eines Bildschirms in der Baumansicht.</P>
+
+<MARK ID="X45B.2.PATH2USER"/>
+<MARK ID="X45B.2.PATH2SCREEN"/>
+<H ID="X45B.2.PATH2PID">Pfade</H>
+<P>In diesen Feldern wird der jeweilige Pfad, in dem das Symbol für den Benutzer, die
+Anmeldung bzw. den Bildschirm liegt, angegeben.</P>
+
+<H ID="X45B.2.USERICON">Icon des Benutzers</H>
+<P>Dieses Symbol dient zur Darstellung eines Benutzers in der Baumansicht.</P>
+
+<H ID="X45B.2.PIDICON">Icon des Prozesses</H>
+<P>Dieses Symbol dient zur Darstellung der Anmeldung in der Baumansicht.</P>
+
+<MARK ID="X45B.2.CALLPARAM"/>
+<H ID="X45B.2.TBUKILL">Prozess beenden</H>
+<P>Der Abbruch selbst erfolgt nach Buttonklick unsichtbar über einen Aufrufparameter,
+der dazu das Infosystem <REF ID="X11B.6">ERP-Prozesse beenden</REF> benutzt.
+Die Benutzung erfordert Priorität E, d.h. erst ab dieser Priorität lassen sich Prozesse beenden.
+Priorität D ist nicht ausreichend und führt zu einer entsprechenden Hinweismeldung.
+Scheitert der Abbruch, wird das Infosystem sichtbar.</P>
+
+
+
+<H2 ID="X49B.5">Interne technische Infosysteme, Masken und Felder</H2>
+
+<CONTENTS ID="X49B.5" MAXLEVEL="6" FIRST="0" ORDERED="0"/>
+
+<H3 ID="X25B.6.10">Infosystem Selektionsantwort</H3>
+<MARK ID="X25B.6.10.MASK"/>
+<MARK ID="X25B.6.10.CONTEXT"/>
+<MARK ID="X25B.6.10.EVTAENDERBAR"/>
+<MARK ID="X25B.6.10.SEARCHCONTEXT"/>
+<MARK ID="X25B.6.10.VERWEISART"/>
+<MARK ID="X25B.6.10.BUSUCHEN"/>
+<MARK ID="X25B.6.10.BUFERTIG"/>
+<MARK ID="X25B.6.10.BUSCHLIESSEN"/>
+<MARK ID="X25B.6.10.EVTVAR"/>
+<MARK ID="X25B.6.10.EVTZEILE"/>
+<MARK ID="X25B.6.10.EVTMASKE"/>
+<MARK ID="X25B.6.10.EVTFILE"/>
+<MARK ID="X25B.6.10.EVTID"/>
+<MARK ID="X25B.6.10.EVTVARART"/>
+<MARK ID="X25B.6.10.EVTFELDNEU"/>
+<MARK ID="X25B.6.10.ABBRECHEN"/>
+<MARK ID="X25B.6.10.KBAUMID"/>
+<MARK ID="X25B.6.10.KBAUMNUM"/>
+<MARK ID="X25B.6.10.KBAUMSUCH"/>
+<MARK ID="X25B.6.10.ERGDAT"/>
+<P>Dieses Infosystem ist nicht für abas Anwender bestimmt.</P>
+
+
+
+<H3 ID="X0.11.1.5">Infosystem Konfigurationsimport des Suchindexes</H3>
+<MARK ID="X0.11.1.5.MASK"/>
+<MARK ID="X0.11.1.5.TSTATUS"/>
+<MARK ID="X0.11.1.5.TSCHEMA"/>
+<MARK ID="X0.11.1.5.TOBJTYP"/>
+<MARK ID="X0.11.1.5.TOBJSUCH"/>
+<MARK ID="X0.11.1.5.TOBJID"/>
+<MARK ID="X0.11.1.5.TINTERVAL"/>
+<MARK ID="X0.11.1.5.TABBMOD"/>
+<MARK ID="X0.11.1.5.PORT"/>
+<MARK ID="X0.11.1.5.HOST"/>
+<MARK ID="X0.11.1.5.ERSTELLEN"/>
+<MARK ID="X0.11.1.5.LADEN"/>
+<MARK ID="X0.11.1.5.WEBSERVER"/>
+<MARK ID="X0.11.1.5.CONFIGPATH"/>
+<MARK ID="X0.11.1.5.DATAPATH"/>
+<MARK ID="X0.11.1.5.STATUS"/>
+<P>Dieses Infosystem ist nicht für abas Anwender bestimmt.</P>
+
+
+
+<H3 ID="X25B.6.12">Infosystem Download</H3>
+<MARK ID="X25B.6.12.ABASMIMETYPE"/>
+<MARK ID="X25B.6.12.DEFAULTFILEEXT"/>
+<MARK ID="X25B.6.12.FILEEXT"/>
+<MARK ID="X25B.6.12.MASK"/>
+<MARK ID="X25B.6.12.FILENAME"/>
+<MARK ID="X25B.6.12.GZIP"/>
+<MARK ID="X25B.6.12.RESULTBASE64"/>
+<MARK ID="X25B.6.12.MIMETYPE"/>
+<MARK ID="X25B.6.12.ORIGFILESIZE"/>
+<MARK ID="X25B.6.12.ENCFILESIZE"/>
+<MARK ID="X25B.6.12.EXITSTATUS"/>
+<MARK ID="X25B.6.12.ERRORMSG"/>
+<P>Dieses Infosystem 10451 ist nur für Administratoren bestimmt.</P>
+<!-- Schnittstelleninfosystem, um Dateien per EDP herunterzuladen -->
+
+
+
+</CHAPTER>
+
+
+
+<!--
+ !!!!!!!!!!!!!!! DO NOT CHANGE THIS COMMENT UNMINDFULLY !!!!!!!!!!!!!!!!!!
+ Since we are in a partial document without defined DOCTYPE, the necessary
+ information is provided to the emacs here:
+ 1. mode: xml
+ 2. sgml-parent-document:
+ - What is the name of the file in which the DOCTYPE is defined? emacs_toplevel.xml
+ - Which elements are open?                                      ABAS and BODY
+ - Which one is the top element of this file?                    CHAPTER
+
+ Local Variables: ***
+ mode:xml ***
+ sgml-parent-document:("../../defs/emacs_toplevel.xml" "ABAS" "BODY" "CHAPTER") ***
+ End: ***
+ -->
