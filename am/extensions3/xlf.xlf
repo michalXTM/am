@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:kb="urn:kooboo:xliff">
+  <file datatype="TextContent" source-language="en-GB" target-language="it-IT" original="Guest/TextContent/Articles/LC6JUNGE2GFTDWVP">
+    <header>
+      <skl>
+        <external-file href="Guest/TextContent/Articles/LC6JUNGE2GFTDWVP"></external-file>
+      </skl>
+      <phase-group>
+        <phase phase-name="Creation" process-name="Extraction" tool-id="KoobooCMS" contact-name="alessandrab" date="2014-10-24T10:31:10"></phase>
+      </phase-group>
+      <tool tool-id="KoobooCMS" tool-name="KoobooCMS" tool-company="Kooboo">
+        <kb:value name="SourceLanguageId" datatype="Int">2057</kb:value>
+        <kb:value name="TargetLanguageId" datatype="Int">1040</kb:value>
+        <kb:value name="UserKey" datatype="String">monte-carlo-betting-model</kb:value>
+        <kb:value name="Id" datatype="Int"></kb:value>
+        <kb:value name="UtcCreationDate" datatype="DateTime">2014-09-30T09:23:27</kb:value>
+        <kb:value name="UtcLastModificationDate" datatype="DateTime">2014-10-24T03:07:57</kb:value>
+        <kb:value name="UUID" datatype="String">LC6JUNGE2GFTDWVP</kb:value>
+        <kb:value name="Repository" datatype="String">Guest</kb:value>
+        <kb:value name="FolderName" datatype="String">Articles</kb:value>
+        <kb:value name="SchemaName" datatype="String">Article</kb:value>
+        <kb:value name="Sport" datatype="String">HF62S8Y98NC6KLEB</kb:value>
+        <kb:value name="PostDate" datatype="DateTime">2014-09-30T00:00:00</kb:value>
+        <kb:value name="Author" datatype="String">CUN27DBJAZBPN3V4</kb:value>
+        <kb:value name="ListImage" datatype="String">/Cms_Data/Contents/Guest/Media/betting-articles/strategy/f1-monte-carlo-model-betting-md.jpg</kb:value>
+        <kb:value name="DetailImage" datatype="String">/Cms_Data/Contents/Guest/Media/betting-articles/strategy/f1-monte-carlo-model-betting-xl.jpg</kb:value>
+        <kb:value name="Readings" datatype="Int">3120</kb:value>
+        <kb:value name="NewsNow" datatype="Bool">False</kb:value>
+        <kb:value name="Published" datatype="Bool">True</kb:value>
+        <kb:value name="UserId" datatype="String">michaelg</kb:value>
+        <kb:value name="Sequence" datatype="Int">420</kb:value>
+        <kb:value name="___EnableVersion___" datatype="Bool">True</kb:value>
+      </tool>
+    </header>
+    <body>
+      <trans-unit id="Title" datatype="String">
+        <source><![CDATA[Using Monte Carlo modelling for betting]]></source>
+      </trans-unit>
+      <trans-unit id="Subtitle" datatype="String" maxwidth="80" size-unit="char">
+        <source><![CDATA[Using a Monte Carlo model to predict sports]]></source>
+      </trans-unit>
+      <trans-unit id="Introduction" datatype="String">
+        <source><![CDATA[What models do you use to guide your bets? If you haven’t heard of Monte Carlo simulation you could be missing out.]]></source>
+      </trans-unit>
+      <trans-unit id="RichText" datatype="String">
+        <source><![CDATA[<p>There are various ways to solve a real-life conundrum numerically; however we are usually accustomed to a traditional manner – a function. A function is the relationship between a set of inputs and permissible outputs with the value that each input is related to exactly one output.</p>
+<p></p>
+<p>For example, consider calculating the probability of Lewis Hamilton winning the Japanese Grand Prix. One way of doing this is to build a function with input parameters that affect performance such as results in the last races etc. A similar strategy can be applied for soccer, which often uses Poisson estimates of goal rates for each team - <a href="[[url:Articles~Detail|Sport=Soccer|ArticleKey=how-to-calculate-poisson-distribution]]" target="_blank">this article explains using a Poisson approach to calculate game outcomes</a>.</p>
+<p></p>
+<p>However what if bettors want to calculate the probability of Hamilton winning the Formula 1 2014 season? The outcomes for this query are far more complex, and cannot be solved by a simple function. This is where mathematical models can be used.</p>
+<p></p>
+<h3><strong>Deterministic Model</strong></h3>
+<p></p>
+<p>A deterministic model is similar to a function: the output is relatively easy to calculate given that all inputs are known. However, calculating Hamilton's chance to win the season needs a more technical / intricate approach.</p>
+<p></p>
+<h3><strong>Stochastic Model</strong></h3>
+<p></p>
+<p>One-way of doing this is to simulate the results of the remaining five Grand Prix - Japan, Russia, US, Brazil & Abu Dhabi - via a Monte Carlo simulation, which is a technique that uses randomly generated numbers in order to approximate the outcome. This is a Stochastic Modelwhere we have many random variables -rather than one simple function - and need to obtain a range of results.</p>
+<p></p>
+<p>At the time of writing the Mercedes drivers Hamilton (<a href="http://www.pinnaclesports.com/ContestCategory/Formula+1+Props/Drivers+Championship/Futures/Lines.aspx">1.568</a>* to win the drivers' championship) and Nico Rosberg (<a href="http://www.pinnaclesports.com/ContestCategory/Formula+1+Props/Drivers+Championship/Futures/Lines.aspx" target="_blank">2.510</a>*) are one and two in the world championship while Daniel Ricciardo (<a href="http://www.pinnaclesports.com/ContestCategory/Formula+1+Props/Drivers+Championship/Futures/Lines.aspx">51.240</a>*) is third, 60 points behind Hamilton.</p>
+<p></p>
+<p>Technically even sixth placed Valtteri Bottas can win the championship as there are 150 points still up for grabs since the winner of each race gets 25 points and the last race counts double points. For simplicity’s sake, we can assume that only the top three have a realistic shot at winning the championship.</p>
+<p></p>
+<p>Bettors should therefore simulate all top ten positions – the positions drivers earn points from - but for this article we will just simulate the winner and the runner-up.</p>
+<p></p>
+<p>If any of the three drivers fail to finish inside the top two, then we will assume they would have obtained six points, which is close to the average of points he would have scored had he crossed the chequered line between third (15 points) and eleventh (0 points) position. For example, if in a simulation, Hamilton is ranked first (25 points) and Rosberg second (18 points); then Ricciardo is given 6 points.</p>
+<p></p>
+<p>Rosberg, Hamilton and Ricciardo have won 4, 7 and 3 of the 14 Grand Prix held to date in 2014. We can therefore use the ratio of strength 4:7:3:1 for the drivers Rosberg:Hamilton:Ricciardo:Others.</p>
+<p></p>
+<p>In this case, we have 13 possible outcomes (denoted A to M) for each race. For example in outcome I – in the table below - sees Ricciardo win the race while a driver other than the Mercedes team obtains second place. The probability of Ricciardo winning the race is 3/15 since the ratio is 4:7:3:1 while the probability of neither Hamilton nor Rosberg finishing second is 1/12 since the ratio would now exclude Ricciardo and his 4:7:1.</p>
+<p></p>
+<p>Therefore the probability of Ricciardo obtaining 25-points while the other two obtaining 6 points each is 3/15*1/12 = 1/60. The probability of each outcome as well the cumulative amounts are shown in the table below.</p>
+<p></p>
+<table>
+<tbody>
+<tr class="red-header"><th>Path</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th><th>K</th><th>L</th><th>M</th></tr>
+<tr>
+<td class="centre-data">Rosberg</td>
+<td class="centre-data">25</td>
+<td class="centre-data">25</td>
+<td class="centre-data">25</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+</tr>
+<tr>
+<td class="centre-data">Hamilton</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+<td class="centre-data">25</td>
+<td class="centre-data">25</td>
+<td class="centre-data">25</td>
+<td class="centre-data">6</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+</tr>
+<tr>
+<td class="centre-data">Ricciardo</td>
+<td class="centre-data">6</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+<td class="centre-data">25</td>
+<td class="centre-data">25</td>
+<td class="centre-data">25</td>
+<td class="centre-data">6</td>
+<td class="centre-data">6</td>
+<td class="centre-data">18</td>
+<td class="centre-data">6</td>
+</tr>
+<tr>
+<td class="centre-data"><span style="color: #ff0000;">Probability</span></td>
+<td class="centre-data"><span style="color: #ff0000;">17.0%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">7.3%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">2.4%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">23.3%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">17.5%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">5.8%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">6.7%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">11.7%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">1.7%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">1.8%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">3.1%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">1.3%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">0.4%</span></td>
+</tr>
+<tr>
+<td class="centre-data"><span style="color: #ff0000;">Cumulative Probability</span></td>
+<td class="centre-data"><span style="color: #ff0000;">17.0%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">24.2%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">26.7%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">50.0%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">67.5%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">73.3%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">80.0%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">91.7%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">93.3%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">95.1%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">98.2%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">99.6%</span></td>
+<td class="centre-data"><span style="color: #ff0000;">100%</span></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>The cumulative values can now be used to estimate the outcomes. There are five races remaining, so let us generate five random numbers between zero and one - this can be done in Excel using =rand ().</p>
+<p></p>
+<p>For each value, we use the table to estimate the points earned by these three drivers. For example if the first random number is 0.4215, which lies between 26.7% and 50.0%, we would simulate outcome D for the next race in Japan - Hamilton first, Rosberg second.</p>
+<p></p>
+<p>For each simulation, we add the current drivers' world championship points to the points gained in the five simulated races. The winner is therefore the driver with most points.</p>
+<p></p>
+<p>You should repeat this procedure for a large number of simulations to ensure data is not insignificant as a reflection of small sample sizes. For example if Hamilton wins 4,000 times from 10,000 simulations, then his chance of winning the championship is 0.4 or 40%.</p>
+<p></p>
+<h3><strong>Dynamic Modelling</strong></h3>
+<p></p>
+<p>Dynamic modelling is where the parameters improve as the model is simulated.</p>
+<p></p>
+<p>In this illustration, the ratio of strength would change after each race is simulated, the data would factor in other variables such as form, momentum and car set-up etc.</p>
+<p></p>
+<p>For example, if the model expected Hamilton to win the Japanese GP, the system could factor in momentum for the next race in Russia. Therefore the ratio of strength for example would change to 4:8:3:1 for the Russian GP.</p>
+<p></p>
+<h3><strong>Conclusion</strong></h3>
+<p></p>
+<p>In conclusion there are three main stages to mathematical modelling: deterministic, stochastic and dynamic. The higher the stage, the more technical knowledge is required. Monte Carlo simulations can be used for the latter two with the key difference being the model learns from its own simulations in a dynamic setting.</p>
+<p></p>
+<p>In the end, the model based on probability distributions does not produce a definitive answer like your "gut guess". Instead, the model’s answer is itself a probability distribution, which tells you the range of probable outcomes and their relative likelihood.</p>
+<p></p>
+<p>However similar to other models Monte Carlo has weaknesses. Given the data relies on variables to be entered into the system, bettors must ensure the information is accurate to avoid the "garbage in, garbage out" scenario. The key assumptions made here can all be criticised. For example:</p>
+<p></p>
+<ul>
+<li>The ratio of strength doesn't consider that different drivers and cars are better suited for particular race circuits and temperatures.</li>
+<li>The six points attributed is not necessarily realistic as this assumes each of these three drivers will get points from each race.</li>
+</ul>
+<p></p>
+<p>Ideally the sensitivity of results to these assumptions is tested. It only takes poor information to skew the system, which is why Monte Carlo models should be used alongside a balanced betting strategy and not solely relied upon.</p>
+<p>In addition, bettors should always use the best odds, which Pinnacle Sports offer - <a href="[[url:Promotions~best-odds]]" target="_blank">read here about our unbeatable odds</a> - and given we offer the <a href="[[url:Promotions~Highest-Limits]]" target="_blank">highest limits online</a>, a bet with us will ensure you are best placed to get the best value for your bet.</p>]]></source>
+      </trans-unit>
+      <trans-unit id="IntroductionOverride" datatype="String">
+        <source><![CDATA[]]></source>
+      </trans-unit>
+      <trans-unit id="OpenGraphTitle" datatype="String">
+        <source><![CDATA[]]></source>
+      </trans-unit>
+      <trans-unit id="OpenGraphDescription" datatype="String">
+        <source><![CDATA[]]></source>
+      </trans-unit>
+      <trans-unit id="TwitterCardTitle" datatype="String">
+        <source><![CDATA[]]></source>
+      </trans-unit>
+      <trans-unit id="TwitterCardDescription" datatype="String">
+        <source><![CDATA[]]></source>
+      </trans-unit>
+      <trans-unit id="HtmlMetaTitle" datatype="String">
+        <source><![CDATA[Using Monte Carlo modelling for betting | Betting strategy article]]></source>
+      </trans-unit>
+      <trans-unit id="HtmlMetaCanonical" datatype="String">
+        <source><![CDATA[]]></source>
+      </trans-unit>
+      <trans-unit id="HtmlMetaAuthor" datatype="String">
+        <source><![CDATA[]]></source>
+      </trans-unit>
+      <trans-unit id="HtmlMetaKeywords" datatype="String">
+        <source><![CDATA[]]></source>
+      </trans-unit>
+      <trans-unit id="HtmlMetaDescription" datatype="String">
+        <source><![CDATA[This betting strategy article looks at using the example of a Monte Carlo model to predict sporting outcomes such as will Lewis Hamilton win the 2014 F1 season?]]></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

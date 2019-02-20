@@ -1,0 +1,57 @@
+--- 
+- !ruby/object:Tip 
+  id: 163
+  updated_at: 2017-11-14 16:15:56.620955 Z
+  content: !str 
+    str: "For campfires and camaraderie, no getaway beats good ol&rsquo; summer camp. To recapture that adventurous spirit, book the adult version: a learning vacation. Your days will include discovering new talents and building amazing connections. Consider these ideas&hellip;\r\n\
+      \r\n\
+      - **Farm stay.** Feed horses, learn to make cheese, or stomp grapes, then join fellow farmhands to stargaze by night in a quiet rural setting. To find a US B&B, check [www.farmstay.com][1]. Or go abroad &mdash; search for &ldquo;agritourism&rdquo; and any country from Chile to New Zealand to explore authentic local culture. \r\n\
+      \r\n\
+      - **Immersion.** Supercharge your foreign phrasebook by surrounding yourself with native speakers. You&rsquo;ll make unforgettable new friends as you learn a language, or even become part of your host&rsquo;s family if you choose a homestay in another country. In the US, several colleges and language [schools][2] offer summer programs.\r\n\
+      \r\n\
+      - **Skills school.** Get back to basics at a folk school, where classes include sausage making, knitting, beekeeping, and woodworking. \r\n\
+      \r\n\
+      Make some new best buddies this season, while expanding your abilities and knowledge. \r\n\
+      \r\n\
+      [1]: http://www.farmstayus.com/\r\n\
+      [2]: http://www.concordialanguagevillages.org/adult-programs "
+    "@_rails_html_safe": false
+  content_translations: 
+    es: !str 
+      str: Translate Me
+      "@_rails_html_safe": false
+  day: 167
+  image_version: 5
+  options: !str 
+    str: |-
+      Rural roaming
+      Agritourism
+      Agtravel
+      Immersion
+    "@_rails_html_safe": false
+  options_translations: 
+    es: !str 
+      str: |-
+        Translate Me
+        Translate Me2
+        Translate Me3
+        Translate Me4
+      "@_rails_html_safe": false
+  prompt: !str 
+    str: What&rsquo;s the term for vacationing on a farm in another country?
+    "@_rails_html_safe": false
+  prompt_translations: 
+    es: !str 
+      str: Translate Me
+      "@_rails_html_safe": false
+  sequence_of_correct_option: !str 
+    str: "1"
+    "@_rails_html_safe": false
+  title: !str 
+    str: Return to Camp Wannagitsmart
+    "@_rails_html_safe": false
+  title_translations: 
+    es: !str 
+      str: Translate Me
+      "@_rails_html_safe": false
+  year: 2012

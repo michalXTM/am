@@ -1,0 +1,7 @@
+STRINGTABLE
+BEGIN
+    IDS_DATA_EXPORT_SUCCESS "test ""quotes"" inside value"
+	IDS_DATA_EXPORT_ERROR
+							"test missing space after key"
+END
+

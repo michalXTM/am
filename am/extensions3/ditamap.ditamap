@@ -1,0 +1,24 @@
+<map xml:lang="en-gb">
+<bookmap xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="en">
+	<title>Sample map</title>
+	<p>This publication describes car maintenance, house and garden keeping.</p>
+	
+	<topicref href="garden/garden.xml" audience="all">
+		<topicref href="garden/waterhose.xml"/>
+		<topicref href="garden/lawnmower.xml"/>
+		<topicref href="garden/wheelbarrow.xml"/>
+	</topicref>
+	
+	<topicref href="house/house.xml" audience="all">
+		<topicref href="house/toolbox.xml"/>
+		<topicref href="house/paint.xml"/>
+		<topicref href="house/snowshovel.xml"/>
+	</topicref>
+	
+	<topicref href="car/car.xml" audience="car mechanics">
+		<topicref href="car/garageconceptsoverview.xml"/>
+		<topicref href="car/wwfluid.xml"/>
+		<topicref href="car/oil.xml"/>
+	</topicref>
+	</bookmap>
+</map>

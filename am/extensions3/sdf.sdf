@@ -1,0 +1,86 @@
+accessibility	source\helper\accessiblestrings.src	0	string	RID_STR_ACC_NAME_BROWSEBUTTON				0	pl-PL	Browse				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ENDLESS				0	pl-PL	Repeat				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_INSERT				0	pl-PL	Apply				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_MEDIAPLAYER				0	pl-PL	Media Player				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_MUTE				0	pl-PL	Mute				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_OPEN				0	pl-PL	Open				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_PAUSE				0	pl-PL	Pause				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_PLAY				0	pl-PL	Play				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_STOP				0	pl-PL	Stop				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM				0	pl-PL	View				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM_100				0	pl-PL	100%				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM_200				0	pl-PL	200%				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM_50				0	pl-PL	50%				2002-02-02 02:02:02
+avmedia	source\framework\mediacontrol.src	0	string	AVMEDIA_STR_ZOOM_FIT				0	pl-PL	Scaled				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	errorbox	AVMEDIA_ERR_URL				0	pl-PL	The format of the selected file is not supported.				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	string	AVMEDIA_STR_ALL_FILES				0	pl-PL	All files (*.*)				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	string	AVMEDIA_STR_ALL_MEDIAFILES				0	pl-PL	All movie and sound files				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	string	AVMEDIA_STR_INSERTMEDIA_DLG				0	pl-PL	Insert Movie and Sound				2002-02-02 02:02:02
+avmedia	source\viewer\mediawindow.src	0	string	AVMEDIA_STR_OPENMEDIA_DLG				0	pl-PL	Open Movie and Sound				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	imagebutton	RID_IMGBTN_REMOVEWATCH		HID_BASICIDE_REMOVEWATCH		80	pl-PL	-		Remove Watch		2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menu	RID_POPUP_BRKDLG				80	pl-PL	Manage Breakpoints				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menu	RID_POPUP_BRKPROPS				80	pl-PL	Properties				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_BRKDLG	RID_BRKDLG	HID_BASICIDE_BRKDLG		0	pl-PL	Manage Breakpoints...				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_BRKPROPS	RID_ACTIV	HID_BASICIDE_ACTIV		0	pl-PL	Active				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_BRKPROPS	RID_BRKPROPS	HID_BASICIDE_BRKPROPS		0	pl-PL	Properties...				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_DLGED	SID_SHOW_PROPERTYBROWSER	SID_SHOW_PROPERTYBROWSER		0	pl-PL	Properties...				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	RID_INSERT			0	pl-PL	Insert				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	SID_BASICIDE_DELETECURRENT	SID_BASICIDE_DELETECURRENT		0	pl-PL	Delete				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	SID_BASICIDE_HIDECURPAGE	SID_BASICIDE_HIDECURPAGE		0	pl-PL	Hide				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	SID_BASICIDE_MODULEDLG	SID_BASICIDE_MODULEDLG		0	pl-PL	Modules...				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR	SID_BASICIDE_RENAMECURRENT	SID_BASICIDE_RENAMECURRENT		0	pl-PL	Rename				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR.RID_INSERT	SID_BASICIDE_NEWDIALOG	SID_BASICIDE_NEWDIALOG		0	pl-PL	BASIC Dialog				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	menuitem	RID_POPUP_TABBAR.RID_INSERT	SID_BASICIDE_NEWMODULE	SID_BASICIDE_NEWMODULE		0	pl-PL	BASIC Module				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_BASICIDE_OBJECTBAR				0	pl-PL	Macro Bar				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ALL				0	pl-PL	All				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_APPENDLIBS				0	pl-PL	Import Libraries				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_BADSBXNAME				0	pl-PL	Invalid Name				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_BASIC				0	pl-PL	BASIC				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTCHANGENAMEREFLIB				0	pl-PL	The name of a referenced library cannot be changed.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTCHANGENAMESTDLIB				0	pl-PL	The name of the default library cannot be changed.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTCLOSE				0	pl-PL	The window cannot be closed while BASIC is running.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTRUNMACRO				0	pl-PL	For security reasons, you cannot run this macro.\n\nFor more information, check the security settings.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_CANNOTUNLOADSTDLIB				0	pl-PL	The default library cannot be deactivated				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_COLUMN				0	pl-PL	Col				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_COMPILEERROR				0	pl-PL	Compile Error: 				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_COULDNTREAD				0	pl-PL	The file could not be read				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_COULDNTWRITE				0	pl-PL	The file could not be saved				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_DOC				0	pl-PL	Document				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ENTERPASSWORD				0	pl-PL	Enter password for 'XX'				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ERRORCHOOSEMACRO				0	pl-PL	Macros from other documents are not accessible.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ERROROPENLIB				0	pl-PL	Error loading library				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_ERROROPENSTORAGE				0	pl-PL	Error opening file				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_FILEEXISTS				0	pl-PL	The 'XX' file already exists				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_FILENAME				0	pl-PL	File name:				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_FILTER_ALLFILES				0	pl-PL	<All>				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_GENERATESOURCE				0	pl-PL	Generating source				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_IMPORTNOTPOSSIBLE				0	pl-PL	'XX' cannot be added.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_INITIDE				0	pl-PL	BASIC Initialization				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_LIBISREADONLY				0	pl-PL	This library is read-only.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_LIBNAMETOLONG				0	pl-PL	A library name can have up to 30 characters.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_LINE				0	pl-PL	Ln				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_MACRONAMEREQ				0	pl-PL	A name must be entered.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NEWDLG				0	pl-PL	New Dialog				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NEWLIB				0	pl-PL	New Library				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NEWMOD				0	pl-PL	New Module				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NOIMPORT				0	pl-PL	'XX' was not added.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NOLIBINSTORAGE				0	pl-PL	The file does not contain any BASIC libraries				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_NOMODULE				0	pl-PL	< No Module >				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_OBJNOTFOUND				0	pl-PL	Object or method not found				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_OPEN				0	pl-PL	Load				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_PAGE				0	pl-PL	Page				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELDIALOG				0	pl-PL	Do you want to delete the XX dialog?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELLIB				0	pl-PL	Do you want to delete the XX library?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELLIBREF				0	pl-PL	Do you want to delete the reference to the XX library?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELMACRO				0	pl-PL	Do you want to delete the macro XX ?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYDELMODULE				0	pl-PL	Do you want to delete the XX module?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_QUERYREPLACEMACRO				0	pl-PL	Do you want to overwrite the XX macro?				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_REFNOTPOSSIBLE				0	pl-PL	Reference to 'XX' not possible.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_REMOVEWATCH				80	pl-PL	Watch:				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_REPLACELIB				0	pl-PL	'XX' cannot be replaced.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_REPLACESTDLIB				0	pl-PL	The default library cannot be replaced.				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_RUNTIMEERROR				0	pl-PL	Runtime Error: #				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SAVE				0	pl-PL	Save				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SBXNAMEALLREADYUSED				0	pl-PL	Name already exists				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SBXNAMEALLREADYUSED2				0	pl-PL	Object with same name already exists				2002-02-02 02:02:02
+basctl	source\basicide\basidesh.src	0	string	RID_STR_SEARCHALLMODULES				0	pl-PL	Do you want to replace the text in all active modules?				2002-02-02 02:02:02

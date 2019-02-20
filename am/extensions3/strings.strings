@@ -1,0 +1,61 @@
+/*
+ Localizable.strings (English)
+ Snapchat
+ Copyright (c) 2016 Snapchat, Inc. All rights reserved.
+ */
+"abandon_option" = "Abandon";
+
+"account_actions_header" = "Account Actions";
+
+"account_exists_message" = "An account already exists with that email.";
+
+"account_later_message" = "You'll still be able to create an account later by going to Settings.";
+
+"add" = "Add";
+
+"add_collaborators_title" = "Add Collaborators"; // Added 9/12/16 for snapcode carousel
+
+"add_failed_message" = "Could not add friend. Please try again.";
+
+"add_friends_contacts_permission_button" = "Allow Access";
+
+"add_friends_title" = "Add Friends";
+
+"add_me_message" = "Add me on Snapchat! Username:  https://www.snapchat.com/add/";
+
+"add_me_invite_message" = "Add me on Snapchat! Username:  ";
+
+"add_to_your_story" = "Add to Your Story?";
+
+"additional_services_header" = "Additional Services";
+
+"are_you_sure_you_want_to_abandon" = "Are you sure you want to abandon your Snapsterpiece?";
+
+"best_friends_header" = "Best Friends";
+
+"camera_access_message" = "We could not access your camera. Please remove any restrictions on the camera to use Snapchat (Settings -> General -> Restrictions -> Camera -> On).";
+
+"camera_access_title" = "Unable to Access Camera";
+
+"cancel" = "Cancel";
+
+"go_to_wifi_settings" = "Go to Wi-Fi Settings";
+
+"caption_prompt" = "Tap to Add Caption!";
+
+"check_connection_message" = "Please check your connection and try again.";
+
+"connect_failed" = "Could not connect. Please try again later.";
+
+"connect_failed_title" = "Could Not Connect";
+
+"custom_option" = "Custom";
+
+"delete" = "Delete";
+
+"delete_friend_failed" = "Could not delete friend. Please try again.";
+
+"delete_story_failed" = "Could not delete Story. Please try again.";
+
+"deleting_snap" = "Deleting...";
+
