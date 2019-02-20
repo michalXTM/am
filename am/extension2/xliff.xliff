@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file original="origfile.fff" source-language="en-US" target-language="tr" datatype="plaintext">
+		<body><trans-unit id="s_22778_1" xml:space="preserve"><source>Track your steps and distance</source></trans-unit><trans-unit id="s_22779_1" xml:space="preserve"><source>Compare and compete with friends</source></trans-unit><trans-unit id="s_22780_1" xml:space="preserve"><source>Earn badges to stay motivated</source></trans-unit><trans-unit id="s_22781_1" xml:space="preserve"><source>View on the <mrk mtype="protected">App Store</mrk></source><note>Do not translate App Store</note></trans-unit><trans-unit id="s_22782_1" xml:space="preserve"><source>Stay fit, compete with your friends and earn badges</source></trans-unit></body>
+	</file>
+</xliff>

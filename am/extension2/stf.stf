@@ -1,0 +1,124 @@
+# Use the Source file to translate labels for the first time.
+# - Change the language code in the header from the organization's default language to the translation language. See "Supported Languages for Translatable Customizations" in the Salesforce.com online help for a list of supported languages and their associated language codes.
+# - Replace the untranslated values in the LABEL column with translated values.
+
+# Notes:
+# Don't add columns to or remove columns from this file.
+# Tabs (\t), new lines (\n) and carriage returns (\r) are represented by special characters in this file. These characters should be preserved in the import file to maintain formatting.
+# Lines that begin with the # symbol are ignored during import.
+# Salesforce translation files are exported in the UTF-8 encoding to support extended and double-byte characters. This encoding cannot be changed.
+
+# Language: English
+Language code: en_US
+Type: Source
+
+# KEY	LABEL
+
+ButtonOrLink.TIMBASURVEYS__Survey__c.TIMBASURVEYS__Preview	Preview
+ButtonOrLink.Field_Trip__Object_Analysis__c.Field_Trip__Analyze	Analyze
+ButtonOrLink.Account.Access_GE	Access GE
+ButtonOrLink.Account.AltavistaNews	Altavista News
+ButtonOrLink.Account.Associate_SIC_Codes	Associate SIC Codes
+ButtonOrLink.Account.Clone	Clone
+ButtonOrLink.Account.County_Lookup	County Lookup
+ButtonOrLink.Account.GMI_Show_Map_Button_Account	Show Map
+ButtonOrLink.Account.GMI_Show_Map_Link_Account	Show Map
+ButtonOrLink.Account.Global_Accounts_Sharepoint	Global Accounts - Sharepoint
+ButtonOrLink.Account.GoogleMaps	Google Maps
+ButtonOrLink.Account.GoogleNews	Google News
+ButtonOrLink.Account.GoogleSearch	Google Search
+ButtonOrLink.Account.HooversProfile	Hoovers Profile
+ButtonOrLink.Account.LexisNexis_PP__Learn_More	Learn More
+ButtonOrLink.Account.LinkedIn	LinkedIn
+ButtonOrLink.Account.LexisNexis_PP__Update_Account_Detail	Update Account Detail
+ButtonOrLink.Account.LexisNexis_PP__Update_Contacts	Update Contacts
+ButtonOrLink.Account.Update_Scorecard	Update Scorecard
+ButtonOrLink.Account.YahooMaps	Yahoo Maps
+ButtonOrLink.Account.ZipCodeLookup	Billing Zipcode Lookup
+ButtonOrLink.Account.ZipcodeLookup2	Shipping Zipcode Lookup
+ButtonOrLink.Campaign.ViewAllCampaignMembers	View All Campaign Members
+ButtonOrLink.Campaign.ViewCampaignInfluenceReport	View Campaign Influence Report
+ButtonOrLink.Case.TIMBASURVEYS__Send_Survey_Case	Send Survey
+ButtonOrLink.Contact.GMI_Show_Map_Button_Contact	Show Map
+ButtonOrLink.Contact.GMI_Show_Map_Link_Contact	Show Map
+ButtonOrLink.Contact.GoogleMaps	Google Maps
+ButtonOrLink.Contact.GoogleSearch	Google Search
+ButtonOrLink.Contact.SendGmail	Send Gmail
+ButtonOrLink.Contact.TIMBASURVEYS__Send_Survey_Contact_Detail	Send Survey
+ButtonOrLink.Contact.YahooMaps	Yahoo! Maps
+ButtonOrLink.Contact.YahooWeather	Yahoo! Weather
+ButtonOrLink.Contact.TIMBASURVEYS__send_survey	Send Survey
+ButtonOrLink.CustomPageItem.Access_GE	Access GE
+ButtonOrLink.CustomPageItem.All_EMEA_Big_Truck_Opportunities	All EMEA Big Truck Opportunities
+ButtonOrLink.CustomPageItem.AmerFleet	AmerFleet
+ButtonOrLink.CustomPageItem.Americas_Legal	Americas Legal
+ButtonOrLink.CustomPageItem.Concur	Concur
+ButtonOrLink.CustomPageItem.Global_Accounts_Sharepoint	Global Accounts - Sharepoint
+ButtonOrLink.CustomPageItem.XXXX_EMEA_products	XXXX EMEA products
+ButtonOrLink.CustomPageItem.XXXX_Product_Catalog	XXXX Product Catalog
+ButtonOrLink.CustomPageItem.XXXXdealer_com	XXXXdealer.com
+ButtonOrLink.CustomPageItem.ISM_Tee_time_Manual	ISM Tee-time Manual
+ButtonOrLink.CustomPageItem.Legal_National_Accounts_Contracts	Legal Sharepoint Site
+ButtonOrLink.CustomPageItem.Materials_Handling_Central	Materials Handling Central
+ButtonOrLink.CustomPageItem.My_Big_Truck_Open_Opportunities	My Big Truck Open Opportunities
+ButtonOrLink.CustomPageItem.NAM_2012_Tee_Time_Manual	NAM Tee-time Manual
+ButtonOrLink.CustomPageItem.XXXX_Contracts_Library	XXXX Contracts Library
+ButtonOrLink.CustomPageItem.PEMA_Content_Library	PEMA Content Library
+ButtonOrLink.CustomPageItem.PEMA_Salesforce_Rule_Book	PEMA Salesforce Rule Book
+ButtonOrLink.CustomPageItem.Success_Factors	Success Factors
+ButtonOrLink.CustomPageItem.XXXX_EMEA_products	XXXX EMEA products
+ButtonOrLink.CustomPageItem.XXXX_Product_Catalog	XXXX Product Catalog
+ButtonOrLink.CustomPageItem.XXXXdealer_com	XXXXdealer.com
+ButtonOrLink.Lead.Access_GE	Access GE
+ButtonOrLink.Lead.AltavistaNews	Altavista News
+ButtonOrLink.Lead.GoogleMaps	Google Maps
+ButtonOrLink.Lead.GoogleNews	Google News
+ButtonOrLink.Lead.GoogleSearch	Google Search
+ButtonOrLink.Lead.HooversProfile	Hoovers Profile
+ButtonOrLink.Lead.SendGmail	Send Gmail
+ButtonOrLink.Lead.TIMBASURVEYS__Send_Survey_Lead_Detail	Send Survey Lead Detail
+ButtonOrLink.Lead.TIMBASURVEYS__Send_Survey_to_Leads	Send Survey
+ButtonOrLink.Lead.YahooMaps	Yahoo Maps
+ButtonOrLink.Opportunity.Create_Quote	Create Quote
+ButtonOrLink.Opportunity.Launch_Configurator	Configurator Homepage
+ButtonOrLink.Opportunity.Lease_Expiration_Letter	Lease Expiration Letter
+ButtonOrLink.Opportunity.Reset_Selected_Products	Reset Selected Products
+ButtonOrLink.Quote.Refresh	Refresh Selected
+ButtonOrLink.Quote.Refresh_Quote	Refresh Quote
+ButtonOrLink.Quote.Refresh_Quotes	Refresh All
+ButtonOrLink.QuoteLineItem.Refresh_Selected	Refresh Selected
+CustomApp.GBFree__GridBuddy	GridBuddy Free
+CustomApp.LexisNexis_PP__LexisNexisProspectPortfolio	LexisNexis® Prospect Portfolio
+CustomApp.XXXX_Sales	XXXX Sales
+CustomApp.ProjectIssueManagement	Project/Issue Management
+CustomApp.pw_cc__ProvenWorksDataTools	ProvenWorks Data Tools
+CustomApp.qualtrics__Qualtrics	Qualtrics
+CustomApp.SpringCMEos__SpringCM	SpringCM
+CustomApp.TIMBASURVEYS__Timba_Survey	Timba Surveys
+CustomField.Competitor__c.Addt_l_Website1.FieldLabel	Addt'l Website
+CustomField.Competitor__c.Addt_l_Website2.FieldLabel	Addt'l Website
+CustomField.Competitor__c.Competitive_Offering.FieldLabel	Competitive Offerings
+CustomField.Competitor__c.Key_Partnerships_Alliances.FieldLabel	Key Partnerships/Alliances
+CustomField.Competitor__c.Key_Product_Customizations.FieldLabel	Key Product Customizations
+CustomField.Competitor__c.Num_of_Dealers.FieldLabel	# of Dealers
+CustomField.Competitor__c.Primary_Website.FieldLabel	Primary Website
+CustomField.Competitor__c.Strengths.FieldLabel	Strengths
+CustomField.Competitor__c.Weaknesses.FieldLabel	Weaknesses
+CustomField.Competitor__c.of_Employees.FieldLabel	# of Employees
+CustomField.Opportunity_Competitor__c.Account.FieldLabel	Account
+CustomField.Opportunity_Competitor__c.Competitor.FieldLabel	Competitor
+CustomField.Opportunity_Competitor__c.Competitor.RelatedListLabel	Opportunities
+CustomField.Opportunity_Competitor__c.Notes.FieldLabel	Notes
+CustomField.Opportunity_Competitor__c.Offerings_on_this_Oppt.FieldLabel	Offerings on this Oppt
+CustomField.Opportunity_Competitor__c.Opportunity.FieldLabel	Opportunity
+CustomField.Opportunity_Competitor__c.Opportunity.RelatedListLabel	Competitors
+CustomField.Opportunity_Competitor__c.Stage.FieldLabel	Stage
+CustomField.Acct_Plan__c.Account_Name.FieldLabel	Account Name
+CustomField.Acct_Plan__c.Account_Name.RelatedListLabel	Account Plans (Account Name)
+CustomField.Acct_Plan__c.Customer_Goals.FieldLabel	Customer Goals
+CustomField.Acct_Plan__c.Customer_Risk_Factor.FieldLabel	Customer Risk Factor
+CustomField.Acct_Plan__c.Dealer.FieldLabel	Dealer
+CustomField.Acct_Plan__c.Dealer.HelpText	Enter dealer associated with this Account Plan
+CustomField.Acct_Plan__c.Dealer.RelatedListLabel	Target Account Plans (Dealer)
+CustomField.Acct_Plan__c.Dealer_Salesperson.FieldLabel	Dealer Salesperson
+CustomField.Acct_Plan__c.Dealer_Salesperson.RelatedListLabel	Target Account Plans (Dealer Salesperson)

@@ -1,0 +1,18 @@
+da:
+  activemodel:
+    errors:
+      template:
+        body: 'Der var problemer med følgende felter:'
+        header:
+          one: En fejl forhindrede %{model} i at blive gemt
+          other: '%{count} fejl forhindrede {model} i at blive gemt'
+  job_verified:
+      body: |-
+        <p>Så er din %{make} %{model} opgave på autobutler.dk netop blevet godkendt af vores tekniske support – og der er snart tilbud på vej til dig.</p>
+        <p>De tilbud du får er selvfølgelig med autobutler Pris Match, der garanterer dig den bedste pris.</p>
+        <p>Har du spørgsmål, kan du altid kontakte vores supportafdeling på tlf. %{phone_number}, som har åbent alle hverdage mellem kl. 7:00 og 16 eller på email <a href="mailto:%{email}">%{email}</a></p>
+      did_you_know: "…andre **%{make} ejere** på autobutler i gennemsnit har sparet
+        **%{average_savings}** på %{job_type}-opgaver?\f and other text"
+      hello: Hej %{name}
+      part_1: |-
+        ### Hej %{name}

@@ -1,0 +1,860 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-04-25 13:24-0400\n"
+"PO-Revision-Date: 2018-04-25 13:24-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:11
+msgid "Error 404 - Page Not Found"
+msgstr "Fehler 404 – Seite nicht gefunden"
+
+#: archive.php:14
+msgid "Category: "
+msgstr "Kategorie: "
+
+#: archive.php:16
+msgid "Tag: "
+msgstr "Tag:"
+
+#: archive.php:18 archive.php:20 archive.php:22
+msgid "Archives dated: "
+msgstr "Archive mit Datum: "
+
+#: archive.php:24
+msgid "Author Archives"
+msgstr "Autoren-Archive"
+
+#: archive.php:26
+msgid "News Archives"
+msgstr "Neuigkeiten-Archive"
+
+#: archive.php:46
+msgid "Nothing Found."
+msgstr "Nichts gefunden."
+
+#: footer.php:36
+msgid "Use Promo Code:"
+msgstr "Aktionscode verwenden:"
+
+#: functions.php:77
+msgid "Events"
+msgstr "Events"
+
+#: functions.php:95 inc/walker_class.php:35 page-event-live.php:143
+msgid "Teams"
+msgstr "Teams"
+
+#: header.php:162 header.php:189 hrx-2018.php:55 page-home.php:40
+msgid "Sold Out"
+msgstr "Tickets ausverkauft"
+
+#: hrx-2018.php:11 hrx-2018.php:60
+#, fuzzy
+#| msgid "Watch the 2016 SMITE World Championship in a theatre near you!"
+msgid "Watch the Smite Finals in a theater near you!"
+msgstr ""
+"Schau dir die SMITE World Championships 2016 in einem Kino in deiner Nähe an!"
+
+#: hrx-2018.php:26 page-home.php:32
+msgid "Atlanta, GA"
+msgstr "Atlanta"
+
+#: hrx-2018.php:29
+msgid "January 4-7, 2018"
+msgstr "4. bis 7. Januar 2018"
+
+#: hrx-2018.php:42
+msgid "Book Your Hotel"
+msgstr "Hotel buchen"
+
+#: hrx-2018.php:48 page-home.php:10
+msgid ""
+"Coming to HRX but missed buying your After Party Ticket? Submit a request to "
+"HRXhelp@hirezstudios.com to find out how to still get your after party "
+"tickets!"
+msgstr ""
+"Du kommst zur HRX, hast aber vergessen, ein Ticket für die After-Party zu "
+"kaufen? Schreibe an HRXhelp@hirezstudios.com, um zu erfahren, wie du auch "
+"jetzt noch an Tickets für die After Party kommst!"
+
+#: hrx-2018.php:49
+msgid ""
+"After three years of sell-out crowds, incredible esports moments, and "
+"fantastic memories, it’s time for Hi-Rez Expo to grow bigger and better than "
+"ever before."
+msgstr ""
+
+#: hrx-2018.php:50
+msgid ""
+"Hi-Rez Expo at DreamHack Atlanta will welcome more fans to experience the "
+"SMITE and Paladins World Championships in-person. There will be more room "
+"for panels, meet-and-greets, playable stations, and cosplay. And this year, "
+"we’re in the heart of downtown Atlanta, steps from Georgia’s biggest "
+"attractions. Best of all: Three-day tickets start at just $49."
+msgstr ""
+
+#: hrx-2018.php:51
+msgid "Visit dreamhack.com"
+msgstr ""
+
+#: hrx-2018.php:62
+msgid ""
+"If you have questions please email <a href=\"mailto:hrxhelp@hirezstudios.com"
+"\">hrxhelp@hirezstudios.com</a>."
+msgstr ""
+"Wende dich bei Fragen bitte an <a href=\"mailto:hrxhelp@hirezstudios.com"
+"\">hrxhelp@hirezstudios.com</a>."
+
+#: hrx-2018.php:63
+msgid "Check out our FAQ <a href=\"https://www.hirezexpo.com/faq\">here</a>."
+msgstr ""
+"<a href=\"https://www.hirezexpo.com/faq\">Hier</a> findest du unsere FAQ."
+
+#: inc/super-nav.php:40 inc/super-nav.php:154
+msgid "Hi-Rez Studios Home"
+msgstr "Startseite von Hi-Rez Studios"
+
+#: inc/super-nav.php:41 inc/super-nav.php:155
+msgid "About Hi-Rez"
+msgstr "Über Hi-Rez"
+
+#: inc/super-nav.php:42 inc/super-nav.php:156
+msgid "Work at Hi-Rez"
+msgstr "Arbeiten bei Hi-Rez"
+
+#: inc/super-nav.php:43 inc/super-nav.php:157
+msgid "Media and Press"
+msgstr "Presse und Medien"
+
+#: inc/super-nav.php:44 inc/super-nav.php:158
+msgid "Contact Us"
+msgstr "Kontakt"
+
+#: inc/super-nav.php:48 inc/super-nav.php:161
+msgid "Explore Games"
+msgstr "Spiele erkunden"
+
+#: inc/super-nav.php:58
+msgid "Team-Based Strategic Shooter."
+msgstr "Strategischer Team-Shooter"
+
+#: inc/super-nav.php:60 inc/super-nav.php:73 inc/super-nav.php:86
+#: inc/super-nav.php:99
+msgid "Free To Play"
+msgstr "KOSTENLOS SPIELEN"
+
+#: inc/super-nav.php:71
+msgid "3rd Person, Action MOBA."
+msgstr "Third-Person, Action-MOBA"
+
+#: inc/super-nav.php:84
+msgid "World's Fastest Shooter."
+msgstr "Der schnellste Shooter der Welt"
+
+#: inc/super-nav.php:97
+msgid "Fast action platformer"
+msgstr "Schneller Action-Plattformer"
+
+#: inc/super-nav.php:97
+msgid "built for mobile."
+msgstr "für Mobilgeräte."
+
+#: inc/super-nav.php:105 inc/super-nav.php:170
+msgid "Language"
+msgstr "Sprache"
+
+#: inc/walker_class.php:28 page-about.php:12
+msgid "About"
+msgstr "Übersicht"
+
+#: inc/walker_class.php:29
+msgid "Event Info"
+msgstr "Event-Info"
+
+#: inc/walker_class.php:30 page-schedule.php:19
+msgid "Schedule"
+msgstr "Zeitplan"
+
+#: inc/walker_class.php:31
+msgid "Area / Hotel"
+msgstr "Gegend/Hotel"
+
+#: inc/walker_class.php:32 page-area-hotel.php:34
+msgid "Book Hotel"
+msgstr "Hotel buchen"
+
+#: inc/walker_class.php:33 inc/walker_class.php:41 page-faq.php:15
+msgid "FAQ"
+msgstr "FAQ"
+
+#: inc/walker_class.php:34 page-cosplay.php:13
+msgid "Cosplay Contest"
+msgstr "Cosplay Contest"
+
+#: inc/walker_class.php:36
+msgid "Maps"
+msgstr "Karten"
+
+#: inc/walker_class.php:37
+msgid "Digital Loot Pack"
+msgstr "Digitales Beute-Paket"
+
+#: inc/walker_class.php:38
+msgid "Digital Loot Packs"
+msgstr "Digitale Beute-Pakete"
+
+#: inc/walker_class.php:39
+msgid "Maps + Area"
+msgstr "Karten + Umgebung"
+
+#: inc/walker_class.php:40
+msgid "Merch"
+msgstr "Merch"
+
+#: inc/walker_class.php:42
+msgid "After Party"
+msgstr "After-Party"
+
+#: inc/walker_class.php:43
+msgid "Panels"
+msgstr "Podiumsdiskussionen"
+
+#: landing-page.php:33
+msgid "Tickets On Sale Now"
+msgstr "Tickets jetzt erhältlich"
+
+#: landing-page.php:39
+msgid "Atlanta"
+msgstr "Atlanta"
+
+#: landing-page.php:39
+msgid "January 5-8"
+msgstr "5.–8. Januar"
+
+#: landing-page.php:39
+msgid "2017"
+msgstr "2017"
+
+#: landing-page.php:41
+msgid "Hotel Deals"
+msgstr "Hotel-Angebote"
+
+#: landing-page.php:46 page-home.php:36
+msgid "Play Video"
+msgstr "Video ansehen"
+
+#: page-about.php:20
+msgid ""
+"Hi-Rez Expo is a four-day event to celebrate our communities, teams, "
+"cosplayers, and fans who make Hi-Rez Studios’ games great. This year, HRX "
+"features more esports championships than ever before as the SMITE World "
+"Championship and SMITE Console World Championship are joined by the Paladins "
+"World Championship, Paladins Console Wars, and the Hand of the Gods "
+"Founder’s Tournament. Plus, attend the keynote address to get exclusive "
+"first looks at new content for ALL Hi-Rez games!"
+msgstr ""
+"Die Hi-Rez Expo ist ein viertägiges Event, bei dem wir zusammen mit den "
+"Communitys, Teams, Cosplayern und Fans unsere Spiele feiern. Dieses Jahr "
+"gibt es bei der HRX mehr Esport-Meisterschaften als jemals zuvor, denn zu "
+"den SMITE World Championships und den SMITE Console World Championships "
+"gesellen sich die Paladins World Championships, die Paladins Console Wars "
+"und das Hand of the Gods Gründer-Turnier. Außerdem gibt es exklusive "
+"Einblicke auf neue Inhalte für ALLE Hi-Rez-Spiele!"
+
+#: page-about.php:30
+msgid ""
+"The SMITE World Championship features the top PC SMITE teams from around the "
+"world, competing for ultimate glory. Who will lift Thor's hammer, Mjolnir, "
+"this year?"
+msgstr ""
+"Die besten PC-Teams für SMITE aus aller Welt werden in den SMITE World "
+"Championships um den Weltmeistertitel kämpfen. Welches Team wird dieses Jahr "
+"Thors Hammer Mjölnir schwingen?"
+
+#: page-about.php:38
+msgid ""
+"The first-ever Paladins World Championship takes place at Hi-Rez Expo, and "
+"will bring top teams from the Paladins Premier League to face off against "
+"teams from China, LATAM, Brazil, SEA, Oceania, and CIS."
+msgstr ""
+"Auf der Hi-Rez Expo wird auch die allererste Paladins-Weltmeisterschaft "
+"ausgetragen, in der die Teams der Paladins Premier League gegen Teams aus "
+"China, Lateinamerika, Brasilien, Australien und Russland antreten werden."
+
+#: page-about.php:46
+msgid ""
+"The best Xbox One SMITE teams take the main stage from the SMITE Console "
+"World Championship! Who will reign supreme on the sticks?"
+msgstr ""
+"Im Rahmen der SMITE Console World Championships werden die besten Xbox One-"
+"Teams gegeneinander kämpfen! Welches Team wird den Titel holen?"
+
+#: page-about.php:54
+#, fuzzy
+#| msgid ""
+#| "Paladins Console Wars returns at Hi-Rez Expo, showcasing the best Xbox "
+#| "One and PlayStation 4 teams competing directly against one another for "
+#| "bragging right around the world!"
+msgid ""
+"Paladins Console Wars returns at Hi-Rez Expo, showcasing the best Xbox One "
+"and PlayStation 4 teams competing directly against one another for bragging "
+"rights around the world!"
+msgstr ""
+"Auch die Paladins Console Wars sind bei der Hi-Rez Expo wieder dabei. Hier "
+"werden die weltweit besten Teams auf Xbox One und PlayStation 4 "
+"gegeneinander antreten."
+
+#: page-about.php:62
+msgid ""
+"The Hand of the Gods Founder's Tournament takes place at Hi-Rez Expo this "
+"January, featuring 16 players competing for a $50,000 prize pool."
+msgstr ""
+"Während der Hi-Rez Expo wird das Gründer-Turnier für Hand of the Gods "
+"stattfinden, in dem 16 Spieler um einen Preispool von insgesamt 50.000 US-"
+"Dollar kämpfen werden."
+
+#: page-after-party.php:9
+msgid "Official HRX After Party!"
+msgstr "Offizielle HRX After-Party!"
+
+#: page-after-party.php:14
+#, fuzzy
+#| msgid ""
+#| "On January 8th, 2017, join Hi-Rez Studios and the teams of the 2017 Hi-"
+#| "Rez Expo at Main Event Atlanta for an after-party fit for Gods and "
+#| "Champions!"
+msgid ""
+"On January 7th, 2018, join Hi-Rez Studios and the teams of the 2017 Hi-Rez "
+"Expo at Main Event Atlanta for an after-party fit for Gods and Champions!"
+msgstr ""
+"Am 8. Januar 2017 könnt ihr gemeinsam mit Hi-Rez Studios und den Teams der "
+"Hi-Rez Expo 2017 im Main Event Atlanta ein After Party für Götter und "
+"Champions feiern!"
+
+#: page-after-party.php:15
+#, fuzzy
+#| msgid ""
+#| "All games, bowling, laser-tag, billiards, and soda are included in the "
+#| "ticket price, with a cash bar available to all after-party guests over "
+#| "the age of 21."
+msgid ""
+"All games, bowling, laser-tag, billiards, and soda are included in the "
+"ticket price, with a cash bar available to all after-party guests over the "
+"age of 21."
+msgstr ""
+"Alle Games, Bowling, Lasertag, Billiard und alkoholfreie Getränke stehen "
+"kostenlos zur Verfügung. Gäste ab 21 Jahre können sich während der After "
+"Party an unserer Cash-Bar erfrischen."
+
+#: page-after-party.php:16
+msgid "Tickets available for purchase at the venue."
+msgstr ""
+
+#: page-area-hotel.php:11
+msgid "Map"
+msgstr "Karte"
+
+#: page-area-hotel.php:17
+msgid "Venue"
+msgstr "Veranstaltungsort"
+
+#: page-area-hotel.php:22
+msgid "2800 Cobb Galleria Pkwy · Atlanta, GA 30339"
+msgstr "2800 Cobb Galleria Pkwy · Atlanta, GA 30339"
+
+#: page-area-hotel.php:31
+msgid "Visit Website"
+msgstr "Website besuchen"
+
+#: page-area-hotel.php:53
+msgid "Book Now"
+msgstr "Jetzt buchen"
+
+#: page-area-hotel.php:55
+msgid "Restaurants"
+msgstr "Restaurants"
+
+#: page-area-hotel.php:62
+msgid "Great for large parties!"
+msgstr "Ideal für große Gruppen!"
+
+#: page-area-hotel.php:69
+msgid "Modern Burgers and Shakes"
+msgstr "Leckere Burger und Shakes!"
+
+#: page-area-hotel.php:76
+msgid "Authentic Italian Cuisine"
+msgstr "Authentische italienische Küche"
+
+#: page-area-hotel.php:85
+msgid "Featured on the Food Network and Open 24 hours!"
+msgstr "Empfohlen vom Food Network und rund um die Uhr geöffnet!"
+
+#: page-area-hotel.php:92
+msgid "Genuine Food, Craft Beer"
+msgstr "Leckeres Essen und Craft-Beer"
+
+#: page-area-hotel.php:99
+msgid "The Original \"Create Your Own Pizza\" Joint"
+msgstr "Die originale „Create Your Own Pizza“-Pizzeria"
+
+#: page-cosplay.php:29
+msgid "<span>$15,000</span> Prize Pool!"
+msgstr "<span>15.000 US-Dollar</span> Preispool!"
+
+#: page-cosplay.php:30
+msgid "Take part in the 4th Annual Cosplay Contest at Hi-Rez Expo 2018!"
+msgstr ""
+"Nimm während der Hi-Rez Expo 2018 an unserem 4. jährlichen Cosplay Contest "
+"teil!"
+
+#: page-cosplay.php:31
+msgid ""
+"We’re extremely excited to announce that we’ll be hosting the fourth annual "
+"Cosplay Contest at Hi-Rez Expo 2018! With so many members of the community "
+"dedicated to bringing our characters to life, we’re always inspired to add a "
+"little friendly competition to the mix."
+msgstr ""
+"Wir freuen uns sehr, unseren vierten jährlichen Cosplay Contest bei der Hi-"
+"Rez Expo 2018 ankündigen zu dürfen! Viele Mitglieder unserer Community "
+"erwecken unsere Charaktere mit ihren Kostümen zum Leben. Wir bedanken uns "
+"mit einem kleinen Wettbewerb."
+
+#: page-cosplay.php:32
+msgid ""
+"Whether you’re transforming into Neith, the Weaver of Fate, or Androxus, the "
+"Godslayer, get ready to pick a character from your favorite Hi-Rez Studios "
+"title and compete for a prize pool of $15,000!"
+msgstr ""
+"Verwandelt euch in die Schicksalsweberin Neith, den Gotttöter Androxus oder "
+"andere Charaktere aus Spielen von Hi-Rez Studios und sichert euch einen "
+"Anteil am Preisgeld von insgesamt 15.000 US-Dollar!"
+
+#: page-cosplay.php:33
+msgid "Click here for more details!"
+msgstr "Mehr erfahren!"
+
+#: page-digital-ticket.php:9
+msgid "HRX Digital Loot Packs"
+msgstr "Digitale HRX-Beute-Pakete"
+
+#: page-digital-ticket.php:18
+msgid "1,500 Gems"
+msgstr "1500 Juwelen"
+
+#: page-digital-ticket.php:23
+msgid ""
+"The SWC 2018 Digital Loot Pack is here! This pack unlocks tons of content "
+"and will come with your HRX Ticket OR when you attend the SWC Finals at a "
+"Coke Theater (more details to be announced soon). If you can’t attend HRX or "
+"the Coke Theater screenings of the finals, you can still purchase this "
+"Digital Loot Pack for 1,500 Gems!"
+msgstr ""
+"Das Digitale Beute-Paket der SWC 2018 ist da! Dieses Paket schaltet jede "
+"Menge Inhalte frei und enthält außerdem ein Ticket für die HRX bzw. ein "
+"Ticket für die Übertragung des SWC-Finales in einem Coke-Kino (mehr Infos "
+"dazu bald). Doch du kannst das Digitale Beute-Paket für 1500 Juwelen "
+"natürlich auch dann kaufen, wenn du weder an der HRX teilnehmen, noch das "
+"Finale der SWC in einem Coke-Kino anschauen kannst!"
+
+#: page-digital-ticket.php:25 page-digital-ticket.php:58
+msgid "CONTAINS:"
+msgstr "ENTHÄLT:"
+
+#: page-digital-ticket.php:27
+msgid "Skins"
+msgstr "Skins"
+
+#: page-digital-ticket.php:28
+msgid "Mystic Defender Neith"
+msgstr "Sternenkriegerin Neith"
+
+#: page-digital-ticket.php:28 page-digital-ticket.php:31
+#: page-digital-ticket.php:33
+msgid "(Exclusive)"
+msgstr "(Exklusiv)"
+
+#: page-digital-ticket.php:29
+msgid "SWC 2018 Queen Aphrodite"
+msgstr "SWC 2018 Königin Aphrodite"
+
+#: page-digital-ticket.php:29 page-digital-ticket.php:30
+#: page-digital-ticket.php:34 page-digital-ticket.php:35
+msgid "(Limited)"
+msgstr "(Limitiert)"
+
+#: page-digital-ticket.php:30
+msgid "SWC 2018 King Thor"
+msgstr "SWC 2018 König Thor"
+
+#: page-digital-ticket.php:31
+msgid "Convention 2018 Cernunnos"
+msgstr "Convention 2018 Cernunnos"
+
+#: page-digital-ticket.php:32
+msgid "Loadout Items"
+msgstr "Profilausrüstung"
+
+#: page-digital-ticket.php:33
+msgid "Number One Global Emote"
+msgstr "Globales Emote: Nummer Eins"
+
+#: page-digital-ticket.php:34
+msgid "SWC 2018 Recall Skin"
+msgstr "SWC 2018 Rückruf-Skin"
+
+#: page-digital-ticket.php:35
+msgid "SWC 2018 Ward Skin"
+msgstr "SWC 2018 Schutzstein-Skin"
+
+#: page-digital-ticket.php:36
+msgid "Thumper Ward"
+msgstr "Behämmerter Schutzstein-Skin"
+
+#: page-digital-ticket.php:37
+msgid "Divine Chest Roll"
+msgstr "Göttliche Truhe"
+
+#: page-digital-ticket.php:38
+msgid "750 Fantasy Points"
+msgstr "750 Fantasiepunkte"
+
+#: page-digital-ticket.php:51
+msgid "800 Crystals"
+msgstr "800 Kristalle"
+
+#: page-digital-ticket.php:56
+msgid ""
+"We are excited to introduce this year’s Paladins HRX Bundle!  Celebrate HRX "
+"2018 with all new skins for Seris, Strix, Drogoz and Vivian! All of these "
+"cosmetics are Limited and won’t be attainable again, so don’t miss your "
+"chance collect the HRX 2018 Digital Loot Pack!"
+msgstr ""
+"Wir freuen uns, das diesjährige Paladins HRX-Paket vorstellen zu dürfen! "
+"Feiere die HRX 2018 mit neuen Skins für Seris, Strix, Drogoz und Vivian! All "
+"diese Gegenstände sind limitiert und werden in Zukunft nicht mehr erhältlich "
+"sein, also am besten sofort zuschlagen!"
+
+#: page-digital-ticket.php:60
+msgid "Coldsnap Strix"
+msgstr "Kältewelle Strix"
+
+#: page-digital-ticket.php:61
+msgid "Silvertongue Vivian"
+msgstr "Silberzunge Vivian"
+
+#: page-digital-ticket.php:62
+msgid "Expo 2018 Seris"
+msgstr "Expo 2018 Seris"
+
+#: page-digital-ticket.php:63
+#, fuzzy
+#| msgid "Expo 2018 Seris"
+msgid "Expo 2018 Seris MVP Pose"
+msgstr "Expo 2018 Seris"
+
+#: page-digital-ticket.php:64
+#, fuzzy
+#| msgid "Championship 2018 Spray"
+msgid "Championship 2018 Drogoz"
+msgstr "Championship 2018-Spray"
+
+#: page-digital-ticket.php:65
+msgid "Champion 2018 Drogoz MVP Pose"
+msgstr "Champion 2018 – MVP-Pose für Drogoz"
+
+#: page-digital-ticket.php:66
+msgid "Championship 2018 Spray"
+msgstr "Championship 2018-Spray"
+
+#: page-digital-ticket.php:67
+msgid "10,000 VIP Points"
+msgstr "10.000 VIP-Punkte"
+
+#: page-event-live.php:25 page-home.php:28
+msgid "Presented by"
+msgstr "Präsentiert von"
+
+#: page-event-live.php:29
+msgid "Select game for bracket and team information"
+msgstr "Wähle ein Spiel aus, um mehr über Turnierbaum und Teams zu erfahren."
+
+#: page-event-live.php:134
+msgid "Watch the 2016 SMITE World Championship in a theatre near you!"
+msgstr ""
+"Schau dir die SMITE World Championships 2016 in einem Kino in deiner Nähe an!"
+
+#: page-event-live.php:144
+msgid "Twitter"
+msgstr "Twitter"
+
+#: page-home.php:32
+msgid "January 5-8, 2017"
+msgstr "5. bis 8. Januar 2017"
+
+#: page-home.php:51
+msgid ""
+"Can't make it in person? Watch the 2017 SMITE World Championship in a "
+"theatre near you!"
+msgstr ""
+"Du kannst nicht kommen? Schau dir die SMITE World Championships 2017 in "
+"einem Kino in deiner Nähe an!"
+
+#: page-press.php:11
+msgid "Press"
+msgstr "Presse"
+
+#: page-press.php:15
+msgid "Press Info"
+msgstr "Presse-Info"
+
+#: page-press.php:16
+msgid ""
+"For all media inquiries or information about press credentials for HRX 2018, "
+"please contact us:"
+msgstr ""
+"Bei Anfragen oder Informationen zur Anmeldung für die HRX 2018 kontaktieren "
+"Sie bitte:"
+
+#: page-press.php:18
+msgid "North America:"
+msgstr "Nordamerika:"
+
+#: page-press.php:19
+msgid "Europe:"
+msgstr "Europa:"
+
+#: page-press.php:23
+msgid "Press Kit + Logos"
+msgstr "Pressemappe + Logos"
+
+#: page-press.php:41
+msgid "Event Pictures"
+msgstr "Eventbilder"
+
+#: page-schedule.php:23
+msgid ""
+"Championship Sunday may be the main event, but every single day of the Hi-"
+"Rez Expo is packed full of excitement. Watch live matches on the big stage, "
+"play your favorite Hi-Rez games in the arena, meet your favorite Hi-Rez "
+"developers, take pictures with the Gods and Champions in attendance, and "
+"spend time with one of the best communities in the world."
+msgstr ""
+"Der Sonntag mag zwar der wichtigste Tag der Weltmeisterschaft sein, doch "
+"auch alle anderen Tage der Hi-Rez Expo stecken voller Spannung, Spiel "
+"und ... Aufregung! Schau dir Matches live auf der großen Bühne an, spiele "
+"deine Lieblingsspiele in der Arena, triff deine Lieblings-Devs von Hi-Rez, "
+"mache Fotos mit den Göttern und Champions und verbringe Zeit mit einer der "
+"besten Communitys der Welt!"
+
+#: page-schedule.php:26
+msgid "January"
+msgstr "Januar"
+
+#: page-schedule.php:79
+msgid "*Schedule is subject to change."
+msgstr "*Programm kann sich noch ändern."
+
+#~ msgid ""
+#~ "HRX 2018 tickets are sold out! Check back soon for more information on "
+#~ "how you can still catch the action at a movie theater near you, thanks to "
+#~ "Coke Esports."
+#~ msgstr ""
+#~ "Die Tickets für die HRX 2018 sind ausverkauft! Bald bekommst du hier "
+#~ "Informationen, wie du die Convention in einem Kino in deiner Nähe "
+#~ "verfolgen kannst."
+
+#~ msgid "Venue: "
+#~ msgstr "Ort:"
+
+#~ msgid "mainevent.com/locations/atlanta-ga"
+#~ msgstr "mainevent.com/locations/atlanta-ga"
+
+#~ msgid "Price: "
+#~ msgstr "Preis:"
+
+#~ msgid "$35 until January 3, 2017"
+#~ msgstr "Bis 3.1.2017: 35 $"
+
+#~ msgid "$50 on or after January 4, 2017"
+#~ msgstr "Ab 4.1.2017: 50 $"
+
+#~ msgid "Join us!"
+#~ msgstr "Mitglied werden!"
+
+#~ msgid "HRX 2017 Spray"
+#~ msgstr "HRX 2017-Spray"
+
+#~ msgid "PALADINS COMING SOON!"
+#~ msgstr "Paladins ... bald"
+
+#~ msgid "Fernando Invitational Skin"
+#~ msgstr "Invitational-Skin für Fernando"
+
+#~ msgid "Viktor Invitational Skin"
+#~ msgstr "Invitational-Skin für Viktor"
+
+#~ msgid "Ying 2017 Convention Skin"
+#~ msgstr "Convention 2017-Skin für Ying"
+
+#~ msgid "MVP Pose for Viktor"
+#~ msgstr "MVP-Pose für Viktor"
+
+#~ msgid "MVP Pose for Fernando"
+#~ msgstr "MVP-Pose für Fernando"
+
+#~ msgid "Trophy 2017 Spray"
+#~ msgstr "Trophy 2017-Spray"
+
+#~ msgid "Schedule - Coming Soon!"
+#~ msgstr "Zeitplan – kommt bald!"
+
+#~ msgid "Buy Tickets"
+#~ msgstr "Tickets kaufen"
+
+#~ msgid "Buy Tickets Now"
+#~ msgstr "Jetzt Tickets kaufen"
+
+#~ msgid ""
+#~ "The first-ever Paladins HRX Invitational will make its debut at Hi-Rez "
+#~ "Expo 2017. Eight teams who qualified from regional tournaments in North "
+#~ "America, Europe, LATAM/Brazil, Australia/New Zealand, and China will "
+#~ "compete."
+#~ msgstr ""
+#~ "Die ersten Paladins HRX Invitational werden auf der Hi-Rez Expo 2017 "
+#~ "debütieren. Acht Teams, die aus regionalen Turnieren in Nordamerika, "
+#~ "Europa, LATAM / Brasilien, Australien / Neuseeland und China qualifiziert "
+#~ "sind, werden konkurrieren."
+
+#~ msgid "Atlanta's first Geekbar, Gamebar & Nerdbar"
+#~ msgstr "Atlantas erste Geekbar, Gamebar & Nerdbar"
+
+#~ msgid "Hours"
+#~ msgstr "Öffnungszeiten"
+
+#~ msgid "Monday: Closed"
+#~ msgstr "Montag: Geschlossen"
+
+#~ msgid "Tuesday - Sunday: 5pm - 2am"
+#~ msgstr "Dienstag - Sonntag: 17:00 bis 02:00 Uhr"
+
+#~ msgid ""
+#~ "Immerse yourself in the world of Hi-Rez. Who will you be? Creepy "
+#~ "Bakasura? Regal Freya? Or will you venture to The Realm to become "
+#~ "stalwart Fernando or mysterious Skye? Pick your favorite Hi-Rez character "
+#~ "and compete in the 3rd Annual Cosplay contest for a $15,000 prize pool."
+#~ msgstr ""
+#~ "Tauche ein in die Welt von Hi-Rez. Welcher ist dein Lieblingscharakter? "
+#~ "Der gruselige Bakasura oder die majestätische Freya? Oder wirst du "
+#~ "vielleicht in die Welt von Paladins eintauchen und zu Fernando oder Skye "
+#~ "werden? Wähle deinen Lieblingscharakter von Hi-Rez Studios aus und tritt "
+#~ "in unserem dritten jährlichen Cosplay-Wettbewerb um einen Preispool von "
+#~ "insgesamt 15.000 US-Dollar an."
+
+#~ msgid "SWC Digital Loot Pack"
+#~ msgstr "Digitales SWC-Beute-Paket 2017"
+
+#~ msgid ""
+#~ "Support the SMITE World Championship! Unlock four awesome skins and "
+#~ "Limited in-game items with the Digital Loot Pack, available in the SMITE "
+#~ "in-game store now!"
+#~ msgstr ""
+#~ "Unterstütze die SMITE World Championship! Mit dem Digitalen Beute-Paket, "
+#~ "das ab jetzt im Shop erhältlich ist, schaltest du vier tolle Skins und "
+#~ "limitierte Gegenständefrei!"
+
+#~ msgid ""
+#~ "If you have purchased a ticket via Eventbrite to attend the Hi-Rez Expo, "
+#~ "you will receive a free Digital Loot Pack. Watch your e-mail for your "
+#~ "promotional code, redeemable in-game."
+#~ msgstr ""
+#~ "Wenn du dein Ticket für die Hi-Rez Expo über Eventbrite gekauft hast, "
+#~ "erhältst du ein gratis Digitales Beute-Paket. Den Aktionscode erhältst du "
+#~ "per E-Mail."
+
+#~ msgid "SWC 2017 Heroine Amaterasu"
+#~ msgstr "SWC Amaterasu"
+
+#~ msgid "SWC 2017 Hero Apollo"
+#~ msgstr "SWC Apollo"
+
+#~ msgid "Heebee Chibi Hades"
+#~ msgstr "Grusel-Chibi Hades"
+
+#~ msgid ""
+#~ "(Contains one of the following: Cog Scylla, TSM Apollo, Convention 2012, "
+#~ "Convention 2013, Convention 2014, Convention 2015, SWC 2015 Ares, "
+#~ "EpSOLon, Convention 2016)"
+#~ msgstr ""
+#~ "(Enthält 1 der folgenden Gegenstände: COG Skylla, TSM Apollo, Convention "
+#~ "2012, Convention 2013, Convention 2014, Convention 2015, SWC 2015 Ares, "
+#~ "EpSOLon oder Convention 2016) "
+
+#~ msgid ""
+#~ "The first-ever Paladins HRX Invitational will make its debut at Hi-Rez "
+#~ "Expo 2017. Eight teams who qualified from regional tournaments in North "
+#~ "America, Europe, LATAM/Brazil, Australia/New Zealand, and China will "
+#~ "compete for the $150,000 prize pool."
+#~ msgstr ""
+#~ "Das allererste Paladins HRX Invitational findet während der Hi-Rez Expo "
+#~ "2017 statt. Die 8 Teams, die sich in den regionalen Turnieren in "
+#~ "Nordamerika, Europa, Lateinamerika/Brasilien, Australien/Neuseeland und "
+#~ "China qualifiziert haben, werden um einen Preispool von insgesamt 150.000 "
+#~ "US-Dollar kämpfen."
+
+#~ msgid ""
+#~ "The SMITE World Championship at Hi-Rez Expo 2017 will once again feature "
+#~ "the top PC SMITE teams from around the world, playing for a $1-million "
+#~ "prize pool. The top Xbox teams will also compete for a $150,000 prize "
+#~ "pool in the inaugural SMITE Xbox World Championship."
+#~ msgstr ""
+#~ "Die besten PC-Teams aus der ganzen Welt werden an der SMITE World "
+#~ "Championship teilnehmen, die während der Hi-Rez Expo 2017 ausgetragen "
+#~ "wird, und um einen Preispool von insgesamt 1 Million US-Dollar kämpfen. "
+#~ "Die besten Teams auf Xbox werden in der ersten SMITE Console World "
+#~ "Championship um einen Preispool von 150.000 US-Dollar kämpfen."
+
+#~ msgid ""
+#~ "On January 8th, 2017, join Hi-Rez Studios and the teams of the 2017 Hi-"
+#~ "Rez Expo at Main Event Atlanta for an after party fit for Gods and "
+#~ "Champions!"
+#~ msgstr ""
+#~ "Am 8. Januar 2017 könnt ihr gemeinsam mit Hi-Rez Studios und den Teams "
+#~ "der Hi-Rez Expo 2017 im Main Event Atlanta ein After Party für Götter und "
+#~ "Champions feiern!"
+
+#~ msgid ""
+#~ "All games, bowling, laser-tag, billiards, and soda will be completely "
+#~ "free at the party, with a cash bar available to all after party guests "
+#~ "over the age of 21."
+#~ msgstr ""
+#~ "Alle Games, Bowling, Lasertag, Billiard und alkoholfreie Getränke stehen "
+#~ "kostenlos zur Verfügung. Gäste ab 21 Jahre können sich während der After "
+#~ "Party an unserer Cash-Bar erfrischen."
+
+#~ msgid "Join Us Live!"
+#~ msgstr "Sei live dabei!"
+
+#~ msgid ""
+#~ "All games, bowling, laser-tag, billiards, and soda will be completely "
+#~ "free at the party, with a cash bar available to all after-party guests "
+#~ "over the age of 21."
+#~ msgstr ""
+#~ "Alle Games, Bowling, Lasertag, Billiard und alkoholfreie Getränke stehen "
+#~ "kostenlos zur Verfügung. Gäste ab 21 Jahre können sich während der After "
+#~ "Party an unserer Cash-Bar erfrischen."
+
+#~ msgid "TBD"
+#~ msgstr "TBD"
