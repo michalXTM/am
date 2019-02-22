@@ -1,0 +1,7 @@
+<root>
+<root>
+<ContentElement id="chgCurrency" l10n-sid="regapp.ChangeRegistrationPreview.chgCurrency">
+        <SPH styleId="B" type="Style"><DPH id="currency"/>
+        </SPH><DPH id="currency"/>
+</ContentElement>
+</root>
