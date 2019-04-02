@@ -1,2 +1,0 @@
-segment1.
-segment2.
